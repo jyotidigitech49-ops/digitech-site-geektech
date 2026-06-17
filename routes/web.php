@@ -7,5 +7,13 @@ Route::get('/welcome', function () {
 });
 
 Route::get('/', function () {
-    return view('Home');
+    return view('home.index');
+});
+
+Route::get('/about', function () {
+    return view('about.aboutus');
+});
+
+Route::get('/blog-details', function () {
+    return view('blog.blogdetails');
 });

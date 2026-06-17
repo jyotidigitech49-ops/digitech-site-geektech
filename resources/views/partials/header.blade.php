@@ -6,7 +6,7 @@
                         <div class="row align-items-center">
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
-                                    <a href="index.html"><img src="{{ asset('assets/images/logo/logo.png') }}" alt="logo"></a>
+                                    <a href="{{ url('/') }}"><img src="{{ asset('assets/images/logo/logo.png') }}" alt="logo"></a>
                                 </div>
                             </div>
                             <div class="col-xl-7 col-lg-7">
@@ -114,7 +114,7 @@
                                             </li>
                                             <li><a href="#">PAGES </a>
                                                 <ul class="sub-menu-style">
-                                                    <li><a href="about-us.html">about us </a></li>
+                                                    <li><a href="{{ url('/about') }}">about us </a></li>
                                                     <li><a href="cart.html">cart page</a></li>
                                                     <li><a href="checkout.html">checkout </a></li>
                                                     <li><a href="my-account.html">my account</a></li>
@@ -130,7 +130,7 @@
                                                     <li><a href="blog.html">blog standard </a></li>
                                                     <li><a href="blog-no-sidebar.html">blog no sidebar </a></li>
                                                     <li><a href="blog-right-sidebar.html">blog right sidebar</a></li>
-                                                    <li><a href="blog-details.html">blog details</a></li>
+                                                    <li><a href="{{ url('/blog-details') }}">blog details</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="contact.html">CONTACT </a></li>
@@ -266,7 +266,7 @@
                                         <li><a href="blog.html">blog standard </a></li>
                                         <li><a href="blog-no-sidebar.html">blog no sidebar </a></li>
                                         <li><a href="blog-right-sidebar.html">blog right sidebar</a></li>
-                                        <li><a href="blog-details.html">blog details</a></li>
+                                        <li><a href="{{ url('blog-details') }}">blog details</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="contact.html">Contact us</a></li>

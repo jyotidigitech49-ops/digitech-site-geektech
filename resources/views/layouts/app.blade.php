@@ -19,6 +19,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/jquery-ui.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/layout.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/footer.css') }}">
+    @stack('styles')
 </head>
 
 <body>
@@ -28,9 +32,7 @@
 
         @yield('content')
 
-        {{-- @include('partials.subscribe') --}}
         @include('partials.footer')
-        {{-- @include('partials.quick-view-modal') --}}
 
     </div>
 

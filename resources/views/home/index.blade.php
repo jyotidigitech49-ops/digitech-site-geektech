@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('title','Home')
+
+@push('styles')
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/pages/home.css') }}"> --}}
+@endpush
+
 @section('content')
 
 <div class="slider-area bg-gray-8">
@@ -4156,20 +4161,7 @@
             </div>
         </div>
 
-        <div class="download-app-area pb-120">
-            <div class="container">
-                <div class="bg-img" style="background-image:url({{ asset('assets/images/bg/bg-3.jpg') }});">
-                    <div class="download-app-content">
-                        <h2>Download Norda <br>App Now!</h2>
-                        <p>Shopping faster with our app.</p>
-                        <div class="app-img">
-                            <a href="#"><img src="{{ asset('assets/images/icon-img/app-1.png') }}" alt=""></a>
-                            <a href="#"><img src="{{ asset('assets/images/icon-img/app-2.png') }}" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+       @include('partials.download_app_area')
 
 
 @endsection
