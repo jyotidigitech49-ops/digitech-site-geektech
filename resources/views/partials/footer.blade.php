@@ -1,7 +1,7 @@
- <footer class="footer-area">
-            <div class="footer-top border-bottom-4 pb-55">
+ <footer class="footer-area bg-gray-4">
+            <div class="footer-top border-bottom-4 pt-55 pb-55">
                 <div class="container">
-                    <div class="row">
+                    <div class="row mt">
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12">
                             <div class="footer-widget mb-40">
                                 <h3 class="footer-title">Quick Shop</h3>
@@ -93,7 +93,7 @@
                     <div class="row flex-row-reverse">
                         <div class="col-lg-6 col-md-6">
                             <div class="payment-img payment-img-right">
-                                <a href="#"><img src="{{ asset('assets/images/icon-img/payment.png') }}" alt=""></a>
+                                <a href="#"><img src="assets/images/icon-img/payment.png" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
