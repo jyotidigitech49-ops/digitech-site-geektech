@@ -24,8 +24,6 @@ return new class extends Migration
 
             $table->text('link')->nullable();
 
-            $table->timestamps();
-
             $table->index('status');
         });
     }

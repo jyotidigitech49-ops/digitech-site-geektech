@@ -201,55 +201,33 @@
                 </div>
             </div>
         </div>
-        <div class="banner-area padding-10-row-col pb-110">
+         <div class="banner-area pb-90">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="banner-wrap banner-border-1 mb-10">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="banner-wrap mb-30">
                             <div class="banner-img banner-img-zoom">
-                                <a href="product-details.html"><img src="{{ asset('assets/images/banner/banner-18.jpg') }}" alt=""></a>
+                                <a href="product-details.html"><img src="assets/images/banner/banner-10.jpg" alt=""></a>
                             </div>
-                            <div class="banner-content-17">
-                                <h2>Microsoft Surface Pro 7 - 12.3”</h2>
-                                <p>Start</p>
-                                <div class="banner-price">
-                                    <span>$425.60</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="banner-wrap banner-border-1 mb-10">
-                            <div class="banner-img banner-img-zoom">
-                                <a href="product-details.html"><img src="{{ asset('assets/images/banner/banner-19.jpg') }}" alt=""></a>
-                            </div>
-                            <div class="banner-content-13">
-                                <span>20x absorbs</span>
-                                <h2>Triple <br>guards</h2>
-                                <div class="product-available-wrap">
-                                    <div class="single-product-available">
-                                        <h3>6</h3>
-                                        <span>pack</span>
-                                    </div>
-                                    <div class="single-product-available">
-                                        <h3>124</h3>
-                                        <span>diapers</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="banner-wrap banner-border-1 mb-10">
-                            <div class="banner-img banner-img-zoom">
-                                <a href="product-details.html"><img src="{{ asset('assets/images/banner/banner-20.jpg') }}" alt=""></a>
-                            </div>
-                            <div class="banner-content-5">
-                                <span>Hello kids</span>
-                                <h2>Activities Boys <br>with HelloKid</h2>
-                                <p>Discover collection from Hello Kid brand</p>
+                            <div class="banner-content-11 banner-content-11-modify">
+                                <h2><span>Zara</span> Pattern Boxed <br>Underwear</h2>
+                                <p>Stretch, & Fress cool</p>
                                 <div class="btn-style-4">
-                                    <a href="product-details.html">explore <i class="icon-arrow-right"></i></a>
+                                    <a class="hover-red" href="product-details.html">Shop now <i class="icon-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="banner-wrap mb-30">
+                            <div class="banner-img banner-img-zoom">
+                                <a href="product-details.html"><img src="assets/images/banner/banner-11.jpg" alt=""></a>
+                            </div>
+                            <div class="banner-content-11 banner-content-11-modify">
+                                <h2><span>Basic</span> Color<br>Caps</h2>
+                                <p>Less is more!</p>
+                                <div class="btn-style-4">
+                                    <a class="hover-red" href="product-details.html">Shop now <i class="icon-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -2370,7 +2348,7 @@
                 </div>
             </div>
         </div>
-          <div class="product-area pb-110">
+          <div class="product-area pb-110 mt-50">
             <div class="container">
                 <div class="section-title-tab-wrap border-bottom-3 mb-30 pb-20">
                     <div class="section-title-6">
@@ -4098,6 +4076,22 @@
                 </div>
             </div>
         </div>
+        <div class="deal-area pt-150 pb-130 bg-img" style="background-image:url(assets/images/bg/bg-1.jpg);">
+            <div class="container">
+                <div class="deal-content-1">
+                    <span>deal of the day</span>
+                    <h2><span>50% OFF</span> Basic <br>Tee Flavor</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipis elit. Nunc imperdiet, nulla.</p>
+                    <div class="timer-wrap">
+                        <h4>Expires in:</h4>
+                        <div class="timer-style-1" id="timer-1-active"></div>
+                    </div>
+                    <div class="deal-btn">
+                        <a href="product-details.html">Buy now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
          <div class="blog-area pt-115 pb-75">
             <div class="container">
                 <div class="section-title-tab-wrap mb-55">
@@ -4160,8 +4154,5 @@
                 </div>
             </div>
         </div>
-
-       @include('partials.download_app_area')
-
 
 @endsection

@@ -28,8 +28,6 @@ return new class extends Migration
 
             $table->integer('sort')->default(0);
 
-            $table->timestamps();
-
             $table->index('parent_id');
             $table->index('status');
         });
