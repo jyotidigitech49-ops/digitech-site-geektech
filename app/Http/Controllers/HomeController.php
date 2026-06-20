@@ -3,40 +3,78 @@
 namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Blog;
+use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
-{
-    public function index()
-    {
-        $featuredProducts = Product::where('status', 'A')
-            ->inRandomOrder()
-            ->limit(5)
-            ->get();
+class HomeController extends Controller {
+    public function index() {
 
-        $tabCategories = [
-            'printers' => 'Printers',
-            'desktops' => 'Desktops',
-            'thin_clients' => 'Thin Clients',
-            'scanners' => 'Scanners',
+        $parentCategories = Product::where( 'status', 'A' )
+
+        ->select( 'parent_cat' )
+
+        ->distinct()
+
+        ->pluck( 'parent_cat' );
+
+        $productTabs = [];
+
+        // Featured Tab
+
+        $productTabs[ 'featured' ] = [
+
+            'label' => 'Featured',
+
+            'products' => Product::where( 'status', 'A' )
+
+            ->inRandomOrder()
+
+            ->limit( 10 )
+
+            ->get(),
+
         ];
 
-        $tabProducts = [];
+        // Dynamic Tabs
 
-        foreach ($tabCategories as $key => $categoryName) {
-            $category = Category::where('status', 'A')
-                ->where('name', $categoryName)
-                ->first();
+        foreach ( $parentCategories as $parentCat ) {
 
-            $tabProducts[$key] = $category
-                ? Product::where('status', 'A')
-                    ->where('cat_id', $category->id)
-                    ->limit(5)
-                    ->get()
-                : collect();
+            $key = Str::slug( $parentCat, '_' );
+
+            $productTabs[ $key ] = [
+
+                'label' => $parentCat,
+
+                'products' => Product::where( 'status', 'A' )
+
+                ->where( 'parent_cat', $parentCat )
+
+                ->limit( 10 )
+
+                ->get(),
+
+            ];
+
         }
 
-        return view('home.index', compact('featuredProducts', 'tabProducts'));
+        // suggested products
+        $suggestedProducts = Product::where( 'status', 'A' )
+        ->inRandomOrder()
+        ->limit( 15 )
+        ->get();
+
+        //blogs-list-random---
+        $blogPosts = Blog::where( 'status', 'A' )
+            ->inRandomOrder()
+            ->limit( 3 )
+            ->get();
+
+        // dd($blogPosts );
+
+
+        return view( 'home.index', compact( 'productTabs', 'suggestedProducts', 'blogPosts' ) );
+
     }
 }
