@@ -1,1143 +1,837 @@
 @extends('layouts.app')
+@section('title', 'HP OfficeJet 8122e All-in-One Printer')
 
+@push('styles')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Forma+DJR+Deck:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-
     <style>
         :root {
-            --gtb-blue: #266bf9;
-            --gtb-blue-hover: #0f4fd1;
-            /* --gtb-blue-hover: #005f8f; */
-            --gtb-dark: #000000;
-            --gtb-gray-dark: #2c2c2c;
-            --gtb-gray-medium: #767676;
-            --gtb-gray-light: #f9f9f9;
-            --gtb-border: #e4e4e4;
-            --gtb-success: #1a73e8;
-            --font-primary: 'Inter', sans-serif;
-            --font-display: 'Inter', sans-serif;
-            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --pd-blue: #2f73ff;
+            --pd-text: #0b0b0f;
+            --pd-muted: #777980;
+            --pd-line: #e7e7e9;
+            --pd-soft: #f7f8fa;
+            --pd-shadow: 0 14px 35px rgba(15, 23, 42, 0.06);
         }
 
-
-
-        /* Portal Breadcrumb Styling */
-        .portal-breadcrumb {
-            background-color: #ffffff;
-            border-bottom: 1px solid var(--gtb-border);
-            padding: 16px 0;
+        .pd-page {
+            font-family: 'Inter', sans-serif;
+            color: var(--pd-text);
+            background: #fff;
         }
 
-        .breadcrumb-list1 {
+        .pd-breadcrumb {
+            border-top: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--pd-line);
+            padding: 25px 0;
+            background: #fff;
+        }
+
+        .pd-container {
+            max-width: 1860px;
+            margin: 0 auto;
+            padding: 0 46px;
+        }
+
+        .pd-breadcrumb-list {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
             list-style: none;
-            padding: 0;
             margin: 0;
-            display: flex;
-            align-items: center;
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        .breadcrumb-item1 a {
-            color: var(--gtb-gray-medium);
-            text-decoration: none;
-            transition: var(--transition-smooth);
-        }
-
-        .breadcrumb-item1 a:hover {
-            color: var(--gtb-blue);
-        }
-
-        .breadcrumb-item1+.breadcrumb-item1::before {
-            content: "\f105";
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            padding: 0 12px;
-            color: var(--gtb-gray-medium);
-        }
-
-        .breadcrumb-item1.active {
-            color: var(--gtb-dark);
-            font-weight: 600;
-        }
-
-        /* Enterprise Three-Column Master Layout */
-        .portal-main-layout {
-            padding: 60px 0 100px 0;
-        }
-
-        .sticky-column-wrapper {
-            position: sticky;
-            top: 105px;
-            z-index: 10;
-        }
-
-        /* Premium Left Navigation Sidebar */
-        .enterprise-sidebar {
-            background: #ffffff;
-            border: 1px solid var(--gtb-border);
-            border-radius: 12px;
-            padding: 12px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .sidebar-tab-btn {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            padding: 14px 20px;
-            margin-bottom: 6px;
-            background: transparent;
-            border: 2px solid transparent;
-            border-radius: 8px;
-            text-align: left;
+            padding: 0;
             font-size: 14px;
-            font-weight: 600;
-            color: var(--gtb-gray-dark);
-            transition: var(--transition-smooth);
+            font-weight: 700;
         }
 
-        .sidebar-tab-btn:last-child {
-            margin-bottom: 0;
+        .pd-breadcrumb-list a {
+            color: #777;
+            text-decoration: none;
         }
 
-        .sidebar-tab-btn:hover {
-            background-color: var(--gtb-gray-light);
-            color: var(--gtb-dark);
+        .pd-breadcrumb-list i {
+            color: #777;
+            font-size: 13px;
         }
 
-        .sidebar-tab-btn.active {
-            background-color: #ffffff;
-            border-color: var(--gtb-blue);
-            color: var(--gtb-blue);
-            box-shadow: var(--shadow-sm);
+        .pd-breadcrumb-list .active {
+            color: #050505;
         }
 
-        .sidebar-tab-btn i {
-            margin-right: 12px;
-            font-size: 16px;
-            width: 20px;
+        .pd-main {
+            padding: 76px 0 88px;
+        }
+
+        .pd-layout {
+            display: grid;
+            grid-template-columns: 430px minmax(0, 1fr);
+            gap: 48px;
+            align-items: start;
+        }
+
+        .pd-sidebar-wrap {
+            position: sticky;
+            top: 104px;
+        }
+
+        .pd-sidebar {
+            border: 1px solid var(--pd-line);
+            border-radius: 16px;
+            box-shadow: var(--pd-shadow);
+            padding: 18px;
+            background: #fff;
+        }
+
+        .pd-tab-btn {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            width: 100%;
+            min-height: 82px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: transparent;
+            color: #2d2d31;
+            padding: 0 34px;
+            text-align: left;
+            font-size: 17px;
+            font-weight: 800;
+            transition: border-color .2s ease, color .2s ease, background .2s ease;
+        }
+
+        .pd-tab-btn + .pd-tab-btn {
+            margin-top: 12px;
+        }
+
+        .pd-tab-btn i {
+            width: 24px;
+            font-size: 18px;
             text-align: center;
         }
 
-        /* Swiper Dual-Gallery Engine (Center Column) */
-        .gallery-master-container {
-            display: flex;
-            gap: 20px;
-            height: 520px;
+        .pd-tab-btn:hover,
+        .pd-tab-btn.active {
+            border-color: var(--pd-blue);
+            color: var(--pd-blue);
+            background: #fff;
         }
 
-        .thumbs-slider-wrapper {
-            width: 85px;
-            flex-shrink: 0;
-            position: relative;
-        }
-
-        .main-preview-wrapper {
-            flex-grow: 1;
-            border: 1px solid var(--gtb-border);
-            border-radius: 16px;
-            background: #ffffff;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .gallery-main-view {
-            width: 100%;
-            height: 100%;
-        }
-
-        .gallery-main-view .swiper-slide {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 30px;
-            background: #ffffff;
-        }
-
-        .gallery-main-view .swiper-slide img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-main-view .swiper-slide:hover img {
-            transform: scale(1.03);
-        }
-
-        .gallery-thumbs-view {
-            width: 100%;
-            height: 100%;
-        }
-
-        .gallery-thumbs-view .swiper-slide {
-            width: 100% !important;
-            height: 85px !important;
-            border: 1px solid var(--gtb-border);
-            border-radius: 10px;
-            cursor: pointer;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            background: #ffffff;
-            transition: var(--transition-smooth);
-        }
-
-        .gallery-thumbs-view .swiper-slide-thumb-active {
-            border-color: var(--gtb-blue);
-            border-width: 2px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .gallery-thumbs-view .swiper-slide img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-
-        .swiper-nav-btn {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 26px;
-            height: 26px;
-            background: #ffffff;
-            border: 1px solid var(--gtb-border);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            color: var(--gtb-gray-dark);
-            z-index: 10;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-        }
-
-        .swiper-nav-btn:hover {
-            background-color: var(--gtb-blue);
-            border-color: var(--gtb-blue);
-            color: #ffffff;
-        }
-
-        .swiper-nav-prev {
-            top: -15px;
-        }
-
-        .swiper-nav-next {
-            bottom: -15px;
-        }
-
-        /* Enterprise Product Information Console (Right Column) */
-        .info-panel-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 6px 14px;
-            background-color: var(--gtb-gray-light);
-            border: 1px solid var(--gtb-border);
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--gtb-gray-dark);
-            margin-bottom: 20px;
-        }
-
-        .info-panel-badge i {
-            color: #555555;
-            margin-right: 6px;
-            font-size: 10px;
-        }
-
-        .product-main-title {
-            font-family: var(--font-display);
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-            margin-bottom: 8px;
-            color: var(--gtb-dark);
-        }
-
-        .lifecycle-text {
-            font-size: 13px;
-            color: var(--gtb-gray-medium);
-            font-weight: 500;
-            margin-bottom: 24px;
-        }
-
-        .lifecycle-text span {
-            color: var(--gtb-dark);
-            font-weight: 600;
-        }
-
-        .product-brief-summary {
-            font-size: 15px;
-            line-height: 1.6;
-            color: var(--gtb-gray-dark);
-            margin-bottom: 30px;
-            border-left: 3px solid var(--gtb-border);
-            padding-left: 16px;
-        }
-
-        .commercial-pricing-zone {
-            padding: 24px 0;
-            border-top: 1px solid var(--gtb-border);
-            margin-bottom: 10px;
-        }
-
-        .price-label {
-            font-size: 13px;
-            color: var(--gtb-gray-medium);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 4px;
-        }
-
-        .premium-list-price {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--gtb-dark);
-            font-family: var(--font-display);
-            letter-spacing: -0.02em;
-        }
-
-        .btn-hp-primary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--gtb-blue);
-            color: #ffffff !important;
-            font-size: 15px;
-            font-weight: 600;
-            padding: 15px 36px;
-            border: none;
-            border-radius: 30px;
-            transition: var(--transition-smooth);
-            box-shadow: 0 4px 14px rgba(0, 125, 186, 0.2);
-        }
-
-        .btn-hp-primary:hover {
-            background-color: var(--gtb-blue-hover);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(0, 125, 186, 0.3);
-        }
-
-        .btn-hp-primary i {
-            transition: transform 0.2s ease;
-        }
-
-        .btn-hp-primary:hover i {
-            transform: translateX(4px);
-        }
-
-        /* Segment Views Global System */
-        .portal-content-view {
+        .pd-panel {
             display: none;
-            animation: fadeIn 0.4s ease forwards;
         }
 
-        .portal-content-view.active-view {
+        .pd-panel.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .pd-overview-grid {
+            display: grid;
+            grid-template-columns: 128px minmax(420px, 1fr) minmax(360px, 520px);
+            gap: 32px;
+            align-items: start;
         }
 
-        /* Corporate Showcase Columns Component */
-        .showcase-features-grid {
-            padding: 50px 0;
-            border-top: 1px solid var(--gtb-border);
-            background-color: #ffffff;
-        }
-
-        .feature-showcase-card {
-            padding: 0 24px;
+        .pd-thumbs {
             position: relative;
+            display: grid;
+            gap: 20px;
+            justify-items: center;
         }
 
-        .feature-showcase-card:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 10%;
-            height: 80%;
-            width: 1px;
-            background-color: var(--gtb-border);
+        .pd-thumb-nav {
+            width: 38px;
+            height: 38px;
+            border: 1px solid var(--pd-line);
+            border-radius: 50%;
+            background: #fff;
+            display: grid;
+            place-items: center;
+            color: #222;
+            font-size: 15px;
+            box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
         }
 
-        .feature-showcase-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--gtb-dark);
-            margin-bottom: 12px;
-            letter-spacing: -0.01em;
-        }
-
-        .feature-showcase-desc {
-            font-size: 14px;
-            line-height: 1.6;
-            color: var(--gtb-gray-medium);
-        }
-
-        /* Specifications Sub-System Component */
-        .spec-category-bar {
-            display: flex;
-            border-bottom: 1px solid var(--gtb-border);
-            margin-bottom: 30px;
-            gap: 8px;
-            overflow-x: auto;
-            white-space: nowrap;
-            scrollbar-width: none;
-        }
-
-        .spec-category-bar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .spec-category-btn {
-            background: transparent;
-            border: none;
-            padding: 12px 24px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--gtb-gray-medium);
-            position: relative;
-            transition: var(--transition-smooth);
-        }
-
-        .spec-category-btn:hover {
-            color: var(--gtb-dark);
-        }
-
-        .spec-category-btn.active {
-            color: var(--gtb-blue);
-        }
-
-        .spec-category-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--gtb-blue);
-        }
-
-        .spec-matrix-table {
-            width: 100%;
-            margin-bottom: 0;
-        }
-
-        .spec-matrix-row {
-            display: flex;
-            padding: 18px 24px;
-            /* border-bottom: 1px solid var(--gtb-border); */
-            align-items: baseline;
-            transition: var(--transition-smooth);
-        }
-
-        .spec-matrix-row:hover {
-            background-color: var(--gtb-gray-light);
-        }
-
-        .spec-matrix-label {
-            width: 30%;
-            flex-shrink: 0;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--gtb-dark);
-            padding-right: 20px;
-        }
-
-        .spec-matrix-value {
-            width: 70%;
-            font-size: 14px;
-            line-height: 1.6;
-            color: var(--gtb-gray-dark);
-        }
-
-        /* Generic Template View Fallbacks */
-        .enterprise-placeholder-card {
-            border: 1px dashed var(--gtb-border);
+        .pd-thumb {
+            width: 126px;
+            height: 126px;
+            border: 1px solid var(--pd-line);
             border-radius: 12px;
-            padding: 60px;
-            text-align: center;
-            background-color: var(--gtb-gray-light);
+            background: #fff;
+            display: grid;
+            place-items: center;
+            padding: 16px;
+            cursor: pointer;
+            transition: border-color .2s ease, transform .2s ease;
         }
 
-        .placeholder-icon {
-            font-size: 40px;
-            color: var(--gtb-gray-medium);
-            margin-bottom: 16px;
+        .pd-thumb.active,
+        .pd-thumb:hover {
+            border: 3px solid var(--pd-blue);
         }
 
-        /* Advanced Responsive Layout Engine Rules */
-        @media (max-width: 1199px) {
-            .product-main-title {
-                font-size: 28px;
+        .pd-thumb img {
+            max-width: 100%;
+            max-height: 78px;
+            object-fit: contain;
+        }
+
+        .pd-gallery-main {
+            min-height: 520px;
+            border: 1px solid var(--pd-line);
+            border-radius: 16px;
+            background: #fff;
+            display: grid;
+            place-items: center;
+            padding: 56px;
+        }
+
+        .pd-gallery-main img {
+            width: min(520px, 86%);
+            max-height: 390px;
+            object-fit: contain;
+        }
+
+        .pd-info {
+            padding-top: 0;
+        }
+
+        .pd-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            min-height: 66px;
+            padding: 0 28px;
+            border: 1px solid var(--pd-line);
+            border-radius: 999px;
+            color: #2d2d31;
+            font-size: 18px;
+            font-weight: 800;
+            background: #fff;
+        }
+
+        .pd-title {
+            margin: 34px 0 20px;
+            font-size: clamp(38px, 3.2vw, 58px);
+            line-height: 1.08;
+            letter-spacing: 0;
+            font-weight: 800;
+        }
+
+        .pd-lifecycle {
+            font-size: 19px;
+            line-height: 1.8;
+            color: #777;
+            font-weight: 800;
+        }
+
+        .pd-lifecycle span {
+            color: #0b0b0f;
+        }
+
+        .pd-summary {
+            margin: 34px 0 38px;
+            padding-left: 28px;
+            border-left: 5px solid #e7e7e9;
+            color: #303036;
+            font-size: 24px;
+            line-height: 1.52;
+            font-weight: 500;
+        }
+
+        .pd-divider {
+            border: 0;
+            border-top: 1px solid var(--pd-line);
+            margin: 0 0 32px;
+        }
+
+        .pd-price-label {
+            color: #777;
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .pd-price {
+            margin-top: 10px;
+            font-size: 42px;
+            line-height: 1;
+            font-weight: 800;
+        }
+
+        .pd-quote {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+            padding: 15px 30px;
+            border-radius: 999px;
+            background: var(--pd-blue);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 0 10px 22px rgba(47, 115, 255, .24);
+        }
+
+        .pd-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 46px;
+            margin-top: 46px;
+            padding: 38px 0 42px;
+            border-top: 1px solid var(--pd-line);
+            border-bottom: 1px solid var(--pd-line);
+        }
+
+        .pd-feature-title {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+        .pd-feature-copy {
+            margin: 0;
+            color: #666a72;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .pd-notes {
+            padding-top: 34px;
+            color: #555a63;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .pd-notes h3 {
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #202026;
+        }
+
+        .pd-spec-tabs {
+            display: flex;
+            gap: 42px;
+            align-items: center;
+            border-bottom: 1px solid var(--pd-line);
+            margin-bottom: 24px;
+        }
+
+        .pd-spec-tab {
+            border: 0;
+            background: transparent;
+            padding: 0 0 22px;
+            color: #666a72;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .pd-spec-tab.active {
+            color: var(--pd-blue);
+        }
+
+        .pd-spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .pd-spec-table tr:nth-child(10n) {
+            background: #f7f7f8;
+        }
+
+        .pd-spec-table th,
+        .pd-spec-table td {
+            padding: 18px 28px;
+            vertical-align: top;
+            border: 0;
+        }
+
+        .pd-spec-table th {
+            width: 34%;
+            color: #24262b;
+            font-weight: 800;
+        }
+
+        .pd-spec-table td {
+            color: #50555f;
+            line-height: 1.65;
+            font-weight: 500;
+        }
+
+        .pd-section-note {
+            border-top: 1px solid var(--pd-line);
+            margin-top: 38px;
+            padding-top: 30px;
+            color: #555a63;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .pd-section-note h3 {
+            color: #202026;
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .pd-blog-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 30px;
+        }
+
+        .pd-blog-card {
+            border: 1px solid var(--pd-line);
+            border-radius: 16px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 10px 26px rgba(15, 23, 42, .04);
+        }
+
+        .pd-blog-image {
+            height: 220px;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #edf1f4, #cfd6dd);
+        }
+
+        .pd-blog-image img {
+            width: 82%;
+            max-height: 155px;
+            object-fit: contain;
+            filter: drop-shadow(0 18px 18px rgba(0, 0, 0, .16));
+        }
+
+        .pd-blog-body {
+            padding: 28px 30px 32px;
+        }
+
+        .pd-blog-date {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: #858585;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .pd-blog-title {
+            min-height: 72px;
+            color: #09090a;
+            font-size: 22px;
+            line-height: 1.28;
+            font-weight: 800;
+            margin: 0 0 20px;
+        }
+
+        .pd-blog-copy {
+            min-height: 112px;
+            color: #777980;
+            font-size: 16px;
+            line-height: 1.55;
+            margin: 0 0 24px;
+        }
+
+        .pd-blog-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--pd-blue);
+            font-size: 16px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        @media (max-width: 1399px) {
+            .pd-layout {
+                grid-template-columns: 320px minmax(0, 1fr);
+                gap: 30px;
             }
 
-            .gallery-master-container {
-                height: 440px;
+            .pd-overview-grid {
+                grid-template-columns: 106px minmax(330px, 1fr);
             }
 
-            .gallery-thumbs-view .swiper-slide {
-                height: 70px !important;
+            .pd-info {
+                grid-column: 1 / -1;
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) 280px;
+                gap: 24px;
+                align-items: start;
             }
 
-            .thumbs-slider-wrapper {
-                width: 70px;
+            .pd-info-main {
+                min-width: 0;
+            }
+
+            .pd-price-box {
+                padding-top: 28px;
+            }
+
+            .pd-blog-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
 
         @media (max-width: 991px) {
-            .portal-main-layout {
-                padding: 40px 0 60px 0;
+            .pd-container {
+                padding: 0 22px;
             }
 
-            .sticky-column-wrapper {
+            .pd-main {
+                padding-top: 38px;
+            }
+
+            .pd-layout,
+            .pd-overview-grid,
+            .pd-info {
+                grid-template-columns: 1fr;
+            }
+
+            .pd-sidebar-wrap {
                 position: static;
-                margin-bottom: 30px;
             }
 
-            .enterprise-sidebar {
-                display: flex;
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                padding: 8px;
+            .pd-sidebar {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
                 gap: 8px;
-                scrollbar-width: none;
+                padding: 10px;
             }
 
-            .enterprise-sidebar::-webkit-scrollbar {
+            .pd-tab-btn {
+                justify-content: center;
+                min-height: 58px;
+                padding: 0 10px;
+                font-size: 13px;
+                gap: 8px;
+            }
+
+            .pd-tab-btn + .pd-tab-btn {
+                margin-top: 0;
+            }
+
+            .pd-thumbs {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .pd-thumb-nav {
                 display: none;
             }
 
-            .sidebar-tab-btn {
-                margin-bottom: 0;
-                white-space: nowrap;
-                width: auto;
-                padding: 10px 18px;
-            }
-
-            .gallery-master-container {
-                height: 500px;
-                margin-bottom: 40px;
-            }
-
-            .feature-showcase-card {
-                margin-bottom: 30px;
-                padding: 0 15px;
-            }
-
-            .feature-showcase-card:not(:last-child)::after {
-                display: none;
-            }
-
-            .showcase-features-grid {
-                padding: 50px 0;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .gallery-master-container {
-                flex-direction: column-reverse;
-                height: auto;
-            }
-
-            .thumbs-slider-wrapper {
+            .pd-thumb {
                 width: 100%;
-                height: 75px;
+                height: 92px;
             }
 
-            .gallery-thumbs-view {
-                display: flex;
+            .pd-gallery-main {
+                min-height: 360px;
+                padding: 30px;
             }
 
-            .gallery-thumbs-view .swiper-slide {
-                width: 75px !important;
-                height: 100% !important;
+            .pd-title {
+                font-size: 36px;
             }
 
-            .swiper-nav-btn {
-                display: none !important;
+            .pd-summary {
+                font-size: 18px;
             }
 
-            .main-preview-wrapper {
-                height: 360px;
+            .pd-feature-grid,
+            .pd-blog-grid {
+                grid-template-columns: 1fr;
             }
 
-            .product-main-title {
-                font-size: 24px;
+            .pd-spec-tabs {
+                gap: 22px;
+                overflow-x: auto;
             }
 
-            .premium-list-price {
-                font-size: 30px;
-            }
-
-            .spec-matrix-row {
-                flex-direction: column;
-                padding: 14px 16px;
-            }
-
-            .spec-matrix-label {
+            .pd-spec-table th,
+            .pd-spec-table td {
+                display: block;
                 width: 100%;
-                padding-right: 0;
-                margin-bottom: 4px;
-                font-size: 13px;
+                padding: 12px 16px;
             }
 
-            .spec-matrix-value {
-                width: 100%;
-                font-size: 13px;
-            }
-
-            .enterprise-placeholder-card {
-                padding: 30px 15px;
+            .pd-spec-table td {
+                padding-top: 0;
             }
         }
 
-        /* SPEC TAB CONTENT */
+        @media (max-width: 575px) {
+            .pd-breadcrumb-list {
+                font-size: 12px;
+                gap: 8px;
+            }
 
-        .spec-content {
-            display: none;
-            animation: fadeIn .3s ease;
-        }
+            .pd-sidebar {
+                grid-template-columns: 1fr;
+            }
 
-        .spec-content.active-spec-content {
-            display: block;
-        }
+            .pd-title {
+                font-size: 31px;
+            }
 
-        /* BLOG SECTION */
-
-        .blog-card-enterprise {
-            background: #ffffff;
-            border: 1px solid var(--gtb-border);
-            border-radius: 18px;
-            overflow: hidden;
-            transition: var(--transition-smooth);
-            height: 100%;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .blog-card-enterprise:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .blog-card-image {
-            position: relative;
-            overflow: hidden;
-            height: 220px;
-        }
-
-        .blog-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform .5s ease;
-        }
-
-        .blog-card-enterprise:hover .blog-card-image img {
-            transform: scale(1.06);
-        }
-
-        .blog-card-body {
-            padding: 24px;
-        }
-
-        .blog-meta {
-            margin-bottom: 12px;
-        }
-
-        .blog-meta span {
-            font-size: 13px;
-            color: var(--gtb-gray-medium);
-            font-weight: 500;
-        }
-
-        .blog-meta i {
-            margin-right: 6px;
-        }
-
-        .blog-title {
-            font-size: 20px;
-            font-weight: 700;
-            line-height: 1.4;
-            color: var(--gtb-dark);
-            margin-bottom: 14px;
-        }
-
-        .blog-desc {
-            font-size: 14px;
-            line-height: 1.7;
-            color: var(--gtb-gray-medium);
-            margin-bottom: 22px;
-        }
-
-        .blog-read-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--gtb-blue);
-            text-decoration: none;
-            transition: var(--transition-smooth);
-        }
-
-        .blog-read-btn:hover {
-            color: var(--gtb-blue-hover);
-        }
-
-        .blog-read-btn i {
-            transition: transform .3s ease;
-        }
-
-        .blog-read-btn:hover i {
-            transform: translateX(4px);
+            .pd-badge {
+                min-height: 50px;
+                font-size: 14px;
+            }
         }
     </style>
+@endpush
 
+@section('content')
+    @php
+        $printerImage = asset('assets/images/product/printer.png');
+        $thumbs = [
+            ['image' => $printerImage, 'label' => 'Front view'],
+            ['image' => $printerImage, 'label' => 'Rear view'],
+            ['image' => $printerImage, 'label' => 'Scanner view'],
+            ['image' => $printerImage, 'label' => 'Tray view'],
+        ];
 
-    <div class="main-wrapper">
+        $features = [
+            ['title' => 'Reliable technology uniquely built to work at home', 'copy' => 'Say goodbye to noisy printing and stay focused on your work with quiet mode, dual-band Wi-Fi, and self-healing connectivity.'],
+            ['title' => 'Print from your couch with the best print app', 'copy' => 'Print, scan, copy right from your smartphone with the best and easiest-to-use print app for home offices.'],
+            ['title' => 'Always be ready to print. Never run out of ink.', 'copy' => 'With an Instant Ink subscription, you can get ink delivered directly to your door before you run out.'],
+        ];
 
-        <nav class="portal-breadcrumb" aria-label="breadcrumb">
-            <div class="container-fluid px-4 px-md-5">
-                <ul class="breadcrumb-list1">
-                    <li class="breadcrumb-item1"><a href="<?= site_url('products') ?>">Product Store</a></li>
-                    <li class="breadcrumb-item1"><a href="<?= site_url('products/' . $product->parent_cat) ?>"><?= $product->parent_cat ?></a></li>
-                    <li class="breadcrumb-item1"><a href="<?= site_url('products/' . $product->parent_cat . '/' . $category_info[$product->cat_id]->url) ?>"><?= $category_info[$product->cat_id]->name ?></a></li>
-                    <li class="breadcrumb-item1 active" aria-current="page"><?= $product->name ?></li>
-                </ul>
+        $specs = [
+            ['Functions', 'Print, copy, scan'],
+            ['Print speed black (draft, letter)', 'Up to 29 ppm'],
+            ['Print speed color (draft, letter)', 'Up to 25 ppm'],
+            ['Print speed black (ISO, letter)', 'Up to 18 ppm'],
+            ['Print speed color (ISO)', 'Up to 10 ppm'],
+            ['Print speed duplex (letter)', 'Up to 10 ipm'],
+            ['First page out (ready)', 'Black: As fast as 15 sec'],
+            ['First page out color (letter, ready)', 'As fast as 18 sec'],
+            ['Borderless printing', 'Yes, on Photo and Brochure only, up to 8.5 x 11 in'],
+            ['Duplex printing', 'Automatic standard'],
+            ['Duty cycle (monthly, letter)', 'Up to 20,000 pages. Duty cycle is the maximum number of pages that can be printed in a month.'],
+            ['Recommended monthly page volume', 'Up to 800 pages for optimum device performance.'],
+            ['Print technology', 'HP Thermal Inkjet'],
+            ['Network capabilities', 'Yes, via built-in Ethernet and wireless 802.11 a/b/g/n/ac'],
+            ['Wireless capability', 'Yes, built-in Wi-Fi 802.11 a/b/g/n/ac'],
+            ['Print quality black (best)', '1200 x 1200 rendered dpi'],
+            ['Print quality color (best)', 'Up to 4800 x 1200 optimized dpi on HP Advance Photo Paper'],
+            ['Processor speed', '1.2 GHz'],
+            ['Print languages', 'HP PCL3 GUI'],
+            ['Mobile printing capability', 'Chrome OS, HP app, Apple AirPrint, Wi-Fi Direct Printing, Mopria certified'],
+            ['Display', '2.7 in capacitive touchscreen CGD'],
+            ['Connectivity, standard', '1 Ethernet, 1 Hi-Speed USB 2.0, host Wi-Fi 802.11 a/b/g/n/ac'],
+            ['Memory', '512 MB'],
+            ['Input capacity', 'Up to 225 sheets'],
+            ['Output capacity', 'Up to 60 sheets'],
+            ['Scan speed (normal, letter)', 'Up to 8 ppm black and up to 3.5 ppm color'],
+            ['Power supply type', 'Internal universal power supply'],
+            ['Power', 'Input voltage: 100 to 240 VAC, 50/60 Hz'],
+            ['Power consumption', '4.07 watts ready, 1.02 watts sleep, 0.11 watts manual-off'],
+            ['Energy star certified', 'Yes'],
+            ['Sustainability specifications', 'Forest First product, recyclable through HP Planet Partners, contains recycled plastic.'],
+            ['Operating humidity range', '20 to 80% RH'],
+            ['Operating temperature range', '41 to 104 degrees F'],
+            ['Replacement cartridges', 'HP 923 Black, Cyan, Magenta, and Yellow Original Ink Cartridges'],
+            ['Manufacturer Warranty', 'One-year limited hardware warranty with support options.'],
+            ['Weight', '8.0 kg / 17.6 lb'],
+        ];
+
+        $blogs = [
+            ['title' => 'How the HP OfficeJet 8122e All-in-One...', 'copy' => 'Modern printing environments require devices that can support multiple document tasks without creating unnecessary workflow...', 'image' => $printerImage],
+            ['title' => 'Why the HP OfficeJet 8122e All-in-One...', 'copy' => 'Document workflows now involve a combination of printing, scanning, copying, wireless accessibility, and digital file management...', 'image' => $printerImage],
+            ['title' => 'Exploring Wireless Printing Features...', 'copy' => 'Wireless printing continues becoming one of the most practical features in modern document environments. Users increasingly...', 'image' => $printerImage],
+            ['title' => 'How the HP OfficeJet 8122e All-in-One...', 'copy' => 'Modern printing systems are expected to provide more than basic document output. Users now look for devices that support...', 'image' => $printerImage],
+        ];
+    @endphp
+
+    <div class="pd-page">
+        <nav class="pd-breadcrumb" aria-label="breadcrumb">
+            <div class="pd-container">
+                <ol class="pd-breadcrumb-list">
+                    <li><a href="#">Product Store</a></li>
+                    <li><i class="fa-solid fa-chevron-right"></i></li>
+                    <li><a href="#">printer</a></li>
+                    <li><i class="fa-solid fa-chevron-right"></i></li>
+                    <li><a href="#">Officejet Printer</a></li>
+                    <li><i class="fa-solid fa-chevron-right"></i></li>
+                    <li class="active">HP OfficeJet 8122e All-in-One Printer</li>
+                </ol>
             </div>
         </nav>
 
-        <main class="portal-main-layout">
-            <div class="container-fluid px-4 px-md-5">
-                <div class="row g-4">
-
-                    <div class="col-lg-3 col-12">
-                        <div class="sticky-column-wrapper">
-                            <nav class="enterprise-sidebar" aria-label="Product Sections Navigation">
-                                <button class="sidebar-tab-btn active" data-target="view-overview">
-                                    <i class="fa-solid fa-layer-group"></i>Overview
-                                </button>
-                                <button class="sidebar-tab-btn" data-target="view-specifications">
-                                    <i class="fa-solid fa-sliders"></i>Specifications
-                                </button>
-                                <button class="sidebar-tab-btn" data-target="view-blogs">
-                                    <i class="fa-solid fa-blog"></i>Blogs
-                                </button>
-                            </nav>
+        <main class="pd-main">
+            <div class="pd-container">
+                <div class="pd-layout">
+                    <aside class="pd-sidebar-wrap">
+                        <div class="pd-sidebar" aria-label="Product sections">
+                            <button type="button" class="pd-tab-btn active" data-panel="overview">
+                                <i class="fa-solid fa-layer-group"></i>
+                                <span>Overview</span>
+                            </button>
+                            <button type="button" class="pd-tab-btn" data-panel="specifications">
+                                <i class="fa-solid fa-sliders"></i>
+                                <span>Specifications</span>
+                            </button>
+                            <button type="button" class="pd-tab-btn" data-panel="blogs">
+                                <i class="fa-solid fa-blog"></i>
+                                <span>Blogs</span>
+                            </button>
                         </div>
-                    </div>
+                    </aside>
 
-                    <div class="col-lg-9 col-12">
-
-                        <div id="view-overview" class="portal-content-view active-view">
-                            <div class="row g-4">
-
-                                <div class="col-xl-7 col-md-12">
-                                    <div class="gallery-master-container">
-
-                                        <div class="thumbs-slider-wrapper">
-                                            <div class="swiper-nav-btn swiper-nav-prev" id="thumb-prev-trigger">
-                                                <i class="fa-solid fa-chevron-up"></i>
-                                            </div>
-                                            <div class="swiper gallery-thumbs-view">
-                                                <div class="swiper-wrapper">
-                                                    <div class="swiper-slide">
-                                                        <img src="<?= base_url() ?>assets/images/product-image/<?= esc($product->img1) ?>" alt="<?= $product->name ?>">
-                                                    </div>
-                                                    <div class="swiper-slide">
-                                                        <img src="<?= base_url() ?>assets/images/product-image/<?= esc($product->img2) ?>" alt="<?= $product->name ?>">
-                                                    </div>
-                                                    <div class="swiper-slide">
-                                                        <img src="<?= base_url() ?>assets/images/product-image/<?= esc($product->img3) ?>" alt="<?= $product->name ?>">
-                                                    </div>
-                                                    <div class="swiper-slide">
-                                                        <img src="<?= base_url() ?>assets/images/product-image/<?= esc($product->img4) ?>" alt="<?= $product->name ?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-nav-btn swiper-nav-next" id="thumb-next-trigger">
-                                                <i class="fa-solid fa-chevron-down"></i>
-                                            </div>
-                                        </div>
-
-                                        <div class="main-preview-wrapper">
-                                            <div class="swiper gallery-main-view">
-                                                <div class="swiper-wrapper">
-                                                    <div class="swiper-slide">
-                                                        <img src="<?= base_url() ?>assets/images/product-image/<?= esc($product->img1) ?>" alt="<?= $product->name ?>">
-                                                    </div>
-                                                    <div class="swiper-slide">
-                                                        <img src="<?= base_url() ?>assets/images/product-image/<?= esc($product->img2) ?>" alt="<?= $product->name ?>">
-                                                    </div>
-                                                    <div class="swiper-slide">
-                                                        <img src="<?= base_url() ?>assets/images/product-image/<?= esc($product->img3) ?>" alt="<?= $product->name ?>">
-                                                    </div>
-                                                    <div class="swiper-slide">
-                                                        <img src="<?= base_url() ?>assets/images/product-image/<?= esc($product->img4) ?>" alt="<?= $product->name ?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-5 col-md-12">
-                                    <div class="product-commercial-profile">
-                                        <div class="info-panel-badge">
-                                            <i class="fa-solid fa-circle-nodes"></i> Active Product Line
-                                        </div>
-
-                                        <h1 class="product-main-title"><?= $product->name ?></h1>
-
-                                        <div class="lifecycle-text">
-                                            Corporate Availability lifecycle: <span>May 31, 2020 - Dec 30, 2030</span>
-                                        </div>
-
-                                        <p class="product-brief-summary">
-                                            <?= nl2br($product->short_description) ?>
-                                        </p>
-
-                                        <div class="commercial-pricing-zone">
-                                            <div class="price-label">Estimated Contract List Price</div>
-                                            <div class="premium-list-price">$<?= number_format($product->price, 2) ?></div>
-                                        </div>
-
-                                        <div class="action-dock pt-3">
-                                            <a href="<?= base_url('product/enquiry/' . $product->slug) ?>" class="btn btn-hp-primary">
-                                                Get a Quote &nbsp;<i class="fa-solid fa-arrow-right-long"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="row showcase-features-grid mt-5">
-                                <?php foreach ($product_overview as $overview): ?>
-                                    <div class="col-md-4 col-12 mb-4">
-                                        <div class="feature-showcase-card">
-                                            <h3 class="feature-showcase-title"><?= $overview->headkey ?></h3>
-                                            <p class="feature-showcase-desc"><?= $overview->value ?></p>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-
-                            <div class="row showcase-features-grid">
-                                <strong>Overview</strong>
-                                <p><?= nl2br($product->overview_description) ?></p>
-                            </div>
-                        </div>
-
-                        <!-- SPECIFICATION TAB SECTION -->
-                        <div id="view-specifications" class="portal-content-view">
-
-                            <div class="enterprise-spec-block mb-5">
-
-                                <?php
-                                // UNIQUE TABS NIKAL LO
-                                $spec_tabs = [];
-
-                                if (!empty($product_specification)) {
-                                    foreach ($product_specification as $spec) {
-
-                                        // TAB NAME FORMAT
-                                        $tab_key = $spec->tab;
-
-                                        // BUTTON TITLE
-                                        $tab_title = ucwords(str_replace('-', ' ', $tab_key));
-
-                                        $spec_tabs[$tab_key] = $tab_title;
-                                    }
-                                }
-                                ?>
-
-                                <!-- TOP TAB BUTTONS -->
-                                <div class="spec-category-bar">
-
-                                    <?php
-                                    $first_tab = true;
-
-                                    foreach ($spec_tabs as $tab_key => $tab_title):
-                                    ?>
-
-                                        <button
-                                            class="spec-category-btn <?= $first_tab ? 'active' : '' ?>"
-                                            data-spec-target="<?= $tab_key ?>">
-
-                                            <?= $tab_title ?>
-
+                    <section class="pd-content">
+                        <div id="overview" class="pd-panel active">
+                            <div class="pd-overview-grid">
+                                <div class="pd-thumbs" aria-label="Product gallery thumbnails">
+                                    <button type="button" class="pd-thumb-nav" aria-label="Previous image">
+                                        <i class="fa-solid fa-chevron-up"></i>
+                                    </button>
+                                    @foreach ($thumbs as $thumb)
+                                        <button type="button" class="pd-thumb {{ $loop->first ? 'active' : '' }}" data-image="{{ $thumb['image'] }}" aria-label="{{ $thumb['label'] }}">
+                                            <img src="{{ $thumb['image'] }}" alt="{{ $thumb['label'] }}">
                                         </button>
-
-                                    <?php
-                                        $first_tab = false;
-                                    endforeach;
-                                    ?>
-
+                                    @endforeach
+                                    <button type="button" class="pd-thumb-nav" aria-label="Next image">
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </button>
                                 </div>
 
+                                <div class="pd-gallery-main">
+                                    <img id="pd-main-image" src="{{ $printerImage }}" alt="HP OfficeJet 8122e All-in-One Printer">
+                                </div>
 
-                                <!-- TAB CONTENTS -->
-                                <?php
-                                $first_content = true;
-
-                                foreach ($spec_tabs as $tab_key => $tab_title):
-                                ?>
-
-                                    <div
-                                        class="spec-content <?= $first_content ? 'active-spec-content' : '' ?>"
-                                        id="<?= $tab_key ?>">
-
-                                        <div class="spec-matrix-table">
-
-                                            <?php foreach ($product_specification as $spec): ?>
-
-                                                <?php if ($spec->tab == $tab_key): ?>
-
-                                                    <div class="spec-matrix-row">
-
-                                                        <div class="spec-matrix-label">
-                                                            <?= $spec->headkey ?>
-                                                        </div>
-
-                                                        <div class="spec-matrix-value">
-                                                            <?= $spec->value ?>
-                                                        </div>
-
-                                                    </div>
-
-                                                <?php endif; ?>
-
-                                            <?php endforeach; ?>
-
+                                <div class="pd-info">
+                                    <div class="pd-info-main">
+                                        <div class="pd-badge">
+                                            <i class="fa-solid fa-share-nodes"></i>
+                                            <span>Active Product Line</span>
                                         </div>
 
+                                        <h1 class="pd-title">HP OfficeJet 8122e All-in-One Printer</h1>
+
+                                        <p class="pd-lifecycle">Corporate Availability lifecycle: <span>May 31, 2020 - Dec 30, 2030</span></p>
+
+                                        <p class="pd-summary">Say hello to the professional color inkjet printer for your home office from America's most trusted printer brand, paired with the easiest-to-use print app. Enjoy easy printing designed to make you succeed at work.</p>
                                     </div>
 
-                                <?php
-                                    $first_content = false;
-                                endforeach;
-                                ?>
-
+                                    <div class="pd-price-box">
+                                        <hr class="pd-divider">
+                                        <div class="pd-price-label">Estimated Contract List Price</div>
+                                        <div class="pd-price">$207.70</div>
+                                        <a href="#" class="pd-quote">Get a Quote <i class="fa-solid fa-arrow-right-long"></i></a>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="row showcase-features-grid">
-                                <strong>Specifications</strong>
-                                <p><?= nl2br($product->specification_description) ?></p>
+                            <div class="pd-feature-grid">
+                                @foreach ($features as $feature)
+                                    <article>
+                                        <h2 class="pd-feature-title">{{ $feature['title'] }}</h2>
+                                        <p class="pd-feature-copy">{{ $feature['copy'] }}</p>
+                                    </article>
+                                @endforeach
                             </div>
 
+                            <div class="pd-notes">
+                                <h3>Overview</h3>
+                                <p>[1] Based on 2022 Q4 shipments in the IDC Worldwide Quarterly Hardcopy Peripherals Tracker. Includes shipments of all printing devices.</p>
+                                <p>[2] Compared to OEM printing apps for the majority of top-selling, network-capable inkjet/laser printers and all-in-ones for the home and office.</p>
+                                <p>[3] HP OfficeJet Pro printer series has self-healing Wi-Fi, HP's best and most reliable wireless technology to experience uninterrupted printing.</p>
+                                <p>[4] Instant Ink is the world's first smart ink delivery service based on the number of people who have signed up for service.</p>
+                            </div>
                         </div>
 
-                        <div id="view-blogs" class="portal-content-view">
+                        <div id="specifications" class="pd-panel">
+                            <div class="pd-spec-tabs" role="tablist" aria-label="Specification groups">
+                                <button type="button" class="pd-spec-tab active">Top Specs</button>
+                                <button type="button" class="pd-spec-tab">All Specs</button>
+                                <button type="button" class="pd-spec-tab">Logistics</button>
+                                <button type="button" class="pd-spec-tab">Sustainability</button>
+                            </div>
 
-                            <div class="row g-4">
+                            <table class="pd-spec-table">
+                                <tbody>
+                                    @foreach ($specs as $spec)
+                                        <tr>
+                                            <th scope="row">{{ $spec[0] }}</th>
+                                            <td>{{ $spec[1] }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
 
-                                <?php $blogs = explode(',', $product->blog_ids);
-                                foreach ($blogs as $blog_id) { ?>
+                            <div class="pd-section-note">
+                                <h3>Specifications</h3>
+                                <p>[1] Dimensions vary as per configuration.</p>
+                                <p>[2] Weight varies as per configuration.</p>
+                                <p>[3] Power requirements are based on the country/region where the printer is sold. Do not convert operating voltages.</p>
+                                <p>[4] Wireless performance is dependent upon physical environment and distance from the access point.</p>
+                                <p>Legal disclaimer: Product image may differ from actual product.</p>
+                            </div>
+                        </div>
 
-
-                                    <!-- BLOG CARD 1 -->
-                                    <div class="col-lg-3 col-md-6">
-                                        <div class="blog-card-enterprise">
-
-                                            <div class="blog-card-image">
-                                                <img src="<?= base_url() ?>assets/images/blog-image/<?= esc($blog_info[$blog_id]->image1) ?>"
-                                                    alt="Printer Technology Blog">
-                                            </div>
-
-                                            <div class="blog-card-body">
-
-                                                <div class="blog-meta">
-                                                    <span><i class="fa-regular fa-calendar"></i><?= date('M d, Y', strtotime($blog_info[$blog_id]->inserted_at)) ?></span>
-                                                </div>
-
-                                                <h3 class="blog-title">
-                                                    <?= character_limiter(strip_tags($blog_info[$blog_id]->heading), 35) ?>
-                                                </h3>
-
-                                                <p class="blog-desc">
-                                                    <?= character_limiter(strip_tags($blog_info[$blog_id]->content), 120) ?>
-                                                </p>
-                                                <a href="<?= base_url('blogs/' . $blog_info[$blog_id]->slug) ?>" class="blog-read-btn">
-                                                    Read More
-                                                    <i class="fa-solid fa-arrow-right-long"></i>
-                                                </a>
-
-                                            </div>
-
+                        <div id="blogs" class="pd-panel">
+                            <div class="pd-blog-grid">
+                                @foreach ($blogs as $blog)
+                                    <article class="pd-blog-card">
+                                        <div class="pd-blog-image">
+                                            <img src="{{ $blog['image'] }}" alt="{{ $blog['title'] }}">
                                         </div>
-                                    </div>
-
-                                <?php } ?>
-
+                                        <div class="pd-blog-body">
+                                            <div class="pd-blog-date"><i class="fa-regular fa-calendar"></i> May 29, 2026</div>
+                                            <h2 class="pd-blog-title">{{ $blog['title'] }}</h2>
+                                            <p class="pd-blog-copy">{{ $blog['copy'] }}</p>
+                                            <a href="#" class="pd-blog-link">Read More <i class="fa-solid fa-arrow-right-long"></i></a>
+                                        </div>
+                                    </article>
+                                @endforeach
                             </div>
-
                         </div>
-
-                    </div>
+                    </section>
                 </div>
             </div>
         </main>
-
     </div>
+@endsection
 
-@extends('content')
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+@push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.pd-tab-btn');
+            const panels = document.querySelectorAll('.pd-panel');
+            const thumbs = document.querySelectorAll('.pd-thumb');
+            const mainImage = document.getElementById('pd-main-image');
 
-            // --- GALERIE SLIDER MOTORIZATION (SWIPER ENGINE) ---
-            let thumbsDirection = 'vertical';
+            tabs.forEach((tab) => {
+                tab.addEventListener('click', function() {
+                    const target = this.dataset.panel;
 
-            // Runtime dynamic viewport check to configure the gallery layout directions
-            if (window.innerWidth <= 767) {
-                thumbsDirection = 'horizontal';
-            }
+                    tabs.forEach((item) => item.classList.remove('active'));
+                    panels.forEach((panel) => panel.classList.remove('active'));
 
-            const galleryThumbs = new Swiper('.gallery-thumbs-view', {
-                direction: thumbsDirection,
-                slidesPerView: 'auto',
-                spaceBetween: 12,
-                freeMode: true,
-                watchSlidesProgress: true,
-                navigation: {
-                    nextEl: '#thumb-next-trigger',
-                    prevEl: '#thumb-prev-trigger',
-                },
-                breakpoints: {
-                    0: {
-                        direction: 'horizontal',
-                        spaceBetween: 8
-                    },
-                    768: {
-                        direction: 'vertical',
-                        spaceBetween: 12
-                    }
-                }
-            });
-
-            const galleryMain = new Swiper('.gallery-main-view', {
-                spaceBetween: 20,
-                grabCursor: true,
-                effect: 'slide',
-                thumbs: {
-                    swiper: galleryThumbs,
-                }
-            });
-
-            // --- VIEW SYSTEM SWITCH CONTROLLER ---
-            const tabButtons = document.querySelectorAll('.sidebar-tab-btn');
-            const viewPanels = document.querySelectorAll('.portal-content-view');
-
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const targetViewId = this.getAttribute('data-target');
-
-                    // Lower active states on navigation actions
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    viewPanels.forEach(panel => panel.classList.remove('active-view'));
-
-                    // Raise active state on selected contextual route
                     this.classList.add('active');
-                    const targetPanel = document.getElementById(targetViewId);
-                    if (targetPanel) {
-                        targetPanel.classList.add('active-view');
-
-                        // Recalculate layout metrics if initializing slider arrays within hidden states
-                        if (targetViewId === 'view-overview') {
-                            galleryMain.update();
-                            galleryThumbs.update();
-                        }
-                    }
+                    document.getElementById(target).classList.add('active');
                 });
             });
 
-            // --- SPECIFICATION VIEWPORT FILTER SUBSYSTEM ---
-            const specSubCategoryButtons = document.querySelectorAll('.spec-category-btn');
-
-            specSubCategoryButtons.forEach(subBtn => {
-                subBtn.addEventListener('click', function() {
-                    specSubCategoryButtons.forEach(b => b.classList.remove('active'));
+            thumbs.forEach((thumb) => {
+                thumb.addEventListener('click', function() {
+                    thumbs.forEach((item) => item.classList.remove('active'));
                     this.classList.add('active');
-                    // Additional enterprise table data filters can be added here if needed
+
+                    if (mainImage && this.dataset.image) {
+                        mainImage.src = this.dataset.image;
+                    }
                 });
             });
-
-            // Runtime window geometry dynamic re-allocation watch logic
-            window.addEventListener('resize', function() {
-                if (window.innerWidth <= 767) {
-                    if (galleryThumbs.params.direction !== 'horizontal') {
-                        galleryThumbs.changeDirection('horizontal');
-                    }
-                } else {
-                    if (galleryThumbs.params.direction !== 'vertical') {
-                        galleryThumbs.changeDirection('vertical');
-                    }
-                }
-            });
-
         });
     </script>
-
-    <script>
-        // SPECIFICATION INNER TABS
-
-        const specButtons = document.querySelectorAll(".spec-category-btn");
-        const specContents = document.querySelectorAll(".spec-content");
-
-        specButtons.forEach(button => {
-
-            button.addEventListener("click", function() {
-
-                const target = this.getAttribute("data-spec-target");
-
-                // remove active
-                specButtons.forEach(btn =>
-                    btn.classList.remove("active")
-                );
-
-                specContents.forEach(content =>
-                    content.classList.remove("active-spec-content")
-                );
-
-                // add active
-                this.classList.add("active");
-
-                document.getElementById(target)
-                    .classList.add("active-spec-content");
-
-            });
-
-        });
-    </script>
-
-
-@endsection
+@endpush

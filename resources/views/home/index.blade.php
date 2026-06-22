@@ -3,6 +3,23 @@
 
 @push('styles')
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/pages/home.css') }}"> --}}
+    <style>
+        @media only screen and (min-width: 1200px) {
+            #home-slider-text-1,
+            #home-slider-text-2,
+            #home-slider-text-3 {
+                padding-left: 140px;
+            }
+        }
+
+        @media only screen and (min-width: 992px) and (max-width: 1199px) {
+            #home-slider-text-1,
+            #home-slider-text-2,
+            #home-slider-text-3 {
+                padding-left: 50px;
+            }
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -15,7 +32,7 @@
                 <div class="single-hero-slider single-hero-slider-hm9 single-animation-wrap">
                     <div class="row slider-animated-1">
                         <div class="col-lg-5 col-md-5 col-12 col-sm-6">
-                            <div class="hero-slider-content-6 slider-content-hm9">
+                            <div id="home-slider-text-1" class="hero-slider-content-6 slider-content-hm9">
                                 <h5 class="animated">Featured Solutions</h5>
                                 <h1 class="animated">INNOVATION MADE <br>SIMPLE</h1>
                                 <p class="animated">Discover innovative technology designed to simplify everyday experiences
@@ -38,7 +55,7 @@
                 <div class="single-hero-slider single-hero-slider-hm9 single-animation-wrap">
                     <div class="row slider-animated-1">
                         <div class="col-lg-5 col-md-5 col-12 col-sm-6">
-                            <div class="hero-slider-content-6 slider-content-hm9">
+                            <div id="home-slider-text-2" class="hero-slider-content-6 slider-content-hm9">
                                 <h5 class="animated">Technology Spotlight
                                 </h5>
                                 <h1 class="animated">BUILT FOR
@@ -67,7 +84,7 @@
                 <div class="single-hero-slider single-hero-slider-hm9 single-animation-wrap">
                     <div class="row slider-animated-1">
                         <div class="col-lg-5 col-md-5 col-12 col-sm-6">
-                            <div class="hero-slider-content-6 slider-content-hm9">
+                            <div id="home-slider-text-3" class="hero-slider-content-6 slider-content-hm9">
                                 <h5 class="animated">Technology Essentials
                                 </h5>
                                 <h1 class="animated">RELIABLE
