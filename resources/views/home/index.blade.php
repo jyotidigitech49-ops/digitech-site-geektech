@@ -170,12 +170,12 @@
                 <div class="product-plr-1">
                     <div class="single-product-wrap">
                         <div class="product-img product-img-border border-blue mb-20">
-                            <a href="shop.html">
+                            <a href="{{ url('/products/printer') }}">
                                 <img src="{{ asset('assets/images/product/printer.png') }}" alt="">
                             </a>
                         </div>
                         <div class="product-content-categories-2 product-content-blue text-center">
-                            <h5><a href="shop.html">Printer</a></h5>
+                            <h5><a href="{{ url('/products/printer') }}">Printer</a></h5>
                         </div>
                     </div>
                 </div>
@@ -461,7 +461,7 @@
 
             </div>
             <div class="more-product-btn text-center mb-15">
-                <a href="shop.html">More Product</a>
+                <a href="{{ url('/products') }}">More Product</a>
             </div>
         </div>
     </div>

@@ -32,12 +32,12 @@
 
                         <div class="footer-info-list">
                             <ul>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Products</a></li>
-                                <li><a href="#">Blogs</a></li>
-                                <li><a href="#">FAQs</a></li>
-                                <li><a href="#">Sitemap</a></li>
+                                <li><a href="{{ url('/about-us') }}">About Us</a></li>
+                                <li><a href="{{ url('/contact-us') }}">Contact Us</a></li>
+                                <li><a href="{{ url('/products') }}">Products</a></li>
+                                <li><a href="{{ url('/blogs') }}">Blogs</a></li>
+                                <li><a href="{{ url('/faqs') }}">FAQs</a></li>
+                                <li><a href="{{ url('/sitemap') }}">Sitemap</a></li>
                             </ul>
                         </div>
                     </div>
@@ -50,15 +50,15 @@
 
                         <div class="footer-info-list">
                             <ul>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
-                                <li><a href="#">Disclaimer</a></li>
-                                <li><a href="#">Trademark Disclaimer</a></li>
-                                <li><a href="#">Cookie Policy</a></li>
-                                <li><a href="#">Quote Request Policy</a></li>
-                                <li><a href="#">Product Information Disclaimer</a></li>
-                                <li><a href="#">Returns / Exchange</a></li>
-                                <li><a href="#">Authorized Partner Disclosure</a></li>
+                                <li><a href="{{ url('/privacy-policy') }}">Privacy Policy</a></li>
+                                <li><a href="{{ url('/terms-conditions') }}">Terms & Conditions</a></li>
+                                <li><a href="{{ url('/disclaimer') }}">Disclaimer</a></li>
+                                <li><a href="{{ url('/trademark-disclaimer') }}">Trademark Disclaimer</a></li>
+                                <li><a href="{{ url('/cookie-policy') }}">Cookie Policy</a></li>
+                                <li><a href="{{ url('/quote-request-policy') }}">Quote Request Policy</a></li>
+                                <li><a href="{{ url('/product-information-disclaimer') }}">Product Information Disclaimer</a></li>
+                                <li><a href="{{ url('/returns-exchange') }}">Returns / Exchange</a></li>
+                                <li><a href="{{ url('/authorized-partner-disclosure') }}">Authorized Partner Disclosure</a></li>
                             </ul>
                         </div>
                     </div>

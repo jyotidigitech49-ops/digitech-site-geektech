@@ -43,17 +43,10 @@
                                     <div class="category-menu-2 category-menu-2-blue categori-hide categori-not-visible-2">
                                         <nav>
                                             <ul>
-                                                <li><a href="shop.html"><i class="icon-energy"></i> Consumer Electric</a></li>
-                                                <li><a href="shop.html"><i class="icon-handbag"></i> Clothing & Apparel</a></li>
-                                                <li><a href="shop.html"><i class="icon-home"></i> Home, Garden & Kitchen</a></li>
-                                                <li><a href="shop.html"><i class="icon-game-controller"></i> Game Console</a></li>
-                                                <li><a href="shop.html"><i class="icon-eyeglass"></i> Jewelry & Watches </a></li>
-                                                <li><a href="shop.html"><i class="icon-screen-desktop"></i> Computers & Technologies </a></li>
-                                                <li><a href="shop.html"><i class="icon-camera"></i> Camera, Video & Audio</a></li>
-                                                <li><a href="shop.html"><i class="icon-social-dribbble"></i> Sport & Outdoor</a></li>
-                                                <li><a href="shop.html"><i class="icon-screen-smartphone"></i> Phones & Accessories</a></li>
-                                                <li><a href="shop.html"><i class="icon-notebook"></i> Books & Office</a></li>
-                                                <li><a href="shop.html"><i class="icon-rocket"></i> Cars & Motocycles</a></li>
+                                                <li><a href="shop.html"><i class="icon-energy"></i>PRINTERS</a></li>
+                                                <li><a href="shop.html"><i class="icon-handbag"></i>DESKTOPS</a></li>
+                                                <li><a href="shop.html"><i class="icon-home"></i>THIN CLIENT</a></li>
+                                                <li><a href="shop.html"><i class="icon-game-controller"></i>SCANNERS</a></li>
                                             </ul>
                                         </nav>
                                     </div>
@@ -63,22 +56,17 @@
                                 <div class="main-menu main-menu-white main-menu-padding-1 main-menu-font-size-14 main-menu-lh-5">
                                     <nav>
                                         <ul>
-                                            <li><a href="index.html">HOME </a>
+                                            <li><a href="index.html">PRINTERS</a>
                                                 <ul class="sub-menu-style">
-                                                    <li><a href="index.html">Home version 1 </a></li>
-                                                    <li><a href="index-2.html">Home version 2</a></li>
-                                                    <li><a href="index-3.html">Home version 3</a></li>
-                                                    <li><a href="index-4.html">Home version 4</a></li>
-                                                    <li><a href="index-5.html">Home version 5</a></li>
-                                                    <li><a href="index-6.html">Home version 6</a></li>
-                                                    <li><a href="index-7.html">Home version 7</a></li>
-                                                    <li><a href="index-8.html">Home version 8</a></li>
-                                                    <li><a href="index-9.html">Home version 9</a></li>
-                                                    <li><a href="index-10.html">Home version 10</a></li>
+                                                    <li><a href="index.html">Officejet Printer</a></li>
+                                                    <li><a href="index-2.html">Laser Printer</a></li>
+                                                    <li><a href="index-3.html">Inkjet Printer</a></li>
+                                                    <li><a href="index-4.html">Deskjet Printer</a></li>
+
                                                 </ul>
                                             </li>
-                                            <li><a href="shop.html">SHOP </a>
-                                                <ul class="mega-menu-style mega-menu-mrg-2">
+                                            <li><a href="shop.html">DESKTOPS</a>
+                                                {{-- <ul class="mega-menu-style mega-menu-mrg-2">
                                                     <li>
                                                         <ul>
                                                             <li>
@@ -110,10 +98,10 @@
                                                             </li>
                                                         </ul>
                                                     </li>
-                                                </ul>
+                                                </ul> --}}
                                             </li>
-                                            <li><a href="#">PAGES </a>
-                                                <ul class="sub-menu-style">
+                                            <li><a href="#">THIN CLIENT</a>
+                                                {{-- <ul class="sub-menu-style">
                                                     <li><a href="{{ url('/about') }}">about us </a></li>
                                                     <li><a href="cart.html">cart page</a></li>
                                                     <li><a href="checkout.html">checkout </a></li>
@@ -123,17 +111,17 @@
                                                     <li><a href="contact.html">contact us </a></li>
                                                     <li><a href="order-tracking.html">order tracking</a></li>
                                                     <li><a href="login-register.html">login / register </a></li>
-                                                </ul>
+                                                </ul> --}}
                                             </li>
-                                            <li><a href="blog.html">BLOG </a>
-                                                <ul class="sub-menu-style">
+                                            <li><a href="blog.html">SCANNERS</a>
+                                                {{-- <ul class="sub-menu-style">
                                                     <li><a href="blog.html">blog standard </a></li>
                                                     <li><a href="blog-no-sidebar.html">blog no sidebar </a></li>
                                                     <li><a href="blog-right-sidebar.html">blog right sidebar</a></li>
                                                     <li><a href="{{ url('/blog-details') }}">blog details</a></li>
-                                                </ul>
+                                                </ul> --}}
                                             </li>
-                                            <li><a href="contact.html">CONTACT </a></li>
+                                            <li><a href="{{ url('contact-us') }}">CONTACT</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -208,22 +196,16 @@
                         <!-- mobile menu start -->
                         <nav>
                             <ul class="mobile-menu">
-                                <li class="menu-item-has-children"><a href="index.html">Home</a>
+                                <li class="menu-item-has-children"><a href="index.html">PRINTERS</a>
                                     <ul class="dropdown">
-                                        <li><a href="index.html">Home version 1 </a></li>
-                                        <li><a href="index-2.html">Home version 2</a></li>
-                                        <li><a href="index-3.html">Home version 3</a></li>
-                                        <li><a href="index-4.html">Home version 4</a></li>
-                                        <li><a href="index-5.html">Home version 5</a></li>
-                                        <li><a href="index-6.html">Home version 6</a></li>
-                                        <li><a href="index-7.html">Home version 7</a></li>
-                                        <li><a href="index-8.html">Home version 8</a></li>
-                                        <li><a href="index-9.html">Home version 9</a></li>
-                                        <li><a href="index-10.html">Home version 10</a></li>
+                                        <li><a href="index.html">Officejet Printer</a></li>
+                                        <li><a href="index-2.html">Laser Printer</a></li>
+                                        <li><a href="index-3.html">Inkjet Printer</a></li>
+                                        <li><a href="index-4.html">Deskjet Printer</a></li>
                                     </ul>
                                 </li>
-                                <li class="menu-item-has-children "><a href="#">shop</a>
-                                    <ul class="dropdown">
+                                <li class="menu-item-has-children "><a href="#">DESKTOPS</a>
+                                    {{-- <ul class="dropdown">
                                         <li class="menu-item-has-children"><a href="#">shop layout</a>
                                             <ul class="dropdown">
                                                 <li><a href="shop.html">standard style</a></li>
@@ -246,10 +228,10 @@
                                                 <li><a href="product-details-fixed-img.html">fixed image style </a></li>
                                             </ul>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
-                                <li class="menu-item-has-children"><a href="#">Pages</a>
-                                    <ul class="dropdown">
+                                <li class="menu-item-has-children"><a href="#">THIN CLIENT</a>
+                                    {{-- <ul class="dropdown">
                                         <li><a href="about-us.html">about us </a></li>
                                         <li><a href="cart.html">cart page</a></li>
                                         <li><a href="checkout.html">checkout </a></li>
@@ -259,17 +241,17 @@
                                         <li><a href="contact.html">contact us </a></li>
                                         <li><a href="order-tracking.html">order tracking</a></li>
                                         <li><a href="login-register.html">login / register </a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
-                                <li class="menu-item-has-children "><a href="#">Blog</a>
-                                    <ul class="dropdown">
+                                <li class="menu-item-has-children "><a href="#">SCANNERS</a>
+                                    {{-- <ul class="dropdown">
                                         <li><a href="blog.html">blog standard </a></li>
                                         <li><a href="blog-no-sidebar.html">blog no sidebar </a></li>
                                         <li><a href="blog-right-sidebar.html">blog right sidebar</a></li>
                                         <li><a href="{{ url('blog-details') }}">blog details</a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
-                                <li><a href="contact.html">Contact us</a></li>
+                                <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
                             </ul>
                         </nav>
                         <!-- mobile menu end -->
@@ -281,17 +263,10 @@
                         <div class="categori-hide-2">
                             <nav>
                                 <ul class="mobile-menu">
-                                    <li><a href="shop.html"><i class="icon-energy"></i> Consumer Electric </a></li>
-                                    <li><a href="shop.html"><i class="icon-handbag"></i> Clothing & Apparel </a></li>
-                                    <li><a href="shop.html"><i class="icon-home"></i> Home, Garden & Kitchen </a></li>
-                                    <li><a href="shop.html"><i class="icon-game-controller"></i> Game Console </a></li>
-                                    <li><a href="shop.html"><i class="icon-eyeglass"></i> Jewelry & Watches </a></li>
-                                    <li><a href="shop.html"><i class="icon-screen-desktop"></i> Computers & Technologies </a></li>
-                                    <li><a href="shop.html"><i class="icon-camera"></i> Camera, Video & Audio </a></li>
-                                    <li><a href="shop.html"><i class="icon-social-dribbble"></i> Sport & Outdoor </a></li>
-                                    <li><a href="shop.html"><i class="icon-screen-smartphone"></i> Phones & Accessories </a></li>
-                                    <li><a href="shop.html"><i class="icon-notebook"></i> Books & Office </a></li>
-                                    <li><a href="shop.html"><i class="icon-rocket"></i> Cars & Motocycles </a></li>
+                                    <li><a href="shop.html"><i class="icon-energy"></i>PRINTERS</a></li>
+                                    <li><a href="shop.html"><i class="icon-handbag"></i></a>DESKTOPS</li>
+                                    <li><a href="shop.html"><i class="icon-home"></i> </a>THIN CLIENT</li>
+                                    <li><a href="shop.html"><i class="icon-game-controller"></i></a>SCANNERS</li>
                                 </ul>
                             </nav>
                         </div>
