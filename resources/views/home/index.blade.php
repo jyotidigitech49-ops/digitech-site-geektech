@@ -163,7 +163,7 @@
                     <h2>Discover Our Product Categories</h2>
                 </div>
                 <div class="btn-style-7 btn-style-7-blue">
-                    <a href="shop.html">View Products</a>
+                    <a href="{{ url('/products') }}">View Products</a>
                 </div>
             </div>
             <div class="product-categories-slider-1 nav-style-3">
@@ -182,36 +182,36 @@
                 <div class="product-plr-1">
                     <div class="single-product-wrap">
                         <div class="product-img product-img-border border-blue mb-20">
-                            <a href="shop.html">
+                            <a href="{{ url('/products/thin-client') }}">
                                 <img src="{{ asset('assets/images/product/thin_client.png') }}" alt="">
                             </a>
                         </div>
                         <div class="product-content-categories-2 product-content-blue text-center">
-                            <h5><a href="shop.html">Thin Client</a></h5>
+                            <h5><a href="{{ url('/products/thin-client') }}">Thin Client</a></h5>
                         </div>
                     </div>
                 </div>
                 <div class="product-plr-1">
                     <div class="single-product-wrap">
                         <div class="product-img product-img-border border-blue mb-20">
-                            <a href="shop.html">
+                            <a href="{{ url('/products/desktops') }}">
                                 <img src="{{ asset('assets/images/product/desktops.png') }}" alt="">
                             </a>
                         </div>
                         <div class="product-content-categories-2 product-content-blue text-center">
-                            <h5><a href="shop.html">Desktops</a></h5>
+                            <h5><a href="{{ url('/products/desktops') }}">Desktops</a></h5>
                         </div>
                     </div>
                 </div>
                 <div class="product-plr-1">
                     <div class="single-product-wrap">
                         <div class="product-img product-img-border border-blue mb-20">
-                            <a href="shop.html">
+                            <a href="{{ url('/products/scanners') }}">
                                 <img src="{{ asset('assets/images/product/scanner.png') }}" alt="">
                             </a>
                         </div>
                         <div class="product-content-categories-2 product-content-blue text-center">
-                            <h5><a href="shop.html">Scanner</a></h5>
+                            <h5><a href="{{ url('/products/scanners') }}">Scanner</a></h5>
                         </div>
                     </div>
                 </div>
@@ -225,7 +225,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="banner-wrap mb-30">
                         <div class="banner-img banner-img-zoom">
-                            <a href="product-details.html"><img src="assets/images/banner/b1-area1.png"
+                            <a href="{{ url('/products/product-details') }}"><img src="assets/images/banner/b1-area1.png"
                                     alt=""></a>
                         </div>
                         <div class="banner-content-11 banner-content-11-modify">
@@ -233,7 +233,7 @@
                             <p>Solutions designed for clear output <br> and smooth daily workflows.
                             </p>
                             <div class="btn-style-4">
-                                <a class="hover-red" href="product-details.html">Explore Products <i
+                                <a class="hover-red" href="{{ url('/products/product-details') }}">Explore Products <i
                                         class="icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -242,7 +242,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="banner-wrap mb-30">
                         <div class="banner-img banner-img-zoom">
-                            <a href="product-details.html"><img src="assets/images/banner/b2-area1.png"
+                            <a href="{{ url('/products/product-details') }}"><img src="assets/images/banner/b2-area1.png"
                                     alt=""></a>
                         </div>
                         <div class="banner-content-11 banner-content-11-modify">
@@ -251,7 +251,7 @@
                                 workplace
                                 demands.</p>
                             <div class="btn-style-4 ">
-                                <a class="hover-red" href="product-details.html">Explore Products <i
+                                <a class="hover-red" href="{{ url('/products/product-details') }}">Explore Products <i
                                         class="icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -282,7 +282,7 @@
                                 <div class="product-plr-1">
                                     <div class="single-product-wrap">
                                         <div class="product-img product-img-zoom mb-20">
-                                            <a href="product-details.html">
+                                            <a href="{{ url('/products/product-details') }}">
                                                 <img src="{{ asset($product->img1) }}" alt="{{ $product->name }}">
                                             </a>
                                             {{-- <div class="product-action-2 tooltip-style-2">
@@ -295,7 +295,7 @@
                                         </div>
                                         <div class="product-content-wrap-3">
                                             <h3 class="mrg-none">
-                                                <a href="product-details.html">{{ $product->name }}</a>
+                                                <a href="{{ url('/products/product-details') }}">{{ $product->name }}</a>
                                             </h3>
                                             <div class="product-price-4">
                                                 <span
@@ -309,7 +309,7 @@
                                         <div
                                             class="product-content-wrap-3 product-content-position-2 pro-position-2-padding-dec">
                                             <h3 class="mrg-none">
-                                                <a class="blue" href="product-details.html">{{ $product->name }}</a>
+                                                <a class="blue" href="{{ url('/products/product-details') }}">{{ $product->name }}</a>
                                             </h3>
                                             <div class="product-price-4">
                                                 <span
@@ -352,7 +352,7 @@
                             <p>Designed for streamlined access <br> and workplace efficiency.
                             </p>
                             <div class="btn-style-4">
-                                <a class="hover-red" href="product-details.html">Explore Products<i
+                                <a class="hover-red" href="{{ url('/products/product-details') }}">Explore Products<i
                                         class="icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -361,7 +361,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="banner-wrap mb-30">
                         <div class="banner-img banner-img-zoom">
-                            <a href="product-details.html"><img src="assets/images/banner/b2-area2.png"
+                            <a href="{{ url('/products/product-details') }}"><img src="assets/images/banner/b2-area2.png"
                                     alt=""></a>
                         </div>
                         <div class="banner-content-11 banner-content-11-modify">
@@ -369,7 +369,7 @@
                             <p>Built to simplify document <br> digitization and organization.
                             </p>
                             <div class="btn-style-4">
-                                <a class="hover-red" href="product-details.html">Explore Products
+                                <a class="hover-red" href="{{ url('/products/product-details') }}">Explore Products
                                     <i class="icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -391,7 +391,7 @@
                     <div class="custom-col-5">
                         <div class="single-product-wrap mb-60">
                             <div class="product-img product-img-zoom mb-15">
-                                <a href="product-details.html">
+                                <a href="{{ url('/products/product-details') }}">
                                     <img src="{{ asset($product->img1) }}" alt="{{ $product->name }}">
                                 </a>
                                 {{-- <div class="product-action-2 tooltip-style-2">
@@ -405,7 +405,7 @@
 
                             <div class="product-content-wrap-3">
                                 <h3 class="mrg-none">
-                                    <a class="blue" href="product-details.html">
+                                    <a class="blue" href="{{ url('/products/product-details') }}">
                                         {{ $product->name }}
                                     </a>
                                 </h3>
@@ -434,7 +434,7 @@
 
                             <div class="product-content-wrap-3 product-content-position-2 pro-position-2-padding-dec">
                                 <h3 class="mrg-none">
-                                    <a class="blue" href="product-details.html">
+                                    <a class="blue" href="{{ url('/products/product-details') }}">
                                         {{ $product->name }}
                                     </a>
                                 </h3>
@@ -479,7 +479,7 @@
                     <div class="timer-style-1" id="timer-1-active"></div>
                 </div>
                 <div class="deal-btn">
-                    <a href="product-details.html">Discover More</a>
+                    <a href="{{ url('/products/product-details') }}">Discover More</a>
                 </div>
             </div>
         </div>

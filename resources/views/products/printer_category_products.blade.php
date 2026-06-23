@@ -44,7 +44,7 @@
 
     {{-- product-printer-category-area --}}
 
-    <div class="product-area pt-115 pb-110">
+    {{-- <div class="product-area pt-115 pb-110">
         <div class="container">
             <div class="section-title-2 text-center mb-45">
                 <h2><span></span> Product Categories Designed for Simplicity</h2>
@@ -59,18 +59,53 @@
                         <div class="single-product-wrap mb-35">
                             <div class="product-img product-img-zoom mb-20">
                                 <a href="{{ url('products', $category->url) }}">
-                                <img src="{{ asset($category->image) }}" alt="{{ $category->name }}">
+                                    <img src="{{ asset($category->image) }}" alt="{{ $category->name }}">
                                 </a>
                             </div>
 
                             <div class="product-content-2 text-center">
                                 <h3>
                                     <a href="{{ url('products', $category->url) }}">
-                                    <span class="blod">{{ $category->name }}</span>
+                                        <span class="blod">{{ $category->name }}</span>
                                     </a>
                                 </h3>
 
                                 <p>{{ $category->description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div> --}}
+
+    <div class="product-area pt-115 pb-110">
+        <div class="container">
+            <div class="section-title-2 text-center mb-45">
+                <h2><span></span> Product Categories Designed for Simplicity</h2>
+                <p>Explore printer categories with simpler and smarter product navigation.</p>
+            </div>
+
+            <div class="row">
+
+                @foreach ($printerCategoriesAll as $category)
+                    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                        <div class="single-product-wrap h-100">
+                            <div class="product-img product-img-zoom mb-20">
+                                <a href="{{ url('products/printer/' . $category->url) }}">
+                                    <img src="{{ asset($category->image) }}" alt="{{ $category->name }}" class="img-fluid">
+                                </a>
+                            </div>
+
+                            <div class="product-content-2 text-center">
+                                <h3>
+                                    <a href="{{ url('products/printer/' . $category->url) }}">
+                                        <span class="blod">{{ $category->name }}</span>
+                                    </a>
+                                </h3>
+
+                                <p>{{ Str::limit(strip_tags($category->description), 100) }}</p>
                             </div>
                         </div>
                     </div>
@@ -87,7 +122,7 @@
         <div class="container">
             <div class="section-title-2 text-center mb-45">
                 <h2><span>Showing</span> {{ $products->count() }} Products</h2>
-                <p>Latest {{ $printerCategories->name}} Collection</p>
+                <p>Latest {{ $printerCategories->name }} Collection</p>
             </div>
 
             <div class="tab-content jump">
@@ -98,14 +133,16 @@
                             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
                                 <div class="single-product-wrap mb-35">
                                     <div class="product-img product-img-zoom mb-15">
-                                        <a href="#">
+                                        <a href="{{ url('products/printer/details', $product->slug) }}">
                                             <img src="{{ asset($product->img1) }}" alt="{{ $product->name }}">
                                         </a>
                                     </div>
 
                                     <div class="product-content-wrap-2 text-center">
                                         <h3>
-                                            <a href="#">{{ $product->name }}</a>
+                                            <a href="{{ url('products/printer/details', $product->slug) }}">
+                                                {{ $product->name }}
+                                            </a>
                                         </h3>
 
                                         <div class="product-price-2">
@@ -115,7 +152,9 @@
 
                                     <div class="product-content-wrap-2 product-content-position text-center">
                                         <h3>
-                                            <a href="#">{{ $product->name }}</a>
+                                            <a href="{{ url('products/printer/details', $product->slug) }}">
+                                                {{ $product->name }}
+                                            </a>
                                         </h3>
 
                                         <div class="product-price-2">
@@ -123,7 +162,7 @@
                                         </div>
 
                                         <div class="pro-add-to-cart">
-                                           <a href="{{ url('product/details', $product->id) }}">
+                                            <a href="{{ url('products/printer/details', $product->slug) }}">
                                                 <button title="Add to Cart">View Details</button>
                                             </a>
                                         </div>

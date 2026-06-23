@@ -83,14 +83,14 @@
                     <div class="product-plr-1">
                         <div class="single-product-wrap mb-35">
                             <div class="product-img product-img-zoom mb-20">
-                                <a href="{{ url('products', $category->url) }}">
+                                <a href="{{ url('products/printer', $category->url) }}">
                                 <img src="{{ asset($category->image) }}" alt="{{ $category->name }}">
                                 </a>
                             </div>
 
                             <div class="product-content-2 text-center">
                                 <h3>
-                                    <a href="{{ url('products', $category->url) }}">
+                                    <a href="{{ url('products/printer', $category->url) }}">
                                     <span class="blod">{{ $category->name }}</span>
                                     </a>
                                 </h3>
@@ -405,14 +405,16 @@
                             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
                                 <div class="single-product-wrap mb-35">
                                     <div class="product-img product-img-zoom mb-15">
-                                        <a href="#">
+                                        <a href="{{ url('products/printer/details', $product->slug) }}">
                                             <img src="{{ asset($product->img1) }}" alt="{{ $product->name }}">
                                         </a>
                                     </div>
 
                                     <div class="product-content-wrap-2 text-center">
                                         <h3>
-                                            <a href="#">{{ $product->name }}</a>
+                                            <a href="{{ url('products/printer/details', $product->slug) }}">
+                                                {{ $product->name }}
+                                            </a>
                                         </h3>
 
                                         <div class="product-price-2">
@@ -422,7 +424,9 @@
 
                                     <div class="product-content-wrap-2 product-content-position text-center">
                                         <h3>
-                                            <a href="#">{{ $product->name }}</a>
+                                            <a href="{{ url('products/printer/details', $product->slug) }}">
+                                                {{ $product->name }}
+                                                </a>
                                         </h3>
 
                                         <div class="product-price-2">
@@ -430,7 +434,7 @@
                                         </div>
 
                                         <div class="pro-add-to-cart">
-                                           <a href="{{ url('product/details', $product->id) }}">
+                                           <a href="{{ url('products/printer/details', $product->slug) }}">
                                                 <button title="Add to Cart">View Details</button>
                                             </a>
                                         </div>
