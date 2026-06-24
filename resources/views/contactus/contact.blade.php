@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('title', 'Contact')
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/contact.css') }}">
+@endpush
+
 @section('content')
 
     <div class="breadcrumb-area bg-gray">
@@ -7,7 +12,7 @@
             <div class="breadcrumb-content text-center">
                 <ul>
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="active">Contact Us </li>
                 </ul>
@@ -90,21 +95,43 @@
         $(document).ready(function() {
             $('#contact-form').on('submit', function(e) {
                 e.preventDefault();
-                var formData = $(this).serialize();
+
+                $('.text-danger').text('');
+                $('#success-message').html('');
+
+                const form = $(this);
+                const submitButton = form.find('.submit');
+
                 $.ajax({
-                    url: $(this).attr('action'),
+                    url: form.attr('action'),
                     method: 'POST',
-                    data: formData,
+                    data: form.serialize(),
+                    dataType: 'json',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    beforeSend: function() {
+                        submitButton.prop('disabled', true).text('Sending...');
+                    },
                     success: function(response) {
                         $('#success-message').html(
-                            '<p class="text-success">Your message has been sent successfully!</p>'
-                            );
-                        $('#contact-form')[0].reset();
+                            '<p class="text-success">' + (response.message || 'Your message has been sent successfully!') + '</p>'
+                        );
+                        form[0].reset();
                     },
                     error: function(xhr) {
-                        $('#success-message').html(
-                            '<p class="text-danger">An error occurred while sending your message.</p>'
+                        if (xhr.status === 422 && xhr.responseJSON && xhr.responseJSON.errors) {
+                            $.each(xhr.responseJSON.errors, function(key, value) {
+                                $('.' + key + '_error').text(value[0]);
+                            });
+                        } else {
+                            $('#success-message').html(
+                                '<p class="text-danger">Something went wrong. Please try again.</p>'
                             );
+                        }
+                    },
+                    complete: function() {
+                        submitButton.prop('disabled', false).text('Send Message');
                     }
                 });
             });

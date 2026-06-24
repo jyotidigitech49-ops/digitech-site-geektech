@@ -12,61 +12,156 @@ use App\Models\ProductSpecification;
 use Illuminate\Support\Str;
 
 class ProductPrinterController extends Controller {
-    public function productsPrinter() {
+    public function allProducts( Request $request ) {
+        $selectedType = $request->query( 'type' );
+        $productType = null;
 
-        // First: get 4 printer categories
         $printerCategories = Category::query()
-        ->where( 'parent_id', 1 ) // agar printer category parent hai
-        ->orderBy( 'sort', 'asc' )
-        // ->limit( 4 )
-        ->get();
+            ->where( 'parent_id', 0 )
+            ->where( 'status', 'A' )
+            ->orderBy( 'sort', 'asc' )
+            ->get();
 
-        // Category ids
-        $categoryIds = $printerCategories->pluck( 'id' );
+        $productsQuery = Product::query()
+            ->leftJoin( 'categories', 'categories.id', '=', 'products.cat_id' )
+            ->where( 'products.status', 'A' )
+            ->orderBy( 'products.id', 'desc' )
+            ->select( 'products.*', 'categories.name as category_name' );
 
-        // Second: get 16 products from these 4 categories
-        $products = Product::query()
-        ->whereIn( 'cat_id', $categoryIds )
-        ->orderBy( 'id', 'desc' )
-        // ->limit( 16 )
-        ->get();
+        if ( $selectedType ) {
+            $productType = Category::query()
+                ->where( 'parent_id', 0 )
+                ->where( 'url', $selectedType )
+                ->where( 'status', 'A' )
+                ->firstOrFail();
 
-        // dump( $printerCategories );
-        // dump( $products );
+            $childCategoryIds = Category::query()
+                ->where( 'parent_id', $productType->id )
+                ->where( 'status', 'A' )
+                ->pluck( 'id' );
+
+            $categoryIds = $childCategoryIds->isNotEmpty()
+                ? $childCategoryIds
+                : collect( [ $productType->id ] );
+
+            $productsQuery->whereIn( 'products.cat_id', $categoryIds );
+        }
+
+        $products = $productsQuery->get();
+
+        $isAllProductsPage = true;
 
         return view( 'products.products_printer', compact(
             'printerCategories',
-            'products'
+            'products',
+            'productType',
+            'isAllProductsPage',
+            'selectedType'
+        ) );
+    }
+
+    public function productsPrinter() {
+        return $this->productsByType( 'printer' );
+    }
+
+    public function productsByType( string $type ) {
+        $productType = Category::query()
+            ->where( 'parent_id', 0 )
+            ->where( 'url', $type )
+            ->where( 'status', 'A' )
+            ->firstOrFail();
+
+        $childCategories = Category::query()
+            ->where( 'parent_id', $productType->id )
+            ->where( 'status', 'A' )
+            ->orderBy( 'sort', 'asc' )
+            ->get();
+
+        $printerCategories = $childCategories->isNotEmpty()
+            ? $childCategories
+            : Category::query()
+                ->where( 'parent_id', 0 )
+                ->where( 'status', 'A' )
+                ->orderBy( 'sort', 'asc' )
+                ->get();
+
+        $productCategoryIds = $childCategories->isNotEmpty()
+            ? $childCategories->pluck( 'id' )
+            : collect( [ $productType->id ] );
+
+        $products = Product::query()
+        ->leftJoin( 'categories', 'categories.id', '=', 'products.cat_id' )
+        ->whereIn( 'products.cat_id', $productCategoryIds )
+        ->where( 'products.status', 'A' )
+        ->orderBy( 'products.id', 'desc' )
+        ->select( 'products.*', 'categories.name as category_name' )
+        ->get();
+
+        return view( 'products.products_printer', compact(
+            'printerCategories',
+            'products',
+            'productType'
         ) );
 
     }
 
     public function printerCategoryProducts( $url ) {
+        return $this->categoryProductsByType( 'printer', $url );
+    }
 
-    // First: get 4 printer categories
+    public function categoryProductsByType( string $type, string $url ) {
+        $productType = Category::query()
+            ->where( 'parent_id', 0 )
+            ->where( 'url', $type )
+            ->where( 'status', 'A' )
+            ->firstOrFail();
+
+        $childCategories = Category::query()
+            ->where( 'parent_id', $productType->id )
+            ->where( 'status', 'A' )
+            ->orderBy( 'sort', 'asc' )
+            ->get();
+
         $printerCategoriesAll = Category::query()
-        ->where( 'parent_id', 1 ) // agar printer category parent hai
+        ->where( 'parent_id', $productType->id )
+        ->where( 'status', 'A' )
         ->orderBy( 'sort', 'asc' )
-        // ->limit( 4 )
         ->get();
 
+        if ( $printerCategoriesAll->isEmpty() ) {
+            $printerCategoriesAll = Category::query()
+                ->where( 'parent_id', 0 )
+                ->where( 'status', 'A' )
+                ->orderBy( 'sort', 'asc' )
+                ->get();
+        }
 
         $printerCategories = Category::query()
         ->where( 'url', $url )
+        ->where( 'status', 'A' )
         ->firstOrFail();
 
+        abort_if( $childCategories->isNotEmpty() && (int) $printerCategories->parent_id !== (int) $productType->id, 404 );
+        abort_if( $childCategories->isEmpty() && (int) $printerCategories->parent_id !== 0, 404 );
+
         $products = Product::query()
-        ->where( 'cat_id', $printerCategories->id )
-        ->orderBy( 'id', 'desc' )
+        ->leftJoin( 'categories', 'categories.id', '=', 'products.cat_id' )
+        ->where( 'products.cat_id', $printerCategories->id )
+        ->where( 'products.status', 'A' )
+        ->orderBy( 'products.id', 'desc' )
+        ->select( 'products.*', 'categories.name as category_name' )
         ->get();
 
-        // dump( $printerCategories );
-        // dump( $products );
         return view( 'products.printer_category_products', compact(
             'printerCategoriesAll',
             'products',
-            'printerCategories'
+            'printerCategories',
+            'productType'
         ) );
+    }
+
+    public function productDetailsByType( string $type, string $url ) {
+        return $this->printerCategoryProductsDetails( $url );
     }
 
     public function printerCategoryProductsDetails( $url ) {
@@ -201,7 +296,7 @@ class ProductPrinterController extends Controller {
                 'lifecycle' => 'May 31, 2020 - Dec 30, 2030',
                 'summary' => $product->short_description,
                 'price' => $product->price,
-                'quote_url' => url( '/products-enquiry' ),
+                'quote_url' => route( 'product.enquiry.show', $product->slug ),
             ],
             'gallery' => $gallery,
             'overview' => [

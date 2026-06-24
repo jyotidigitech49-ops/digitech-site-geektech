@@ -3,3 +3,46 @@
     Add only partials/header.blade.php related changes here.
 */
 
+:root {
+    --site-header-height: 154px;
+}
+
+.header-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.main-wrapper {
+    padding-top: var(--site-header-height);
+}
+
+.mobile-header-active {
+    z-index: 1001;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    :root {
+        --site-header-height: 82px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    :root {
+        --site-header-height: 82px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    :root {
+        --site-header-height: 76px;
+    }
+
+    .header-small-device.small-device-ptb-1 {
+        padding: 17px 0;
+    }
+}

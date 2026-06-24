@@ -1,0 +1,313 @@
+.printer-category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 26px;
+}
+
+.printer-category-item {
+    min-width: 0;
+}
+
+.printer-category-card {
+    height: 100%;
+    padding: 18px 18px 20px;
+    border: 1px solid #dfe7f3;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+    transition: border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+}
+
+.printer-category-card:hover {
+    border-color: #0064e0;
+    box-shadow: 0 16px 38px rgba(0, 100, 224, 0.12);
+    transform: translateY(-4px);
+}
+
+.printer-category-card.active-filter-card {
+    border-color: #0064e0;
+    box-shadow: 0 16px 38px rgba(0, 100, 224, 0.14);
+}
+
+.printer-category-card.active-filter-card .printer-shop-badge {
+    background: #0064e0;
+    color: #fff;
+}
+
+.printer-category-card .product-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 196px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+}
+
+.printer-category-card .product-img a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.printer-category-card .product-img img {
+    max-width: 100%;
+    max-height: 165px;
+    object-fit: contain;
+    transition: transform 0.22s ease;
+}
+
+.printer-category-card:hover .product-img img {
+    transform: scale(1.04);
+}
+
+.printer-category-card .product-content-2 h3 {
+    margin-bottom: 8px;
+}
+
+.printer-category-card .product-content-2 h3 a,
+.printer-category-card .product-content-2 h3 span {
+    color: #111827;
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.printer-category-card:hover .product-content-2 h3 a,
+.printer-category-card:hover .product-content-2 h3 span {
+    color: #0064e0;
+}
+
+.printer-category-card .product-content-2 p {
+    min-height: 44px;
+    margin-bottom: 0;
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.printer-shop-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 28px;
+    margin-top: 12px;
+    padding: 4px 14px;
+    border: 1px solid rgba(0, 100, 224, 0.16);
+    border-radius: 999px;
+    background: #eaf3ff;
+    color: #0064e0;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.printer-products-area .row {
+    row-gap: 26px;
+}
+
+.printer-product-card {
+    height: 100%;
+    padding: 18px 18px 20px;
+    border: 1px solid #dfe7f3;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+    transition: border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+}
+
+.printer-product-card:hover {
+    border-color: #0064e0;
+    box-shadow: 0 16px 38px rgba(0, 100, 224, 0.12);
+    transform: translateY(-4px);
+}
+
+.printer-product-card .product-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 218px;
+    margin-bottom: 18px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+}
+
+.printer-product-card .product-img a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.printer-product-card .product-img img {
+    max-width: 100%;
+    max-height: 185px;
+    object-fit: contain;
+    transition: transform 0.22s ease;
+}
+
+.printer-product-card:hover .product-img img {
+    transform: scale(1.04);
+}
+
+.printer-product-card .product-content-wrap-2 h3 {
+    min-height: 46px;
+    margin-bottom: 12px;
+}
+
+.printer-product-category {
+    margin-bottom: 8px;
+    color: #0064e0;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.printer-product-card .product-content-wrap-2 h3 a {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    color: #111827;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.35;
+}
+
+.printer-product-card:hover .product-content-wrap-2 h3 a {
+    color: #0064e0;
+}
+
+.printer-product-price-stock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.printer-stock-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 28px;
+    padding: 4px 14px;
+    border: 1px solid #bbf7d0;
+    border-radius: 999px;
+    background: #dcfce7;
+    color: #16a34a;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.printer-product-card .product-price-2 span:first-child {
+    color: #4b5563;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.printer-product-card .pro-add-to-cart button {
+    border-radius: 999px;
+    background: #0064e0;
+    color: #fff;
+    font-weight: 700;
+}
+
+.printer-product-card .pro-add-to-cart button:hover {
+    background: #000;
+}
+
+@media (max-width: 991px) {
+    .printer-category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+}
+
+@media (max-width: 575px) {
+    .printer-category-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .printer-category-card {
+        padding: 16px;
+    }
+
+    .printer-category-card .product-img {
+        min-height: 160px;
+    }
+
+    .printer-category-card .product-img img {
+        max-height: 145px;
+    }
+
+    .printer-product-card {
+        padding: 16px;
+    }
+
+    .printer-product-card .product-img {
+        min-height: 170px;
+    }
+
+    .printer-product-card .product-img img {
+        max-height: 150px;
+    }
+
+    .printer-product-card .product-content-wrap-2 h3 {
+        min-height: auto;
+    }
+}
+
+/* Responsive hardening for dynamic product/category cards */
+.printer-category-card,
+.printer-product-card {
+    overflow: hidden;
+}
+
+.printer-category-card .product-content-2 h3,
+.printer-category-card .product-content-2 p,
+.printer-product-card .product-content-wrap-2 h3,
+.printer-product-category {
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 991px) {
+    .printer-products-area .row {
+        row-gap: 18px;
+    }
+}
+
+@media (max-width: 575px) {
+    .product-area.pt-115 {
+        padding-top: 70px;
+    }
+
+    .product-area.pb-110,
+    .product-area.pb-80 {
+        padding-bottom: 58px;
+    }
+
+    .printer-product-price-stock {
+        gap: 8px;
+    }
+
+    .printer-stock-badge {
+        min-height: 26px;
+        padding: 4px 12px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 360px) {
+    .printer-category-card,
+    .printer-product-card {
+        padding: 14px;
+    }
+
+    .printer-product-card .product-img {
+        min-height: 150px;
+    }
+}

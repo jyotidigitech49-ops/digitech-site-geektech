@@ -2,7 +2,7 @@
 @section('title', 'Home')
 
 @push('styles')
-    {{-- <link rel="stylesheet" href="{{ asset('assets/css/pages/home.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/home.css') }}">
 @endpush
 
 @section('content')
@@ -22,7 +22,7 @@
                                     at home and work.</p>
                                 <div class="btn-style-1">
                                     <a class="animated btn-1-padding-4 btn-1-blue btn-1-font-14"
-                                        href="product-details.html">Explore Now</a>
+                                        href="{{ url('/products/printer') }}">Explore Now</a>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                                 </p>
                                 <div class="btn-style-1">
                                     <a class="animated btn-1-padding-4 btn-1-blue btn-1-font-14"
-                                        href="product-details.html">Explore Now</a>
+                                        href="{{ url('/products/desktops') }}">Explore Now</a>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                                 </p>
                                 <div class="btn-style-1">
                                     <a class="animated btn-1-padding-4 btn-1-blue btn-1-font-14"
-                                        href="product-details.html">Explore Now</a>
+                                        href="{{ url('/products/thin-client') }}">Explore Now</a>
                                 </div>
                             </div>
                         </div>
@@ -91,6 +91,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="more-blogs-btn text-center">
+                    <a href="{{ url('/blogs') }}">More Blogs</a>
                 </div>
             </div>
         </div>
@@ -206,12 +209,12 @@
                 <div class="product-plr-1">
                     <div class="single-product-wrap">
                         <div class="product-img product-img-border border-blue mb-20">
-                            <a href="{{ url('/products/scanners') }}">
+                            <a href="{{ url('/products/scanner') }}">
                                 <img src="{{ asset('assets/images/product/scanner.png') }}" alt="">
                             </a>
                         </div>
                         <div class="product-content-categories-2 product-content-blue text-center">
-                            <h5><a href="{{ url('/products/scanners') }}">Scanner</a></h5>
+                            <h5><a href="{{ url('/products/scanner') }}">Scanner</a></h5>
                         </div>
                     </div>
                 </div>
@@ -225,7 +228,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="banner-wrap mb-30">
                         <div class="banner-img banner-img-zoom">
-                            <a href="{{ url('/products/product-details') }}"><img src="assets/images/banner/b1-area1.png"
+                            <a href="{{ url('/products/printer') }}"><img src="assets/images/banner/b1-area1.png"
                                     alt=""></a>
                         </div>
                         <div class="banner-content-11 banner-content-11-modify">
@@ -233,7 +236,7 @@
                             <p>Solutions designed for clear output <br> and smooth daily workflows.
                             </p>
                             <div class="btn-style-4">
-                                <a class="hover-red" href="{{ url('/products/product-details') }}">Explore Products <i
+                                <a class="hover-red" href="{{ url('/products/printer') }}">Explore Products <i
                                         class="icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -242,7 +245,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="banner-wrap mb-30">
                         <div class="banner-img banner-img-zoom">
-                            <a href="{{ url('/products/product-details') }}"><img src="assets/images/banner/b2-area1.png"
+                            <a href="{{ url('/products/desktops') }}"><img src="assets/images/banner/b2-area1.png"
                                     alt=""></a>
                         </div>
                         <div class="banner-content-11 banner-content-11-modify">
@@ -251,7 +254,7 @@
                                 workplace
                                 demands.</p>
                             <div class="btn-style-4 ">
-                                <a class="hover-red" href="{{ url('/products/product-details') }}">Explore Products <i
+                                <a class="hover-red" href="{{ url('/products/desktops') }}">Explore Products <i
                                         class="icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -261,7 +264,7 @@
         </div>
     </div>
     {{-- Product Area--dynamics --}}
-    <div class="product-area pb-120">
+    <div class="product-area home-dynamic-products-area pb-120">
         <div class="container">
             <div class="section-title-6 section-title-6-xs mb-25 text-center">
                 <h2>Selected For Your Needs</h2>
@@ -279,11 +282,23 @@
                     <div id="{{ $tabKey }}" class="tab-pane {{ $loop->first ? 'active' : '' }}">
                         <div class="product-slider-active-3 nav-style-3">
                             @forelse ($tab['products'] as $product)
+                                @php
+                                    $homeProductType = \Illuminate\Support\Str::slug($product->parent_cat ?: 'printer');
+                                    $homeProductType = $homeProductType === 'thin-client' ? 'thin-client' : $homeProductType;
+                                    $homeProductUrl = url("products/{$homeProductType}/details", $product->slug);
+                                    $homeProductImageCandidates = array_filter([
+                                        $product->img1,
+                                        'assets/images/product/' . ltrim($product->img1 ?? '', '/'),
+                                        'assets/images/product/product-1.jpg',
+                                    ]);
+                                    $homeProductImage = collect($homeProductImageCandidates)
+                                        ->first(fn ($image) => file_exists(public_path($image))) ?? 'assets/images/product/product-1.jpg';
+                                @endphp
                                 <div class="product-plr-1">
-                                    <div class="single-product-wrap">
+                                    <div class="single-product-wrap home-product-card">
                                         <div class="product-img product-img-zoom mb-20">
-                                            <a href="{{ url('/products/product-details') }}">
-                                                <img src="{{ asset($product->img1) }}" alt="{{ $product->name }}">
+                                            <a href="{{ $homeProductUrl }}">
+                                                <img src="{{ asset($homeProductImage) }}" alt="{{ $product->name }}">
                                             </a>
                                             {{-- <div class="product-action-2 tooltip-style-2">
                                                 <button title="Wishlist"><i class="icon-heart"></i></button>
@@ -294,33 +309,20 @@
                                             </div> --}}
                                         </div>
                                         <div class="product-content-wrap-3">
+                                            <div class="home-product-category">
+                                                {{ $product->parent_cat }}
+                                            </div>
                                             <h3 class="mrg-none">
-                                                <a href="{{ url('/products/product-details') }}">{{ $product->name }}</a>
+                                                <a href="{{ $homeProductUrl }}">{{ $product->name }}</a>
                                             </h3>
                                             <div class="product-price-4">
                                                 <span
                                                     class="new-price">&#8377;{{ number_format($product->price, 2) }}</span>
                                             </div>
-                                            <div class="product-author">
-                                                <span>Status: <a
-                                                        href="#">{{ ucfirst($product->stock_status) }}</a></span>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="product-content-wrap-3 product-content-position-2 pro-position-2-padding-dec">
-                                            <h3 class="mrg-none">
-                                                <a class="blue" href="{{ url('/products/product-details') }}">{{ $product->name }}</a>
-                                            </h3>
-                                            <div class="product-price-4">
-                                                <span
-                                                    class="new-price">&#8377;{{ number_format($product->price, 2) }}</span>
-                                            </div>
-                                            <div class="product-author">
-                                                <span>Status: <a
-                                                        href="#">{{ ucfirst($product->stock_status) }}</a></span>
-                                            </div>
-                                            <div class="pro-add-to-cart-2">
-                                                <button title="View Details">View Details</button>
+                                            <div class="home-card-stock-wrap">
+                                                <span class="home-stock-badge">
+                                                    {{ $product->stock_status === 'available' ? 'In Stock' : 'Out of Stock' }}
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -344,7 +346,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="banner-wrap mb-30">
                         <div class="banner-img banner-img-zoom">
-                            <a href="product-details.html"><img src="assets/images/banner/b1-area2.png"
+                            <a href="{{ url('/products/thin-client') }}"><img src="assets/images/banner/b1-area2.png"
                                     alt=""></a>
                         </div>
                         <div class="banner-content-11 banner-content-11-modify">
@@ -352,7 +354,7 @@
                             <p>Designed for streamlined access <br> and workplace efficiency.
                             </p>
                             <div class="btn-style-4">
-                                <a class="hover-red" href="{{ url('/products/product-details') }}">Explore Products<i
+                                <a class="hover-red" href="{{ url('/products/thin-client') }}">Explore Products<i
                                         class="icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -361,7 +363,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="banner-wrap mb-30">
                         <div class="banner-img banner-img-zoom">
-                            <a href="{{ url('/products/product-details') }}"><img src="assets/images/banner/b2-area2.png"
+                            <a href="{{ url('/products/scanner') }}"><img src="assets/images/banner/b2-area2.png"
                                     alt=""></a>
                         </div>
                         <div class="banner-content-11 banner-content-11-modify">
@@ -369,7 +371,7 @@
                             <p>Built to simplify document <br> digitization and organization.
                             </p>
                             <div class="btn-style-4">
-                                <a class="hover-red" href="{{ url('/products/product-details') }}">Explore Products
+                                <a class="hover-red" href="{{ url('/products/scanner') }}">Explore Products
                                     <i class="icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -379,7 +381,7 @@
         </div>
     </div>
     {{-- Suggested Products---dynamics --}}
-    <div class="product-area pt-0 pb-0">
+    <div class="product-area home-suggested-products-area pt-0 pb-0">
         <div class="container">
             <div class="section-title-6 section-title-6-xs mb-60 text-center">
                 <h2>Sugguest today</h2>
@@ -388,11 +390,23 @@
             <div class="row">
 
                 @foreach ($suggestedProducts as $product)
+                    @php
+                        $homeProductType = \Illuminate\Support\Str::slug($product->parent_cat ?: 'printer');
+                        $homeProductType = $homeProductType === 'thin-client' ? 'thin-client' : $homeProductType;
+                        $homeProductUrl = url("products/{$homeProductType}/details", $product->slug);
+                        $homeProductImageCandidates = array_filter([
+                            $product->img1,
+                            'assets/images/product/' . ltrim($product->img1 ?? '', '/'),
+                            'assets/images/product/product-1.jpg',
+                        ]);
+                        $homeProductImage = collect($homeProductImageCandidates)
+                            ->first(fn ($image) => file_exists(public_path($image))) ?? 'assets/images/product/product-1.jpg';
+                    @endphp
                     <div class="custom-col-5">
-                        <div class="single-product-wrap mb-60">
+                        <div class="single-product-wrap home-product-card mb-60">
                             <div class="product-img product-img-zoom mb-15">
-                                <a href="{{ url('/products/product-details') }}">
-                                    <img src="{{ asset($product->img1) }}" alt="{{ $product->name }}">
+                                <a href="{{ $homeProductUrl }}">
+                                    <img src="{{ asset($homeProductImage) }}" alt="{{ $product->name }}">
                                 </a>
                                 {{-- <div class="product-action-2 tooltip-style-2">
                     <button title="Wishlist"><i class="icon-heart"></i></button>
@@ -404,37 +418,29 @@
                             </div>
 
                             <div class="product-content-wrap-3">
+                                <div class="home-product-category">
+                                    {{ $product->parent_cat }}
+                                </div>
                                 <h3 class="mrg-none">
-                                    <a class="blue" href="{{ url('/products/product-details') }}">
+                                    <a class="blue" href="{{ $homeProductUrl }}">
                                         {{ $product->name }}
                                     </a>
                                 </h3>
-
-                                <div class="product-rating-wrap-2">
-                                    <div class="product-rating-4">
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                    </div>
-                                    <span>(0)</span>
-                                </div>
 
                                 <div class="product-price-4">
                                     <span>₹{{ number_format($product->price, 2) }}</span>
                                 </div>
 
-                                <div class="product-author">
-                                    <span>Status:
-                                        <a href="#">{{ ucfirst($product->stock_status) }}</a>
+                                <div class="home-card-stock-wrap">
+                                    <span class="home-stock-badge">
+                                        {{ $product->stock_status === 'available' ? 'In Stock' : 'Out of Stock' }}
                                     </span>
                                 </div>
                             </div>
 
                             <div class="product-content-wrap-3 product-content-position-2 pro-position-2-padding-dec">
                                 <h3 class="mrg-none">
-                                    <a class="blue" href="{{ url('/products/product-details') }}">
+                                    <a class="blue" href="{{ $homeProductUrl }}">
                                         {{ $product->name }}
                                     </a>
                                 </h3>
@@ -442,12 +448,6 @@
 
                                 <div class="product-price-4">
                                     <span>₹{{ number_format($product->price, 2) }}</span>
-                                </div>
-
-                                <div class="product-author">
-                                    <span>Status:
-                                        <a href="#">{{ ucfirst($product->stock_status) }}</a>
-                                    </span>
                                 </div>
 
                                 <div class="pro-add-to-cart-2">
@@ -479,7 +479,7 @@
                     <div class="timer-style-1" id="timer-1-active"></div>
                 </div>
                 <div class="deal-btn">
-                    <a href="{{ url('/products/product-details') }}">Discover More</a>
+                    <a href="{{ url('/products/printer') }}">Discover More</a>
                 </div>
             </div>
         </div>
@@ -494,11 +494,20 @@
             <div class="border-bottom-2 blog-area-pb">
                 <div class="row">
                     @foreach ($blogPosts as $blogPost)
+                        @php
+                            $blogImageCandidates = array_filter([
+                                $blogPost->image1,
+                                'assets/images/blog/' . ltrim($blogPost->image1 ?? '', '/'),
+                                'assets/images/blog/blog-1.jpg',
+                            ]);
+                            $blogImage = collect($blogImageCandidates)
+                                ->first(fn ($image) => file_exists(public_path($image))) ?? 'assets/images/blog/blog-1.jpg';
+                        @endphp
                         <div class="col-lg-4 col-md-6">
-                            <div class="blog-wrap mb-30">
+                            <div class="blog-wrap home-blog-card mb-30">
                                 <div class="blog-img mb-25">
-                                    <a href="{{ url('/blog-details', $blogPost->slug) }}">
-                                        <img src="assets/images/blog/blog-1.jpg" alt="blog-img">
+                                    <a href="{{ url('/blogs', $blogPost->slug) }}">
+                                        <img src="{{ asset($blogImage) }}" alt="{{ $blogPost->heading }}">
                                     </a>
                                 </div>
 
@@ -506,7 +515,7 @@
                                     <div class="blog-meta">
                                         <ul>
                                             <li>
-                                                <a href="{{ url('/blog-details', $blogPost->slug) }}">
+                                                <a href="{{ url('/blogs', $blogPost->slug) }}">
                                                     {{ $blogPost->heading }}
                                                 </a>
                                             </li>
@@ -518,7 +527,7 @@
                                     </p>
 
                                     <div class="mt-2">
-                                        <a href="{{ url('/blog-details', $blogPost->slug) }}"
+                                        <a href="{{ url('/blogs', $blogPost->slug) }}"
                                             class="btn btn-sm btn-primary">
                                             Read More
                                         </a>

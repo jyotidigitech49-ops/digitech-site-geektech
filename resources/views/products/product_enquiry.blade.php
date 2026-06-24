@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Blog Details')
+@section('title', 'Product Enquiry')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/pages/product-enquiry.css') }}">
@@ -23,24 +23,24 @@
 
                     <div class="summary-product d-flex align-items-center">
                         <div class="product-img">
-                            <img src="printer.png" alt="HP LaserJet Printer">
+                            <img src="{{ $enquiryData['product']['image'] }}" alt="{{ $enquiryData['product']['name'] }}">
                         </div>
-                        <h5>HP LaserJet M209dw Printer</h5>
+                        <h5>{{ $enquiryData['product']['name'] }}</h5>
                     </div>
 
                     <div class="summary-row d-flex justify-content-between">
                         <strong>Category</strong>
-                        <span>Printer</span>
+                        <span>{{ $enquiryData['category']['name'] }}</span>
                     </div>
 
                     <div class="summary-row d-flex justify-content-between">
                         <strong>Support</strong>
-                        <span>Dedicated Product Assistance</span>
+                        <span>{{ $enquiryData['support'] }}</span>
                     </div>
 
                     <div class="summary-row d-flex justify-content-between">
                         <strong>Response Time</strong>
-                        <span class="blue-text">Response Within 24 Hours</span>
+                        <span class="blue-text">{{ $enquiryData['response_time'] }}</span>
                     </div>
 
                     <div class="why-box">
@@ -62,45 +62,56 @@
                 <h3 class="section-heading">Product Enquiry Form</h3>
 
                 <p class="form-description">
-                    Submit your enquiry details, and our team will review your request regarding
-                    product availability, specifications, and quotation-related information.
+                    Submit your enquiry details for {{ $enquiryData['product']['name'] }}, and our team will review your request regarding product availability, specifications, and quotation-related information.
                 </p>
 
-                <form>
+                @if (session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+
+                <form method="POST" action="{{ $enquiryData['form_action'] }}">
+                    @csrf
                     <div class="row g-4">
                         <div class="col-md-6">
                             <label class="form-label">First Name *</label>
-                            <input type="text" class="form-control" placeholder="Enter first name">
+                            <input type="text" name="first_name" value="{{ old('first_name') }}" class="form-control @error('first_name') is-invalid @enderror" placeholder="Enter first name">
+                            @error('first_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
                         <div class="col-md-6">
                             <label class="form-label">Last Name *</label>
-                            <input type="text" class="form-control" placeholder="Enter last name">
+                            <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control @error('last_name') is-invalid @enderror" placeholder="Enter last name">
+                            @error('last_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
                         <div class="col-md-6">
                             <label class="form-label">Email Address *</label>
-                            <input type="email" class="form-control" placeholder="Enter email address">
+                            <input type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="Enter email address">
+                            @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
                         <div class="col-md-6">
                             <label class="form-label">Phone Number *</label>
-                            <input type="text" class="form-control" placeholder="Enter phone number">
+                            <input type="text" name="phone" value="{{ old('phone') }}" class="form-control @error('phone') is-invalid @enderror" placeholder="Enter phone number">
+                            @error('phone') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
                         <div class="col-md-6">
                             <label class="form-label">Required Quantity *</label>
-                            <input type="number" class="form-control" placeholder="Enter quantity">
+                            <input type="number" name="quantity" value="{{ old('quantity', 1) }}" min="1" class="form-control @error('quantity') is-invalid @enderror" placeholder="Enter quantity">
+                            @error('quantity') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
                         <div class="col-md-6">
                             <label class="form-label">Company Name</label>
-                            <input type="text" class="form-control" placeholder="Enter company name">
+                            <input type="text" name="company" value="{{ old('company') }}" class="form-control @error('company') is-invalid @enderror" placeholder="Enter company name">
+                            @error('company') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
                         <div class="col-12">
                             <label class="form-label">Enquiry Message *</label>
-                            <textarea class="form-control enquiry-textarea" placeholder="Write your product enquiry, specifications, requirements, bulk quantity details, etc."></textarea>
+                            <textarea name="message" class="form-control enquiry-textarea @error('message') is-invalid @enderror" placeholder="Write your product enquiry, specifications, requirements, bulk quantity details, etc.">{{ old('message') }}</textarea>
+                            @error('message') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
                         <div class="col-12">

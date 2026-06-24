@@ -44,7 +44,12 @@ class ContactUsController extends Controller
         //     }
         // );
 
-        // Redirect back with a success message
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => 'Your message has been sent successfully!',
+            ]);
+        }
+
         return redirect()->back()->with('success', 'Your message has been sent successfully!');
     }
 }

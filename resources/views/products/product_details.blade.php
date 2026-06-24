@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'HP OfficeJet 8122e All-in-One Printer')
+@section('title', $detailsData['seo']['title'] ?? $detailsData['hero']['name'] ?? 'Product Details')
 
 @push('styles')
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +11,45 @@
 
 @section('content')
     @php
-        $printerImage = asset('assets/images/product/printer.png');
+        $productAsset = function ($image) {
+            $image = ltrim((string) $image, '/');
+            $fallback = 'assets/images/product/printer.png';
+
+            if ($image === '') {
+                return asset($fallback);
+            }
+
+            $candidates = str_starts_with($image, 'assets/')
+                ? [$image]
+                : [$image, 'assets/images/product/' . $image];
+
+            $path = collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
+
+            return asset($path ?: $fallback);
+        };
+
+        $blogAsset = function ($image) {
+            $image = ltrim((string) $image, '/');
+            $fallback = 'assets/images/blog/blog-1.jpg';
+
+            if ($image === '') {
+                return asset($fallback);
+            }
+
+            $candidates = str_starts_with($image, 'assets/')
+                ? [$image]
+                : [$image, 'assets/images/blog/' . $image];
+
+            $path = collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
+
+            return asset($path ?: $fallback);
+        };
+
+        $hero = $detailsData['hero'] ?? [];
+        $breadcrumb = $detailsData['breadcrumb'] ?? [];
+        $overview = $detailsData['overview'] ?? [];
+        $specificationDescription = $detailsData['specification_description'] ?? null;
+        $printerImage = $productAsset($detailsData['gallery'][0]['image'] ?? null);
         $thumbs = [
             ['image' => asset('assets/images/product/printer.png'), 'label' => 'Printer front view'],
             ['image' => asset('assets/images/product/scanner.png'), 'label' => 'Scanner view'],
@@ -24,6 +62,7 @@
             ['title' => 'Print from your couch with the best print app', 'copy' => 'Print, scan, copy right from your smartphone with the best and easiest-to-use print app for home offices.'],
             ['title' => 'Always be ready to print. Never run out of ink.', 'copy' => 'With an Instant Ink subscription, you can get ink delivered directly to your door before you run out.'],
         ];
+        $overviewNotes = [];
 
         $specTabs = [
             'top-specs' => [
@@ -98,19 +137,75 @@
             ['title' => 'Exploring Wireless Printing Features...', 'copy' => 'Wireless printing continues becoming one of the most practical features in modern document environments. Users increasingly...', 'image' => $printerImage],
             ['title' => 'How the HP OfficeJet 8122e All-in-One...', 'copy' => 'Modern printing systems are expected to provide more than basic document output. Users now look for devices that support...', 'image' => $printerImage],
         ];
+
+        if (! empty($detailsData)) {
+            $thumbs = collect($detailsData['gallery'] ?? [])
+                ->map(fn ($thumb) => [
+                    'image' => $productAsset($thumb['image'] ?? null),
+                    'label' => $thumb['label'] ?? $thumb['alt'] ?? ($hero['name'] ?? 'Product image'),
+                ])
+                ->filter(fn ($thumb) => ! empty($thumb['image']))
+                ->values()
+                ->all();
+
+            if (empty($thumbs)) {
+                $thumbs = [['image' => asset('assets/images/product/printer.png'), 'label' => $hero['name'] ?? 'Product image']];
+            }
+
+            $features = collect($overview['features'] ?? [])
+                ->filter(fn ($feature) => ! empty($feature['title']) || ! empty($feature['description']))
+                ->map(fn ($feature) => [
+                    'title' => $feature['title'] ?? '',
+                    'copy' => $feature['description'] ?? '',
+                ])
+                ->values()
+                ->all();
+
+            $overviewNotes = collect($overview['notes'] ?? [])
+                ->filter()
+                ->values()
+                ->all();
+
+            if (! empty($detailsData['specifications'])) {
+                $specTabs = collect($detailsData['specifications'])
+                    ->map(fn ($tab) => [
+                        'label' => $tab['label'] ?? 'Specifications',
+                        'rows' => collect($tab['rows'] ?? [])
+                            ->map(fn ($row) => [$row['headkey'] ?? '', $row['value'] ?? ''])
+                            ->filter(fn ($row) => $row[0] !== '' || $row[1] !== '')
+                            ->values()
+                            ->all(),
+                    ])
+                    ->filter(fn ($tab) => ! empty($tab['rows']))
+                    ->all();
+            }
+
+            $blogs = collect($detailsData['blogs'] ?? [])
+                ->map(fn ($blog) => [
+                    'title' => $blog['heading'] ?? 'Blog',
+                    'copy' => \Illuminate\Support\Str::limit(strip_tags($blog['content'] ?? ''), 130),
+                    'image' => $blogAsset($blog['image1'] ?? $blog['image2'] ?? $blog['image3'] ?? null),
+                    'date' => ! empty($blog['inserted_at'])
+                        ? \Illuminate\Support\Carbon::parse($blog['inserted_at'])->format('M d, Y')
+                        : null,
+                    'url' => ! empty($blog['slug']) ? url('blogs', $blog['slug']) : '#',
+                ])
+                ->values()
+                ->all();
+        }
     @endphp
 
     <div class="pd-page">
         <nav class="pd-breadcrumb" aria-label="breadcrumb">
             <div class="pd-container">
                 <ol class="pd-breadcrumb-list">
-                    <li><a href="#">Product Store</a></li>
+                    <li><a href="#">{{ $breadcrumb['store'] ?? 'Product Store' }}</a></li>
                     <li><i class="fa-solid fa-chevron-right"></i></li>
-                    <li><a href="#">printer</a></li>
+                    <li><a href="#">{{ $breadcrumb['parent_category'] ?? 'printer' }}</a></li>
                     <li><i class="fa-solid fa-chevron-right"></i></li>
-                    <li><a href="#">Officejet Printer</a></li>
+                    <li><a href="#">{{ $breadcrumb['category']['name'] ?? 'Officejet Printer' }}</a></li>
                     <li><i class="fa-solid fa-chevron-right"></i></li>
-                    <li class="active">HP OfficeJet 8122e All-in-One Printer</li>
+                    <li class="active">{{ $breadcrumb['product_name'] ?? $hero['name'] ?? 'Product Details' }}</li>
                 </ol>
             </div>
         </nav>
@@ -160,21 +255,21 @@
                                     <div class="pd-info-main">
                                         <div class="pd-badge">
                                             <i class="fa-solid fa-share-nodes"></i>
-                                            <span>Active Product Line</span>
+                                            <span>{{ $hero['badge'] ?? 'Active Product Line' }}</span>
                                         </div>
 
-                                        <h1 class="pd-title">HP OfficeJet 8122e All-in-One Printer</h1>
+                                        <h1 class="pd-title">{{ $hero['name'] ?? 'HP OfficeJet 8122e All-in-One Printer' }}</h1>
 
-                                        <p class="pd-lifecycle">Corporate Availability lifecycle: <span>May 31, 2020 - Dec 30, 2030</span></p>
+                                        <p class="pd-lifecycle">Corporate Availability lifecycle: <span>{{ $hero['lifecycle'] ?? 'May 31, 2020 - Dec 30, 2030' }}</span></p>
 
-                                        <p class="pd-summary">Say hello to the professional color inkjet printer for your home office from America's most trusted printer brand, paired with the easiest-to-use print app. Enjoy easy printing designed to make you succeed at work.</p>
+                                        <p class="pd-summary">{{ $hero['summary'] ?? 'Say hello to the professional color inkjet printer for your home office from America\'s most trusted printer brand, paired with the easiest-to-use print app. Enjoy easy printing designed to make you succeed at work.' }}</p>
                                     </div>
 
                                     <div class="pd-price-box">
                                         <hr class="pd-divider">
                                         <div class="pd-price-label">Estimated Contract List Price</div>
-                                        <div class="pd-price">$207.70</div>
-                                        <a href="{{ url('/products-enquiry') }}" class="pd-quote">Get a Quote <i class="fa-solid fa-arrow-right-long"></i></a>
+                                        <div class="pd-price">${{ number_format((float) ($hero['price'] ?? 207.70), 2) }}</div>
+                                        <a href="{{ $hero['quote_url'] ?? url('/products-enquiry') }}" class="pd-quote">Get a Quote <i class="fa-solid fa-arrow-right-long"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -188,62 +283,78 @@
                                 @endforeach
                             </div>
 
-                            <div class="pd-notes">
-                                <h3>Overview</h3>
-                                <p>[1] Based on 2022 Q4 shipments in the IDC Worldwide Quarterly Hardcopy Peripherals Tracker. Includes shipments of all printing devices.</p>
-                                <p>[2] Compared to OEM printing apps for the majority of top-selling, network-capable inkjet/laser printers and all-in-ones for the home and office.</p>
-                                <p>[3] HP OfficeJet Pro printer series has self-healing Wi-Fi, HP's best and most reliable wireless technology to experience uninterrupted printing.</p>
-                                <p>[4] Instant Ink is the world's first smart ink delivery service based on the number of people who have signed up for service.</p>
-                            </div>
+                            @if (! empty($overview['description']) || ! empty($overviewNotes))
+                                <div class="pd-notes">
+                                    <h3>Overview</h3>
+                                    @if (! empty($overview['description']))
+                                        <p>{!! nl2br(e($overview['description'])) !!}</p>
+                                    @endif
+                                    @foreach ($overviewNotes as $note)
+                                        <p>{!! nl2br(e($note)) !!}</p>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
 
                         <div id="specifications" class="pd-panel">
-                            <div class="pd-spec-tabs" role="tablist" aria-label="Specification groups">
-                                @foreach ($specTabs as $specTabId => $specTab)
-                                    <button type="button" class="pd-spec-tab {{ $loop->first ? 'active' : '' }}" data-spec-panel="{{ $specTabId }}">{{ $specTab['label'] }}</button>
-                                @endforeach
-                            </div>
-
-                            @foreach ($specTabs as $specTabId => $specTab)
-                                <div id="{{ $specTabId }}" class="pd-spec-panel {{ $loop->first ? 'active' : '' }}">
-                                    <table class="pd-spec-table">
-                                        <tbody>
-                                            @foreach ($specTab['rows'] as $spec)
-                                                <tr>
-                                                    <th scope="row">{{ $spec[0] }}</th>
-                                                    <td>{{ $spec[1] }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                            @if (! empty($specTabs))
+                                <div class="pd-spec-tabs" role="tablist" aria-label="Specification groups">
+                                    @foreach ($specTabs as $specTabId => $specTab)
+                                        <button type="button" class="pd-spec-tab {{ $loop->first ? 'active' : '' }}" data-spec-panel="{{ $specTabId }}">{{ $specTab['label'] }}</button>
+                                    @endforeach
                                 </div>
-                            @endforeach
 
-                            <div class="pd-section-note">
-                                <h3>Specifications</h3>
-                                <p>[1] Dimensions vary as per configuration.</p>
-                                <p>[2] Weight varies as per configuration.</p>
-                                <p>[3] Power requirements are based on the country/region where the printer is sold. Do not convert operating voltages.</p>
-                                <p>[4] Wireless performance is dependent upon physical environment and distance from the access point.</p>
-                                <p>Legal disclaimer: Product image may differ from actual product.</p>
-                            </div>
+                                @foreach ($specTabs as $specTabId => $specTab)
+                                    <div id="{{ $specTabId }}" class="pd-spec-panel {{ $loop->first ? 'active' : '' }}">
+                                        <table class="pd-spec-table">
+                                            <tbody>
+                                                @foreach ($specTab['rows'] as $spec)
+                                                    <tr>
+                                                        <th scope="row">{{ $spec[0] }}</th>
+                                                        <td>{!! nl2br(e($spec[1])) !!}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="pd-section-note">
+                                    <h3>Specifications</h3>
+                                    <p>No specifications are available for this product.</p>
+                                </div>
+                            @endif
+
+                            @if (! empty($specificationDescription))
+                                <div class="pd-section-note">
+                                    <h3>Specifications</h3>
+                                    <p>{!! nl2br(e($specificationDescription)) !!}</p>
+                                </div>
+                            @endif
                         </div>
 
                         <div id="blogs" class="pd-panel">
                             <div class="pd-blog-grid">
-                                @foreach ($blogs as $blog)
+                                @forelse ($blogs as $blog)
                                     <article class="pd-blog-card">
                                         <div class="pd-blog-image">
                                             <img src="{{ $blog['image'] }}" alt="{{ $blog['title'] }}">
                                         </div>
                                         <div class="pd-blog-body">
-                                            <div class="pd-blog-date"><i class="fa-regular fa-calendar"></i> May 29, 2026</div>
+                                            @if (! empty($blog['date']))
+                                                <div class="pd-blog-date"><i class="fa-regular fa-calendar"></i> {{ $blog['date'] }}</div>
+                                            @endif
                                             <h2 class="pd-blog-title">{{ $blog['title'] }}</h2>
                                             <p class="pd-blog-copy">{{ $blog['copy'] }}</p>
-                                            <a href="{{ url('blog/details', 'data') }}" class="pd-blog-link">Read More <i class="fa-solid fa-arrow-right-long"></i></a>
+                                            <a href="{{ $blog['url'] }}" class="pd-blog-link">Read More <i class="fa-solid fa-arrow-right-long"></i></a>
                                         </div>
                                     </article>
-                                @endforeach
+                                @empty
+                                    <div class="pd-section-note">
+                                        <h3>Blogs</h3>
+                                        <p>No blogs are available for this product.</p>
+                                    </div>
+                                @endforelse
                             </div>
                         </div>
                     </section>
