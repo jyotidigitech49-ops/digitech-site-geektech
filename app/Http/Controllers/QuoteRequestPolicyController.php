@@ -1,0 +1,125 @@
+<?php
+
+namespace App\Http\Controllers;
+
+class QuoteRequestPolicyController extends Controller
+{
+    public function index()
+    {
+        $quotePolicy = [
+            'title' => 'Quote Request Policy',
+            'date' => 'June 2026',
+            'intro' => [
+                'This Quote Request Policy explains how quote requests and product enquiries submitted through Eagles Repair are handled.',
+                'Eagles Repair operates as a technology, information, and product discovery platform. The website provides information regarding printers, scanners, desktops, thin clients, and related technology products. Users may submit quote requests to obtain additional information regarding products, availability, specifications, or other product-related details.',
+                'By submitting a quote request through the website, you acknowledge and agree to the terms outlined in this Policy.',
+            ],
+            'sections' => [
+                [
+                    'title' => 'Purpose Of Quote Requests',
+                    'body' => ['The quote request feature is intended to facilitate communication between website users and Eagles Repair.', 'Quote requests may be used to:'],
+                    'items' => ['Request Product Information', 'Request Availability Information', 'Request Product Specifications', 'Discuss Product Requirements', 'Obtain General Product Details', 'Submit Business Enquiries', 'Explore Technology Solutions'],
+                    'note' => 'Quote requests are informational in nature and are intended to support communication regarding products and related information.',
+                ],
+                [
+                    'title' => 'No Purchase Agreement',
+                    'body' => ['Submission of a quote request does not constitute:'],
+                    'items' => ['A Product Purchase', 'A Product Reservation', 'A Sales Contract', 'A Binding Offer', 'A Product Order', 'A Commitment To Buy', 'A Commitment To Sell'],
+                    'note' => 'A quote request is simply a request for information and does not create any contractual relationship between the user and Eagles Repair. No transaction is considered completed solely because a quote request has been submitted.',
+                    'highlight' => true,
+                ],
+                [
+                    'title' => 'Information Required For Quote Requests',
+                    'body' => ['Users may be asked to provide information such as:'],
+                    'items' => ['Full Name', 'Company Name', 'Email Address', 'Telephone Number', 'Product Category', 'Product Requirements', 'Quantity Information', 'Business Needs', 'Additional Comments'],
+                    'note' => 'Users are responsible for ensuring that information submitted through quote request forms is accurate, complete, and current. Eagles Repair may be unable to respond effectively to requests containing incomplete or inaccurate information.',
+                ],
+                [
+                    'title' => 'Review Of Quote Requests',
+                    'body' => ['All quote requests are subject to review.', 'Eagles Repair reserves the right to:'],
+                    'items' => ['Review Submitted Information', 'Request Additional Information', 'Clarify Product Requirements', 'Decline To Respond To Requests', 'Refuse Requests That Violate Website Policies', 'Remove Incomplete Requests'],
+                    'note' => 'Submission of a quote request does not guarantee that a response will be provided.',
+                ],
+                [
+                    'title' => 'Product Availability',
+                    'body' => ['Product information presented on the website may not reflect current availability.', 'Availability may vary due to:'],
+                    'items' => ['Product Changes', 'Supplier Availability', 'Product Discontinuation', 'Inventory Conditions', 'Manufacturer Updates', 'Market Conditions'],
+                    'note' => 'Eagles Repair does not guarantee that products referenced on the website will be available at any specific time. Availability information may change without notice.',
+                ],
+                [
+                    'title' => 'Pricing Information',
+                    'body' => ['Any pricing information that may be communicated in response to a quote request is subject to change.', 'Pricing may vary based on factors including:'],
+                    'items' => ['Product Configuration', 'Product Availability', 'Quantity Requirements', 'Market Conditions', 'Supplier Information', 'Product Updates'],
+                    'note' => 'Pricing information provided in response to a quote request should not be interpreted as a binding commitment unless expressly stated in writing. Eagles Repair reserves the right to modify or withdraw pricing information at any time.',
+                ],
+                [
+                    'title' => 'Product Information Accuracy',
+                    'body' => ['While reasonable efforts are made to provide accurate information, Eagles Repair does not guarantee that:'],
+                    'items' => ['Product Descriptions Are Error-Free', 'Product Specifications Are Complete', 'Product Images Reflect Current Versions', 'Product Features Remain Unchanged', 'Product Information Is Continuously Updated'],
+                    'note' => 'Users should independently verify important information before relying upon it.',
+                ],
+                [
+                    'title' => 'User Responsibilities',
+                    'body' => ['Users submitting quote requests agree to:'],
+                    'items' => ['Provide Accurate Information', 'Submit Genuine Enquiries', 'Use the website lawfully', 'Avoid Fraudulent Requests', 'Avoid Misleading Information', 'Comply With Website Policies'],
+                    'note' => 'Eagles Repair reserves the right to reject requests that appear misleading, abusive, fraudulent, or inconsistent with the intended purpose of the website.',
+                ],
+                [
+                    'title' => 'Communication Regarding Requests',
+                    'body' => ['After a quote request is submitted, Eagles Repair may contact users using the information provided.', 'Communication may include:'],
+                    'items' => ['Request Confirmations', 'Clarification Requests', 'Product Information', 'Availability Updates', 'General Follow-Up Communications'],
+                    'note' => 'Submission of a quote request authorizes Eagles Repair to communicate regarding the submitted enquiry.',
+                ],
+                [
+                    'title' => 'No Guarantee Of Response Time',
+                    'body' => ['While reasonable efforts may be made to review enquiries promptly, Eagles Repair does not guarantee:'],
+                    'items' => ['Response Times', 'Processing Times', 'Availability Of Representatives', 'Immediate Communication'],
+                    'note' => 'Response times may vary based on business volume and operational requirements.',
+                ],
+                [
+                    'title' => 'Refusal Of Requests',
+                    'body' => ['Eagles Repair reserves the right to refuse, restrict, or discontinue communication regarding any request at its sole discretion.', 'Requests may be refused for reasons including:'],
+                    'items' => ['Incomplete Information', 'Suspected Fraud', 'Abuse Of Website Services', 'Policy Violations', 'Technical Limitations', 'Legal Requirements'],
+                    'note' => 'Eagles Repair is not obligated to explain decisions regarding request refusal.',
+                ],
+                [
+                    'title' => 'Privacy And Data Handling',
+                    'body' => [
+                        'Information submitted through quote request forms is handled in accordance with the website\'s Privacy Policy.',
+                        'Users are encouraged to review the Privacy Policy to understand how information is collected, stored, and used.',
+                    ],
+                    'link' => ['label' => 'View Privacy Policy', 'url' => url('/privacy-policy')],
+                ],
+                [
+                    'title' => 'Limitation Of Liability',
+                    'body' => ['Eagles Repair shall not be liable for:'],
+                    'items' => ['Product Availability Changes', 'Product Information Errors', 'Delayed Responses', 'Pricing Changes', 'Lost Business Opportunities', 'Decisions Made Based On Submitted Information', 'Communication Delays'],
+                    'note' => 'Users acknowledge that quote requests are informational and that reliance upon information received is undertaken at their own discretion.',
+                ],
+                [
+                    'title' => 'Changes To This Policy',
+                    'body' => [
+                        'Eagles Repair reserves the right to modify, update, or replace this Quote Request Policy at any time without prior notice.',
+                        'Changes become effective immediately upon publication on the website.',
+                        'Continued use of the website following updates constitutes acceptance of the revised Policy.',
+                    ],
+                ],
+                [
+                    'title' => 'Contact Information',
+                    'body' => ['If you have questions regarding this Quote Request Policy or a submitted enquiry, please contact us using the details below.'],
+                    'contact' => [
+                        'Business Name' => 'Eagles Repair',
+                        'Business Address' => '196 Tosto RD, Beaufort, NC 28526',
+                        'Email Address' => 'info@geektechbuzz.us',
+                    ],
+                ],
+                [
+                    'title' => 'Acceptance Of This Policy',
+                    'body' => ['By submitting a quote request, product enquiry, or otherwise interacting with the website, you acknowledge that you have read, understood, and agreed to the terms outlined in this Quote Request Policy.'],
+                ],
+            ],
+        ];
+
+        return view('policy.quote-request', compact('quotePolicy'));
+    }
+}

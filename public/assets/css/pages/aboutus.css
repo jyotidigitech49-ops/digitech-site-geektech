@@ -1,5 +1,494 @@
-/*
-    About Us page custom styles.
-    Add only Aboutus.blade.php related changes here.
-*/
+.about-page-banner {
+    position: relative;
+    min-height: 405px;
+    background-image: url("../../images/faq/faq-hero.png");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
 
+.about-page-banner__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.64);
+}
+
+.about-page-banner__content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #ffffff;
+    padding: 40px 15px;
+}
+
+.about-page-banner__content h1 {
+    color: #ffffff;
+    font-size: 60px;
+    font-weight: 400;
+    line-height: 1;
+    margin: 0 0 23px;
+    letter-spacing: 0;
+}
+
+.about-page-banner__breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.about-page-banner__breadcrumb a,
+.about-page-banner__breadcrumb span {
+    color: #ffffff;
+}
+
+.about-page-banner__breadcrumb span:last-child {
+    color: #0b62ff;
+}
+
+.about-hero {
+    background:
+        radial-gradient(circle at top right, rgba(11, 98, 255, 0.12), transparent 34%),
+        linear-gradient(180deg, #f7f9fd 0%, #ffffff 100%);
+    padding: 82px 0 80px;
+}
+
+.about-hero__grid {
+    display: grid;
+    grid-template-columns: 370px minmax(0, 1fr);
+    align-items: center;
+    gap: 58px;
+}
+
+.about-brand-card {
+    position: relative;
+    border: 1px solid #e4eaf4;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 24px 55px rgba(19, 32, 63, 0.1);
+    padding: 34px 30px 28px;
+    overflow: hidden;
+}
+
+.about-brand-card::before {
+    content: "";
+    position: absolute;
+    width: 190px;
+    height: 190px;
+    right: -70px;
+    top: -70px;
+    border-radius: 50%;
+    background: rgba(11, 98, 255, 0.08);
+}
+
+.about-brand-card__logo {
+    position: relative;
+    display: inline-flex;
+    margin-bottom: 28px;
+}
+
+.about-brand-card__logo img {
+    max-width: 168px;
+}
+
+.about-brand-card__image {
+    position: relative;
+    min-height: 245px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #f2f6ff, #ffffff);
+}
+
+.about-brand-card__image img {
+    max-width: 92%;
+    max-height: 220px;
+    object-fit: contain;
+}
+
+.about-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 13px;
+    border-radius: 999px;
+    background: rgba(11, 98, 255, 0.1);
+    color: #0b62ff;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    margin-bottom: 18px;
+}
+
+.about-hero__content h1,
+.about-copy-card h2,
+.about-cta h2 {
+    color: #071a44;
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+.about-hero__content h1 {
+    font-size: 44px;
+    line-height: 1.15;
+    margin: 0 0 20px;
+    text-transform: uppercase;
+}
+
+.about-hero__content p,
+.about-copy-card p,
+.about-choice-card p,
+.about-cta p {
+    color: #5d687b;
+    font-size: 16px;
+    line-height: 1.75;
+    margin: 0;
+}
+
+.about-primary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    margin-top: 28px;
+    padding: 0 24px;
+    border-radius: 8px;
+    background: #0b62ff;
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 12px 26px rgba(11, 98, 255, 0.25);
+}
+
+.about-primary-btn:hover {
+    color: #ffffff;
+    background: #084fd1;
+}
+
+.about-feature-section {
+    padding: 0 0 76px;
+    margin-top: -28px;
+}
+
+.about-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.about-feature-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    min-height: 116px;
+    padding: 24px 20px;
+    border: 1px solid #e4eaf4;
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 18px 34px rgba(22, 34, 62, 0.07);
+}
+
+.about-feature-card__icon {
+    flex: 0 0 auto;
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(11, 98, 255, 0.1);
+    color: #0b62ff;
+    font-size: 20px;
+}
+
+.about-feature-card h3 {
+    color: #071a44;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 5px;
+}
+
+.about-feature-card p {
+    color: #6a7486;
+    font-size: 14px;
+    line-height: 1.45;
+    margin: 0;
+}
+
+.about-banner-section {
+    padding: 0 0 86px;
+}
+
+.about-banner-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+}
+
+.about-banner {
+    position: relative;
+    min-height: 260px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(170px, 0.95fr);
+    align-items: center;
+    gap: 20px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #f6f9ff 0%, #ffffff 100%);
+    border: 1px solid #e2e8f2;
+    padding: 34px 30px;
+    overflow: hidden;
+}
+
+.about-banner::after {
+    content: "";
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    right: -54px;
+    bottom: -56px;
+    border-radius: 50%;
+    background: rgba(11, 98, 255, 0.08);
+}
+
+.about-banner__content,
+.about-banner__image {
+    position: relative;
+    z-index: 1;
+}
+
+.about-banner__content span {
+    color: #0b62ff;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.about-banner__content h2 {
+    color: #071a44;
+    font-size: 27px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 13px 0 12px;
+    letter-spacing: 0;
+}
+
+.about-banner__content p {
+    color: #5d687b;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 0 18px;
+}
+
+.about-banner__content a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #0b62ff;
+    font-weight: 800;
+}
+
+.about-banner__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-banner__image img {
+    max-width: 100%;
+    max-height: 180px;
+    object-fit: contain;
+}
+
+.about-details-section {
+    background: #f6f8fc;
+    padding: 88px 0;
+}
+
+.about-details-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 28px;
+    margin-bottom: 28px;
+}
+
+.about-copy-card,
+.about-choice-card {
+    position: relative;
+    border: 1px solid #e2e8f2;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 18px 38px rgba(23, 37, 68, 0.06);
+}
+
+.about-copy-card {
+    padding: 38px 34px;
+}
+
+.about-copy-card__number {
+    display: inline-flex;
+    color: rgba(11, 98, 255, 0.18);
+    font-size: 44px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 12px;
+}
+
+.about-copy-card h2 {
+    font-size: 29px;
+    line-height: 1.25;
+    margin: 0 0 17px;
+}
+
+.about-choice-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.about-choice-card {
+    padding: 30px 26px;
+}
+
+.about-choice-card span {
+    display: block;
+    width: 36px;
+    height: 4px;
+    border-radius: 999px;
+    background: #0b62ff;
+    margin-bottom: 19px;
+}
+
+.about-choice-card h3 {
+    color: #071a44;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.3;
+    margin: 0 0 10px;
+}
+
+.about-choice-card p {
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+.about-cta-section {
+    padding: 84px 0;
+    background: #ffffff;
+}
+
+.about-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #071a44 0%, #0b62ff 100%);
+    padding: 46px 48px;
+    overflow: hidden;
+}
+
+.about-cta .about-eyebrow {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+
+.about-cta h2 {
+    color: #ffffff;
+    font-size: 32px;
+    line-height: 1.25;
+    margin: 0 0 12px;
+}
+
+.about-cta p {
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 640px;
+}
+
+.about-primary-btn--light {
+    flex: 0 0 auto;
+    margin-top: 0;
+    background: #ffffff;
+    color: #0b62ff;
+    box-shadow: none;
+}
+
+.about-primary-btn--light:hover {
+    color: #0b62ff;
+    background: #eef4ff;
+}
+
+@media (max-width: 991px) {
+    .about-hero__grid,
+    .about-details-grid,
+    .about-banner-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-feature-grid,
+    .about-choice-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .about-brand-card {
+        max-width: 440px;
+    }
+
+    .about-cta {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 575px) {
+    .about-page-banner {
+        min-height: 300px;
+    }
+
+    .about-page-banner__content h1 {
+        font-size: 46px;
+    }
+
+    .about-hero {
+        padding: 34px 0 58px;
+    }
+
+    .about-hero__grid {
+        gap: 34px;
+    }
+
+    .about-hero__content h1 {
+        font-size: 32px;
+    }
+
+    .about-feature-grid,
+    .about-choice-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-banner {
+        grid-template-columns: 1fr;
+        padding: 28px 22px;
+    }
+
+    .about-banner__content h2,
+    .about-copy-card h2,
+    .about-cta h2 {
+        font-size: 25px;
+    }
+
+    .about-copy-card,
+    .about-choice-card,
+    .about-cta {
+        padding: 28px 22px;
+    }
+}
