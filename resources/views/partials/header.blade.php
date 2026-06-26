@@ -12,20 +12,30 @@
                             <div class="col-xl-7 col-lg-7">
                                 <div class="categori-search-wrap categori-search-wrap-modify-3">
                                     <div class="categori-style-1">
-                                        <select class="nice-select nice-select-style-1">
-                                            <option>All Categories </option>
-                                            <option>Clothing </option>
-                                            <option>T-Shirt</option>
-                                            <option>Shoes</option>
-                                            <option>Jeans</option>
+                                        <select class="nice-select nice-select-style-1 global-search-category" name="category" form="desktop-global-search-form">
+                                            <option value="all">All Categories</option>
+                                            <option value="printer">PRINTERS</option>
+                                            <option value="desktops">DESKTOPS</option>
+                                            <option value="thin-client">THIN CLIENT</option>
+                                            <option value="scanner">SCANNERS</option>
                                         </select>
                                     </div>
                                     <div class="search-wrap-3">
-                                        <form action="#">
-                                            <input placeholder="Search Products..." type="text">
+                                        <form action="{{ url('/search') }}" method="GET" class="global-search-form" id="desktop-global-search-form">
+                                            <input placeholder="Search Products..." type="text" name="q" list="global-search-products">
                                             <button class="blue"><i class="lnr lnr-magnifier"></i></button>
                                         </form>
                                     </div>
+                                    <datalist id="global-search-products">
+                                        <option value="Printer">
+                                        <option value="Officejet Printer">
+                                        <option value="Laser Printer">
+                                        <option value="Inkjet Printer">
+                                        <option value="Deskjet Printer">
+                                        <option value="Desktops">
+                                        <option value="Thin Client">
+                                        <option value="Scanner">
+                                    </datalist>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-lg-3">
@@ -43,10 +53,10 @@
                                     <div class="category-menu-2 category-menu-2-blue categori-hide categori-not-visible-2">
                                         <nav>
                                             <ul>
-                                                <li><a href="shop.html"><i class="icon-energy"></i>PRINTERS</a></li>
-                                                <li><a href="shop.html"><i class="icon-handbag"></i>DESKTOPS</a></li>
-                                                <li><a href="shop.html"><i class="icon-home"></i>THIN CLIENT</a></li>
-                                                <li><a href="shop.html"><i class="icon-game-controller"></i>SCANNERS</a></li>
+                                                <li><a href="{{ url('/products/printer') }}"><i class="icon-energy"></i>PRINTERS</a></li>
+                                                <li><a href="{{ url('/products/desktops') }}"><i class="icon-handbag"></i>DESKTOPS</a></li>
+                                                <li><a href="{{ url('/products/thin-client') }}"><i class="icon-home"></i>THIN CLIENT</a></li>
+                                                <li><a href="{{ url('/products/scanner') }}"><i class="icon-game-controller"></i>SCANNERS</a></li>
                                             </ul>
                                         </nav>
                                     </div>
@@ -56,21 +66,21 @@
                                 <div class="main-menu main-menu-white main-menu-padding-1 main-menu-font-size-14 main-menu-lh-5">
                                     <nav>
                                         <ul>
-                                            <li><a href="index.html">PRINTERS</a>
+                                            <li><a href="{{ url('/products/printer') }}">PRINTERS</a>
                                                 <ul class="sub-menu-style">
-                                                    <li><a href="index.html">Officejet Printer</a></li>
-                                                    <li><a href="index-2.html">Laser Printer</a></li>
-                                                    <li><a href="index-3.html">Inkjet Printer</a></li>
-                                                    <li><a href="index-4.html">Deskjet Printer</a></li>
+                                                    <li><a href="{{ url('/products/printer/officejet-printer') }}">Officejet Printer</a></li>
+                                                    <li><a href="{{ url('/products/printer/laserjet-printer') }}">Laser Printer</a></li>
+                                                    <li><a href="{{ url('/products/printer/inkjet-printer') }}">Inkjet Printer</a></li>
+                                                    <li><a href="{{ url('/products/printer/deskjet-printer') }}">Deskjet Printer</a></li>
 
                                                 </ul>
                                             </li>
-                                            <li><a href="shop.html">DESKTOPS</a>
+                                            <li><a href="{{ url('/products/desktops') }}">DESKTOPS</a>
 
                                             </li>
-                                            <li><a href="#">THIN CLIENT</a>
+                                            <li><a href="{{ url('/products/thin-client') }}">THIN CLIENT</a></li>
 
-                                            <li><a href="blog.html">SCANNERS</a>
+                                            <li><a href="{{ url('/products/scanner') }}">SCANNERS</a>
 
                                             </li>
                                             <li><a href="{{ url('contact-us') }}">CONTACT</a></li>
@@ -88,7 +98,7 @@
                     <div class="row align-items-center">
                         <div class="col-5">
                             <div class="mobile-logo">
-                                <a href="index.html">
+                                <a href="{{ url('/') }}">
                                     <img alt="" src="{{ asset('assets/images/logo/logo.png') }}">
                                 </a>
                             </div>
@@ -124,8 +134,9 @@
                         <p><span>FREE SHIPPING</span> world wide for all orders over $199</p>
                     </div>
                     <div class="mobile-search mobile-header-padding-border-1">
-                        <form class="search-form" action="#">
-                            <input type="text" placeholder="Search here…">
+                        <form class="search-form global-search-form" action="{{ url('/search') }}" method="GET">
+                            <input type="hidden" name="category" value="all">
+                            <input type="text" name="q" placeholder="Search here..." list="global-search-products">
                             <button class="button-search"><i class="icon-magnifier"></i></button>
                         </form>
                     </div>
@@ -133,15 +144,15 @@
                         <!-- mobile menu start -->
                         <nav>
                             <ul class="mobile-menu">
-                                <li class="menu-item-has-children"><a href="index.html">PRINTERS</a>
+                                <li class="menu-item-has-children"><a href="{{ url('/products/printer') }}">PRINTERS</a>
                                     <ul class="dropdown">
-                                        <li><a href="index.html">Officejet Printer</a></li>
-                                        <li><a href="index-2.html">Laser Printer</a></li>
-                                        <li><a href="index-3.html">Inkjet Printer</a></li>
-                                        <li><a href="index-4.html">Deskjet Printer</a></li>
+                                        <li><a href="{{ url('/products/printer/officejet-printer') }}">Officejet Printer</a></li>
+                                        <li><a href="{{ url('/products/printer/laserjet-printer') }}">Laser Printer</a></li>
+                                        <li><a href="{{ url('/products/printer/inkjet-printer') }}">Inkjet Printer</a></li>
+                                        <li><a href="{{ url('/products/printer/deskjet-printer') }}">Deskjet Printer</a></li>
                                     </ul>
                                 </li>
-                                <li class="menu-item-has-children "><a href="#">DESKTOPS</a>
+                                <li class="menu-item-has-children "><a href="{{ url('/products/desktops') }}">DESKTOPS</a>
                                     {{-- <ul class="dropdown">
                                         <li class="menu-item-has-children"><a href="#">shop layout</a>
                                             <ul class="dropdown">
@@ -167,7 +178,7 @@
                                         </li>
                                     </ul> --}}
                                 </li>
-                                <li class="menu-item-has-children"><a href="#">THIN CLIENT</a>
+                                <li class="menu-item-has-children"><a href="{{ url('/products/thin-client') }}">THIN CLIENT</a>
                                     {{-- <ul class="dropdown">
                                         <li><a href="about-us.html">about us </a></li>
                                         <li><a href="cart.html">cart page</a></li>
@@ -180,7 +191,7 @@
                                         <li><a href="login-register.html">login / register </a></li>
                                     </ul> --}}
                                 </li>
-                                <li class="menu-item-has-children "><a href="#">SCANNERS</a>
+                                <li class="menu-item-has-children "><a href="{{ url('/products/scanner') }}">SCANNERS</a>
                                     {{-- <ul class="dropdown">
                                         <li><a href="blog.html">blog standard </a></li>
                                         <li><a href="blog-no-sidebar.html">blog no sidebar </a></li>
@@ -200,10 +211,10 @@
                         <div class="categori-hide-2">
                             <nav>
                                 <ul class="mobile-menu">
-                                    <li><a href="shop.html"><i class="icon-energy"></i>PRINTERS</a></li>
-                                    <li><a href="shop.html"><i class="icon-handbag"></i></a>DESKTOPS</li>
-                                    <li><a href="shop.html"><i class="icon-home"></i> </a>THIN CLIENT</li>
-                                    <li><a href="shop.html"><i class="icon-game-controller"></i></a>SCANNERS</li>
+                                    <li><a href="{{ url('/products/printer') }}"><i class="icon-energy"></i>PRINTERS</a></li>
+                                    <li><a href="{{ url('/products/desktops') }}"><i class="icon-handbag"></i>DESKTOPS</a></li>
+                                    <li><a href="{{ url('/products/thin-client') }}"><i class="icon-home"></i>THIN CLIENT</a></li>
+                                    <li><a href="{{ url('/products/scanner') }}"><i class="icon-game-controller"></i>SCANNERS</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -293,3 +304,36 @@
                 </div>
             </div>
         </div>
+
+@push('scripts')
+    <script>
+        document.querySelectorAll('.global-search-form').forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                var searchInput = form.querySelector('input[name="q"]');
+                var categoryInput = form.elements.category || document.querySelector('[form="' + form.id + '"][name="category"]');
+                var searchValue = searchInput ? searchInput.value.trim() : '';
+                var categoryValue = categoryInput ? categoryInput.value.trim() : 'all';
+                var pathValue = searchValue || (categoryValue !== 'all' ? categoryValue : '');
+                var searchUrl = '{{ url('/search') }}';
+
+                if (pathValue) {
+                    searchUrl += '/' + encodeURIComponent(
+                        pathValue
+                            .toLowerCase()
+                            .replace(/&/g, 'and')
+                            .replace(/[^a-z0-9]+/g, '-')
+                            .replace(/^-+|-+$/g, '')
+                    );
+                }
+
+                if (searchValue && categoryValue && categoryValue !== 'all') {
+                    searchUrl += '?category=' + encodeURIComponent(categoryValue);
+                }
+
+                window.location.href = searchUrl;
+            });
+        });
+    </script>
+@endpush

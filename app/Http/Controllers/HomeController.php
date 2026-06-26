@@ -71,9 +71,6 @@ class HomeController extends Controller {
             ->limit( 3 )
             ->get();
 
-        // dd($blogPosts );
-
-
         return view( 'home.index', compact( 'productTabs', 'suggestedProducts', 'blogPosts' ) );
 
     }

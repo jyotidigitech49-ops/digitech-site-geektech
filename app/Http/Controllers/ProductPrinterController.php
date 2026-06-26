@@ -50,13 +50,15 @@ class ProductPrinterController extends Controller {
         $products = $productsQuery->get();
 
         $isAllProductsPage = true;
+        $heroBanners = $this->productHeroBanners( $productType->url ?? 'all' );
 
         return view( 'products.products_printer', compact(
             'printerCategories',
             'products',
             'productType',
             'isAllProductsPage',
-            'selectedType'
+            'selectedType',
+            'heroBanners'
         ) );
     }
 
@@ -97,10 +99,13 @@ class ProductPrinterController extends Controller {
         ->select( 'products.*', 'categories.name as category_name' )
         ->get();
 
+        $heroBanners = $this->productHeroBanners( $productType->url );
+
         return view( 'products.products_printer', compact(
             'printerCategories',
             'products',
-            'productType'
+            'productType',
+            'heroBanners'
         ) );
 
     }
@@ -152,12 +157,62 @@ class ProductPrinterController extends Controller {
         ->select( 'products.*', 'categories.name as category_name' )
         ->get();
 
+        $heroBanners = $this->productHeroBanners( $productType->url, url( "products/{$type}", $url ), $printerCategories->url );
+
         return view( 'products.printer_category_products', compact(
             'printerCategoriesAll',
             'products',
             'printerCategories',
-            'productType'
+            'productType',
+            'heroBanners'
         ) );
+    }
+
+    private function productHeroBanners( string $type, ?string $link = null, ?string $categoryUrl = null ): array {
+        $type = $type ?: 'all';
+        $typePrefixes = [
+            'printer' => 'pre',
+            'desktops' => 'dk',
+            'thin-client' => 'tc',
+            'scanner' => 'scn',
+            'all' => 'pre',
+        ];
+
+        $categoryPrefixes = [
+            'officejet-printer' => 'oj',
+            'laserjet-printer' => 'lj',
+            'inkjet-printer' => 'ink',
+            'deskjet-printer' => 'dp',
+        ];
+
+        $fallbackPrefixes = [
+            'pre' => 'pr',
+        ];
+
+        $prefix = $categoryUrl && isset( $categoryPrefixes[ $categoryUrl ] )
+            ? $categoryPrefixes[ $categoryUrl ]
+            : ( $typePrefixes[ $type ] ?? Str::slug( $type ) );
+
+        $fallback = 'assets/images/products_banners/pr01.png';
+        $defaultLink = $type === 'all' ? url( '/products' ) : url( '/products/' . $type );
+        $bannerLink = $link ?: $defaultLink;
+
+        return collect( range( 1, 3 ) )
+            ->map( function ( $number ) use ( $prefix, $fallbackPrefixes, $fallback, $bannerLink ) {
+                $image = sprintf( 'assets/images/products_banners/%s%02d.png', $prefix, $number );
+                $fallbackPrefix = $fallbackPrefixes[ $prefix ] ?? null;
+                $fallbackImage = $fallbackPrefix
+                    ? sprintf( 'assets/images/products_banners/%s%02d.png', $fallbackPrefix, $number )
+                    : $fallback;
+
+                return [
+                    'image' => file_exists( public_path( $image ) )
+                        ? $image
+                        : ( file_exists( public_path( $fallbackImage ) ) ? $fallbackImage : $fallback ),
+                    'url' => $bannerLink,
+                ];
+            } )
+            ->all();
     }
 
     public function productDetailsByType( string $type, string $url ) {

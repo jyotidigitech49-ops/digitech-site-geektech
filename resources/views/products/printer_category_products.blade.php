@@ -18,42 +18,15 @@
     @endphp
 
     {{-- Slider Area --}}
-    <div class="slider-area">
+    <div class="slider-area product-hero-slider-area">
         <div class="hero-slider-active-1 nav-style-1 dot-style-2 dot-style-2-position-2 dot-style-2-active-black">
-            <div class="single-hero-slider single-animation-wrap slider-height-2 custom-d-flex custom-align-item-center bg-img hm2-slider-bg res-white-overly-xs"
-                style="background-image:url({{ asset('assets/images/slider/hm-4-slider-1.jpg') }});">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="hero-slider-content-4 slider-animated-1">
-                                <h4 class="animated">Lookbook</h4>
-                                <h1 class="animated">Denim Mixed <br>Layering Combine <br>collect</h1>
-                                <p class="animated">We love seeing how our Raifa wearers like to wear their Norda</p>
-                                <div class="btn-style-1">
-                                    <a class="animated btn-1-padding-1" href="product-details.html">Explore Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            @foreach (($heroBanners ?? []) as $banner)
+                <div class="single-hero-slider single-animation-wrap product-hero-slide">
+                    <a href="{{ $banner['url'] }}" class="product-hero-banner-link" aria-label="{{ $typeName }} banner">
+                        <img src="{{ asset($banner['image']) }}" alt="{{ $typeName }} banner {{ $loop->iteration }}">
+                    </a>
                 </div>
-            </div>
-            <div class="single-hero-slider single-animation-wrap slider-height-2 custom-d-flex custom-align-item-center bg-img hm2-slider-bg res-white-overly-xs "
-                style="background-image:url({{ asset('assets/images/slider/hm-4-slider-2.jpg') }});">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="hero-slider-content-4 slider-animated-1">
-                                <h4 class="animated">Lookbook</h4>
-                                <h1 class="animated">Denim Mixed <br>Layering Combine <br>collect</h1>
-                                <p class="animated">We love seeing how our Raifa wearers like to wear their Norda</p>
-                                <div class="btn-style-1">
-                                    <a class="animated btn-1-padding-1" href="product-details.html">Explore Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 
@@ -164,21 +137,35 @@
 
                         @foreach ($products as $product)
                             @php
-                                $productImageCandidates = array_filter([
-                                    $product->img1,
-                                    'assets/images/product/' . ltrim($product->img1 ?? '', '/'),
-                                    'assets/images/product/' . $typeFallbackImage,
-                                    'assets/images/product/printer.png',
-                                ]);
+                                $productImages = collect([$product->img1, $product->img2, $product->img3, $product->img4])
+                                    ->filter()
+                                    ->map(function ($image) {
+                                        $candidates = array_filter([
+                                            $image,
+                                            'assets/images/product/' . ltrim($image, '/'),
+                                        ]);
 
-                                $productImage = collect($productImageCandidates)
-                                    ->first(fn ($image) => file_exists(public_path($image)));
+                                        return collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
+                                    })
+                                    ->filter()
+                                    ->unique()
+                                    ->values();
+
+                                $productImage = $productImages->first();
                             @endphp
                             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                                <div class="single-product-wrap printer-product-card mb-35">
+                                <div class="single-product-wrap printer-product-card js-product-gallery-card mb-35">
                                     <div class="product-img product-img-zoom mb-15">
                                         <a href="{{ url("products/{$typeUrl}/details", $product->slug) }}">
-                                            <img src="{{ asset($productImage) }}" alt="{{ $product->name }}">
+                                            @if ($productImage)
+                                                <img class="js-product-gallery-img"
+                                                    src="{{ asset($productImage) }}"
+                                                    alt="{{ $product->name }}"
+                                                    data-default-src="{{ asset($productImage) }}"
+                                                    data-gallery='@json($productImages->map(fn ($image) => asset($image))->values())'>
+                                            @else
+                                                <span class="printer-product-image-missing">{{ $product->name }}</span>
+                                            @endif
                                         </a>
                                     </div>
 

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Contact')
+@section('title', 'Contact Us')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/pages/contact.css') }}">
@@ -7,18 +7,18 @@
 
 @section('content')
 
-    <div class="breadcrumb-area bg-gray">
-        <div class="container">
-            <div class="breadcrumb-content text-center">
-                <ul>
-                    <li>
-                        <a href="{{ url('/') }}">Home</a>
-                    </li>
-                    <li class="active">Contact Us </li>
-                </ul>
+    <section class="contact-banner">
+        <div class="contact-banner__overlay"></div>
+        <div class="contact-banner__content">
+            <h1>Contact Us</h1>
+            <div class="contact-banner__breadcrumb">
+                <a href="{{ url('/') }}">HOME</a>
+                <span>//</span>
+                <span>CONTACT US</span>
             </div>
         </div>
-    </div>
+    </section>
+
     <div class="contact-area pt-115 pb-120">
         <div class="container">
             <div class="contact-info-wrap-3 pb-85">
@@ -28,21 +28,21 @@
                         <div class="single-contact-info-3 text-center mb-30">
                             <i class="icon-location-pin "></i>
                             <h4>our address</h4>
-                            <p>77 seventh Street, USA. </p>
+                            <p>196 Tosto RD, Beaufort, NC 28526</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4">
                         <div class="single-contact-info-3 extra-contact-info text-center mb-30">
                             <ul>
-                                <li><i class="icon-screen-smartphone"></i> 716-298-1822 </li>
-                                <li><i class="icon-envelope "></i> <a href="#"> info@example.com</a></li>
+                                <li><i class="icon-screen-smartphone"></i> Contact our support team </li>
+                                <li><i class="icon-envelope "></i> <a href="mailto:info@geektechbuzz.us">info@geektechbuzz.us</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4">
                         <div class="single-contact-info-3 text-center mb-30">
                             <i class="icon-clock "></i>
-                            <h4>openning hour</h4>
+                            <h4>opening hours</h4>
                             <p>Monday - Friday. 9:00am - 5:00pm </p>
                         </div>
                     </div>
@@ -80,9 +80,22 @@
                 </div>
             </div>
             <div class="contact-map pt-120">
-                <iframe class="map-size"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.693667617067!2d144.946279515845!3d-37.82064364221098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4cee0cec83%3A0xd019c5f69915a4a0!2sCollins%20St%2C%20West%20Melbourne%20VIC%203003%2C%20Australia!5e0!3m2!1sen!2sbd!4v1607512676761!5m2!1sen!2sbd">
-                </iframe>
+                <div class="contact-map-card">
+                    <div class="contact-map-info">
+                        <span>Our Location</span>
+                        <h3>Visit Eagles Repair</h3>
+                        <p>Find us at 196 Tosto RD, Beaufort, NC 28526. Use the map below for quick directions and nearby location context.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=196%20Tosto%20RD%2C%20Beaufort%2C%20NC%2028526" target="_blank" rel="noopener">Open in Google Maps</a>
+                    </div>
+                    <div class="contact-map-frame">
+                        <iframe class="map-size"
+                            src="https://www.google.com/maps?q=196%20Tosto%20RD%2C%20Beaufort%2C%20NC%2028526&output=embed"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

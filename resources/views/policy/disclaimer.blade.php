@@ -25,7 +25,7 @@
                     <span class="disclaimer-kicker">Policy Date</span>
                     <h2>{{ $disclaimer['date'] }}</h2>
                 </div>
-                <p>Trademark references on Eagles Repair are used for identification, informational, descriptive, and reference purposes only.</p>
+                <p>{{ $disclaimer['summary'] ?? 'Website information is provided for general informational, educational, and business reference purposes only.' }}</p>
             </div>
 
             <article class="disclaimer-intro">

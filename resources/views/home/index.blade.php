@@ -8,12 +8,12 @@
 @section('content')
 
     {{-- Slider area- --}}
-    <div class="slider-area bg-gray-8">
+    <div class="slider-area bg-gray-8 home-hero-area">
         <div class="container">
             <div class="hero-slider-active-2 nav-style-1 nav-style-1-modify-2 nav-style-1-blue">
                 {{-- SLIDER-1 --}}
-                <div class="single-hero-slider single-hero-slider-hm9 single-animation-wrap">
-                    <div class="row slider-animated-1">
+                <div class="single-hero-slider single-hero-slider-hm9 single-animation-wrap home-hero-slide">
+                    <div class="row slider-animated-1 align-items-center">
                         <div class="col-lg-5 col-md-5 col-12 col-sm-6">
                             <div class="hero-slider-content-6 slider-content-hm9">
                                 <h5 class="animated">Featured Solutions</h5>
@@ -21,22 +21,22 @@
                                 <p class="animated">Discover innovative technology designed to simplify everyday experiences
                                     at home and work.</p>
                                 <div class="btn-style-1">
-                                    <a class="animated btn-1-padding-4 btn-1-blue btn-1-font-14"
-                                        href="{{ url('/products/printer') }}">Explore Now</a>
+                                    <a class="animated btn-1-padding-4 btn-1-blue btn-1-font-10"
+                                        href="{{ url('/products') }}">Explore Now</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-7 col-12 col-sm-6">
                             <div class="hm9-hero-slider-img">
                                 <img class="animated" src="{{ asset('assets/images/slider/home-slider-1.png') }}"
-                                    alt="">
+                                    alt="Featured technology products">
                             </div>
                         </div>
                     </div>
                 </div>
                 {{-- SLIDER-2 --}}
-                <div class="single-hero-slider single-hero-slider-hm9 single-animation-wrap">
-                    <div class="row slider-animated-1">
+                <div class="single-hero-slider single-hero-slider-hm9 single-animation-wrap home-hero-slide">
+                    <div class="row slider-animated-1 align-items-center">
                         <div class="col-lg-5 col-md-5 col-12 col-sm-6">
                             <div class="hero-slider-content-6 slider-content-hm9">
                                 <h5 class="animated">Technology Spotlight
@@ -49,7 +49,7 @@
                                     everyday efficiency.
                                 </p>
                                 <div class="btn-style-1">
-                                    <a class="animated btn-1-padding-4 btn-1-blue btn-1-font-14"
+                                    <a class="animated btn-1-padding-4 btn-1-blue btn-1-font-10"
                                         href="{{ url('/products/desktops') }}">Explore Now</a>
                                 </div>
                             </div>
@@ -57,15 +57,15 @@
                         <div class="col-lg-7 col-md-7 col-12 col-sm-6">
                             <div class="hm9-hero-slider-img">
                                 <img class="animated" src="{{ asset('assets/images/slider/home-slider-2.png') }}"
-                                    alt="">
+                                    alt="Desktop technology solutions">
                             </div>
                         </div>
                     </div>
                 </div>
                 {{-- SLIDER-3 --}}
 
-                <div class="single-hero-slider single-hero-slider-hm9 single-animation-wrap">
-                    <div class="row slider-animated-1">
+                <div class="single-hero-slider single-hero-slider-hm9 single-animation-wrap home-hero-slide">
+                    <div class="row slider-animated-1 align-items-center">
                         <div class="col-lg-5 col-md-5 col-12 col-sm-6">
                             <div class="hero-slider-content-6 slider-content-hm9">
                                 <h5 class="animated">Technology Essentials
@@ -79,7 +79,7 @@
                                     practical everyday use.
                                 </p>
                                 <div class="btn-style-1">
-                                    <a class="animated btn-1-padding-4 btn-1-blue btn-1-font-14"
+                                    <a class="animated btn-1-padding-4 btn-1-blue btn-1-font-10"
                                         href="{{ url('/products/thin-client') }}">Explore Now</a>
                                 </div>
                             </div>
@@ -87,13 +87,10 @@
                         <div class="col-lg-7 col-md-7 col-12 col-sm-6">
                             <div class="hm9-hero-slider-img">
                                 <img class="animated" src="{{ asset('assets/images/slider/home-slider-3.png') }}"
-                                    alt="">
+                                    alt="Reliable workplace technology solutions">
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="more-blogs-btn text-center">
-                    <a href="{{ url('/blogs') }}">More Blogs</a>
                 </div>
             </div>
         </div>
@@ -236,7 +233,7 @@
                             <p>Solutions designed for clear output <br> and smooth daily workflows.
                             </p>
                             <div class="btn-style-4">
-                                <a class="hover-red" href="{{ url('/products/printer') }}">Explore Products <i
+                                <a class="hover-red" href="{{ url('/products') }}">Explore Products <i
                                         class="icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -254,7 +251,7 @@
                                 workplace
                                 demands.</p>
                             <div class="btn-style-4 ">
-                                <a class="hover-red" href="{{ url('/products/desktops') }}">Explore Products <i
+                                <a class="hover-red" href="{{ url('/products') }}">Explore Products <i
                                         class="icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -286,27 +283,37 @@
                                     $homeProductType = \Illuminate\Support\Str::slug($product->parent_cat ?: 'printer');
                                     $homeProductType = $homeProductType === 'thin-client' ? 'thin-client' : $homeProductType;
                                     $homeProductUrl = url("products/{$homeProductType}/details", $product->slug);
-                                    $homeProductImageCandidates = array_filter([
-                                        $product->img1,
-                                        'assets/images/product/' . ltrim($product->img1 ?? '', '/'),
-                                        'assets/images/product/product-1.jpg',
-                                    ]);
-                                    $homeProductImage = collect($homeProductImageCandidates)
-                                        ->first(fn ($image) => file_exists(public_path($image))) ?? 'assets/images/product/product-1.jpg';
+                                    $homeProductImages = collect([$product->img1, $product->img2, $product->img3, $product->img4])
+                                        ->filter()
+                                        ->map(function ($image) {
+                                            $candidates = array_filter([
+                                                $image,
+                                                'assets/images/product/' . ltrim($image, '/'),
+                                            ]);
+
+                                            return collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
+                                        })
+                                        ->filter()
+                                        ->unique()
+                                        ->values();
+
+                                    $homeProductImage = $homeProductImages->first();
                                 @endphp
                                 <div class="product-plr-1">
                                     <div class="single-product-wrap home-product-card">
                                         <div class="product-img product-img-zoom mb-20">
                                             <a href="{{ $homeProductUrl }}">
-                                                <img src="{{ asset($homeProductImage) }}" alt="{{ $product->name }}">
+                                                @if ($homeProductImage)
+                                                    <img class="home-product-gallery-img"
+                                                        src="{{ asset($homeProductImage) }}"
+                                                        alt="{{ $product->name }}"
+                                                        data-default-src="{{ asset($homeProductImage) }}"
+                                                        data-gallery='@json($homeProductImages->map(fn ($image) => asset($image))->values())'>
+                                                @else
+                                                    <span class="home-product-image-missing">{{ $product->name }}</span>
+                                                @endif
                                             </a>
-                                            {{-- <div class="product-action-2 tooltip-style-2">
-                                                <button title="Wishlist"><i class="icon-heart"></i></button>
-                                                <button title="Quick View" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal"><i
-                                                        class="icon-size-fullscreen icons"></i></button>
-                                                <button title="Compare"><i class="icon-refresh"></i></button>
-                                            </div> --}}
+
                                         </div>
                                         <div class="product-content-wrap-3">
                                             <div class="home-product-category">
@@ -354,7 +361,7 @@
                             <p>Designed for streamlined access <br> and workplace efficiency.
                             </p>
                             <div class="btn-style-4">
-                                <a class="hover-red" href="{{ url('/products/thin-client') }}">Explore Products<i
+                                <a class="hover-red" href="{{ url('/products') }}">Explore Products<i
                                         class="icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -371,7 +378,7 @@
                             <p>Built to simplify document <br> digitization and organization.
                             </p>
                             <div class="btn-style-4">
-                                <a class="hover-red" href="{{ url('/products/scanner') }}">Explore Products
+                                <a class="hover-red" href="{{ url('/products') }}">Explore Products
                                     <i class="icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -394,27 +401,37 @@
                         $homeProductType = \Illuminate\Support\Str::slug($product->parent_cat ?: 'printer');
                         $homeProductType = $homeProductType === 'thin-client' ? 'thin-client' : $homeProductType;
                         $homeProductUrl = url("products/{$homeProductType}/details", $product->slug);
-                        $homeProductImageCandidates = array_filter([
-                            $product->img1,
-                            'assets/images/product/' . ltrim($product->img1 ?? '', '/'),
-                            'assets/images/product/product-1.jpg',
-                        ]);
-                        $homeProductImage = collect($homeProductImageCandidates)
-                            ->first(fn ($image) => file_exists(public_path($image))) ?? 'assets/images/product/product-1.jpg';
+                        $homeProductImages = collect([$product->img1, $product->img2, $product->img3, $product->img4])
+                            ->filter()
+                            ->map(function ($image) {
+                                $candidates = array_filter([
+                                    $image,
+                                    'assets/images/product/' . ltrim($image, '/'),
+                                ]);
+
+                                return collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
+                            })
+                            ->filter()
+                            ->unique()
+                            ->values();
+
+                        $homeProductImage = $homeProductImages->first();
                     @endphp
                     <div class="custom-col-5">
                         <div class="single-product-wrap home-product-card mb-60">
                             <div class="product-img product-img-zoom mb-15">
                                 <a href="{{ $homeProductUrl }}">
-                                    <img src="{{ asset($homeProductImage) }}" alt="{{ $product->name }}">
+                                    @if ($homeProductImage)
+                                        <img class="home-product-gallery-img"
+                                            src="{{ asset($homeProductImage) }}"
+                                            alt="{{ $product->name }}"
+                                            data-default-src="{{ asset($homeProductImage) }}"
+                                            data-gallery='@json($homeProductImages->map(fn ($image) => asset($image))->values())'>
+                                    @else
+                                        <span class="home-product-image-missing">{{ $product->name }}</span>
+                                    @endif
                                 </a>
-                                {{-- <div class="product-action-2 tooltip-style-2">
-                    <button title="Wishlist"><i class="icon-heart"></i></button>
-                    <button title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="icon-size-fullscreen icons"></i>
-                    </button>
-                    <button title="Compare"><i class="icon-refresh"></i></button>
-                </div> --}}
+
                             </div>
 
                             <div class="product-content-wrap-3">
@@ -491,23 +508,39 @@
                 <h2><span>Ideas, Insights</span> & Blogs</h2>
                 <p>Explore perspectives, product highlights, and technology discussions shaping modern workplaces.</p>
             </div>
-            <div class="border-bottom-2 blog-area-pb">
+            <div class="border-bottom-2 blog-area-pb home-blog-section">
                 <div class="row">
                     @foreach ($blogPosts as $blogPost)
                         @php
-                            $blogImageCandidates = array_filter([
-                                $blogPost->image1,
-                                'assets/images/blog/' . ltrim($blogPost->image1 ?? '', '/'),
-                                'assets/images/blog/blog-1.jpg',
-                            ]);
-                            $blogImage = collect($blogImageCandidates)
-                                ->first(fn ($image) => file_exists(public_path($image))) ?? 'assets/images/blog/blog-1.jpg';
+                            $homeBlogImages = collect([$blogPost->image1, $blogPost->image2, $blogPost->image3])
+                                ->filter()
+                                ->map(function ($image) {
+                                    $image = ltrim((string) $image, '/');
+                                    $candidates = str_starts_with($image, 'assets/')
+                                        ? [$image]
+                                        : [$image, 'assets/images/blog/' . $image];
+
+                                    return collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
+                                })
+                                ->filter()
+                                ->unique()
+                                ->values();
+
+                            $homeBlogImage = $homeBlogImages->first();
                         @endphp
                         <div class="col-lg-4 col-md-6">
-                            <div class="blog-wrap home-blog-card mb-30">
+                            <div class="blog-wrap home-blog-card js-blog-gallery-card mb-30">
                                 <div class="blog-img mb-25">
                                     <a href="{{ url('/blogs', $blogPost->slug) }}">
-                                        <img src="{{ asset($blogImage) }}" alt="{{ $blogPost->heading }}">
+                                        @if ($homeBlogImage)
+                                            <img class="js-blog-gallery-img"
+                                                src="{{ asset($homeBlogImage) }}"
+                                                alt="{{ $blogPost->heading }}"
+                                                data-default-src="{{ asset($homeBlogImage) }}"
+                                                data-gallery='@json($homeBlogImages->map(fn ($image) => asset($image))->values())'>
+                                        @else
+                                            <span class="home-blog-image-missing">{{ $blogPost->heading }}</span>
+                                        @endif
                                     </a>
                                 </div>
 
@@ -538,8 +571,60 @@
                     @endforeach
 
                 </div>
+                <div class="more-blogs-btn text-center">
+                    <a href="{{ url('/blogs') }}">More Blogs</a>
+                </div>
             </div>
         </div>
     </div>
 
 @endsection
+
+@push('scripts')
+    <script>
+        document.querySelectorAll('.home-product-card').forEach(function (card) {
+            var image = card.querySelector('.home-product-gallery-img');
+
+            if (!image) {
+                return;
+            }
+
+            var gallery = [];
+
+            try {
+                gallery = JSON.parse(image.dataset.gallery || '[]');
+            } catch (error) {
+                gallery = [];
+            }
+
+            gallery = gallery.filter(Boolean);
+
+            if (gallery.length < 2) {
+                return;
+            }
+
+            var timer = null;
+            var index = 0;
+            var defaultSrc = image.dataset.defaultSrc || gallery[0];
+
+            function showNextImage() {
+                index = (index + 1) % gallery.length;
+                image.src = gallery[index];
+            }
+
+            card.addEventListener('mouseenter', function () {
+                clearInterval(timer);
+                index = 0;
+                showNextImage();
+                timer = setInterval(showNextImage, 850);
+            });
+
+            card.addEventListener('mouseleave', function () {
+                clearInterval(timer);
+                timer = null;
+                index = 0;
+                image.src = defaultSrc;
+            });
+        });
+    </script>
+@endpush

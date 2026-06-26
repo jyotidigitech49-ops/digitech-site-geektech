@@ -53,12 +53,12 @@
                                 <li><a href="{{ url('/privacy-policy') }}">Privacy Policy</a></li>
                                 <li><a href="{{ url('/policy/terms-conditions') }}">Terms & Conditions</a></li>
                                 <li><a href="{{ url('/policy/disclaimer') }}">Disclaimer</a></li>
-                                <li><a href="{{ url('/policy/disclaimer') }}">Trademark Disclaimer</a></li>
+                                <li><a href="{{ url('/policy/trademark-disclaimer') }}">Trademark Disclaimer</a></li>
                                 <li><a href="{{ url('/policy/cookie-policy') }}">Cookie Policy</a></li>
                                 <li><a href="{{ url('/policy/quote-request-policy') }}">Quote Request Policy</a></li>
-                                <li><a href="{{ url('/product-information-disclaimer') }}">Product Information Disclaimer</a></li>
-                                <li><a href="{{ url('/returns-exchange') }}">Returns / Exchange</a></li>
-                                <li><a href="{{ url('/authorized-partner-disclosure') }}">Authorized Partner Disclosure</a></li>
+                                <li><a href="{{ url('/policy/product-information-disclaimer') }}">Product Information Disclaimer</a></li>
+                                <li><a href="{{ url('/policy/dmca-copyright-policy') }}">DMCA Copyright Policy</a></li>
+                                <li><a href="{{ url('/policy/warranty-manufacturer-information') }}">Warranty and Manufacturer Information</a></li>
                             </ul>
                         </div>
                     </div>

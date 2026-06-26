@@ -19,21 +19,25 @@
         fade: true,
         loop: true,
         dots: true,
-        arrows: true,
-        prevArrow: '<span class="slider-icon-1-prev"><i class="icon-arrow-left"></i></span>',
-        nextArrow: '<span class="slider-icon-1-next"><i class="icon-arrow-right"></i></span>',
+        arrows: false,
+        autoplay: true,
+        autoplaySpeed: 2200,
+        pauseOnHover: true,
+        pauseOnFocus: true,
     });
     
     /*------ Hero slider active 2 ----*/
     $('.hero-slider-active-2').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
-        fade: true,
+        fade: false,
         loop: true,
-        dots: false,
-        arrows: true,
-        prevArrow: '<span class="slider-icon-1-prev"><i class="icon-arrow-left"></i></span>',
-        nextArrow: '<span class="slider-icon-1-next"><i class="icon-arrow-right"></i></span>',
+        dots: true,
+        arrows: false,
+        autoplay: true,
+        autoplaySpeed: 2500,
+        pauseOnHover: true,
+        pauseOnFocus: true,
     });
     
     /*------ Hero slider active 3 ----*/

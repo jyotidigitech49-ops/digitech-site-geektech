@@ -1,18 +1,61 @@
-.breadcrumb-area.bg-gray {
-    background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
-    border-bottom: 1px solid #edf2f7;
+.contact-banner {
+    position: relative;
+    min-height: 405px;
+    background-image: url("../../images/faq/faq-hero.png");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
-.breadcrumb-content ul li,
-.breadcrumb-content ul li a {
-    color: #6b7280;
-    font-size: 14px;
-    font-weight: 600;
+.contact-banner__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.64);
 }
 
-.breadcrumb-content ul li.active {
-    color: #0064e0;
-    font-weight: 800;
+.contact-banner__content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #ffffff;
+    padding: 40px 15px;
+}
+
+.contact-banner__content h1 {
+    color: #ffffff;
+    font-size: 60px;
+    font-weight: 400;
+    line-height: 1;
+    margin: 0 0 23px;
+    letter-spacing: 0;
+}
+
+.contact-banner__breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.contact-banner__breadcrumb a,
+.contact-banner__breadcrumb span {
+    color: #ffffff;
+}
+
+.contact-banner__breadcrumb span:last-child {
+    color: #0b62ff;
+}
+
+.contact-area {
+    background:
+        radial-gradient(circle at 10% 0%, rgba(11, 98, 255, 0.08), transparent 26%),
+        linear-gradient(180deg, #f7f9fd 0%, #ffffff 100%);
 }
 
 .contact-info-wrap-3 h3,
@@ -201,12 +244,83 @@
     padding-top: 90px;
 }
 
-.contact-map iframe {
-    width: 100%;
-    min-height: 420px;
-    border: 1px solid #dfe7f3 !important;
+.contact-map-card {
+    overflow: hidden;
+    border: 1px solid #dfe7f3;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 18px 42px rgba(23, 37, 68, 0.08);
+}
+
+.contact-map-info {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px 24px;
+    align-items: center;
+    padding: 28px 30px;
+    border-bottom: 1px solid #e5ebf5;
+}
+
+.contact-map-info span {
+    grid-column: 1 / -1;
+    display: inline-flex;
+    width: max-content;
+    min-height: 28px;
+    align-items: center;
+    padding: 0 13px;
+    border-radius: 999px;
+    background: rgba(11, 98, 255, 0.1);
+    color: #0b62ff;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.contact-map-info h3 {
+    margin: 0;
+    color: #071a44;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.contact-map-info p {
+    grid-column: 1 / 2;
+    max-width: 680px;
+    margin: 0;
+    color: #5d687b;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.contact-map-info a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 18px;
     border-radius: 8px;
-    box-shadow: 0 12px 34px rgba(15, 23, 42, 0.06);
+    background: #0b62ff;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.contact-map-info a:hover {
+    background: #000000;
+    color: #ffffff;
+}
+
+.contact-map-frame {
+    position: relative;
+    min-height: 430px;
+    background: #eef4ff;
+}
+
+.contact-map-frame iframe {
+    width: 100%;
+    min-height: 430px;
+    border: 0 !important;
+    display: block;
 }
 
 @media (max-width: 991px) {
@@ -221,6 +335,14 @@
 }
 
 @media (max-width: 767px) {
+    .contact-banner {
+        min-height: 300px;
+    }
+
+    .contact-banner__content h1 {
+        font-size: 44px;
+    }
+
     .contact-area.pt-115 {
         padding-top: 70px;
     }
@@ -241,7 +363,22 @@
         padding-top: 60px;
     }
 
-    .contact-map iframe {
+    .contact-map-info {
+        grid-template-columns: 1fr;
+        padding: 24px 20px;
+    }
+
+    .contact-map-info p,
+    .contact-map-info a {
+        grid-column: auto;
+    }
+
+    .contact-map-info h3 {
+        font-size: 24px;
+    }
+
+    .contact-map-frame,
+    .contact-map-frame iframe {
         min-height: 320px;
     }
 }

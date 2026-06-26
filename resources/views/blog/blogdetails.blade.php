@@ -6,6 +6,12 @@
 @endpush
 
 @section('content')
+    @php
+        $blogImages = collect($blogDetails['images'] ?? [])->filter()->values();
+        $mainBlogImage = $blogImages->first();
+        $detailImages = $blogImages->slice(1)->values();
+    @endphp
+
     <div class="breadcrumb-area bg-gray blog-details-breadcrumb">
         <div class="container">
             <div class="breadcrumb-content text-center">
@@ -25,8 +31,16 @@
                 <div class="col-lg-12">
                     <div class="blog-details-wrapper">
                         <div class="blog-details-top">
-                            <div class="blog-details-img">
-                                <img alt="{{ $blogDetails['heading'] ?? 'Blog image' }}" src="{{ $blogDetails['images']['main'] }}">
+                            <div class="blog-details-img js-blog-gallery-card">
+                                @if ($mainBlogImage)
+                                    <img class="js-blog-gallery-img"
+                                        alt="{{ $blogDetails['heading'] ?? 'Blog image' }}"
+                                        src="{{ $mainBlogImage }}"
+                                        data-default-src="{{ $mainBlogImage }}"
+                                        data-gallery='@json($blogImages)'>
+                                @else
+                                    <span class="blog-details-image-missing">{{ $blogDetails['heading'] ?? 'Blog image' }}</span>
+                                @endif
                             </div>
                             <div class="blog-details-content">
                                 <div class="blog-meta-2">
@@ -43,24 +57,25 @@
                             </div>
                         </div>
 
-                        <div class="dec-img-wrapper">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6 col-12">
-                                    <div class="dec-img mb-50">
-                                        <img alt="{{ $blogDetails['heading'] ?? 'Blog image' }}" src="{{ $blogDetails['images']['secondary'] }}">
+                        @if ($detailImages->isNotEmpty() || ! empty($blogDetails['excerpt']))
+                            <div class="dec-img-wrapper">
+                                @if ($detailImages->isNotEmpty())
+                                    <div class="row">
+                                        @foreach ($detailImages as $detailImage)
+                                            <div class="col-md-6 col-sm-6 col-12">
+                                                <div class="dec-img mb-50">
+                                                    <img alt="{{ $blogDetails['heading'] ?? 'Blog image' }}" src="{{ $detailImage }}">
+                                                </div>
+                                            </div>
+                                        @endforeach
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-12">
-                                    <div class="dec-img mb-50">
-                                        <img alt="{{ $blogDetails['heading'] ?? 'Blog image' }}" src="{{ $blogDetails['images']['third'] }}">
-                                    </div>
-                                </div>
-                            </div>
+                                @endif
 
-                            @if (! empty($blogDetails['excerpt']))
-                                <p>{{ $blogDetails['excerpt'] }}</p>
-                            @endif
-                        </div>
+                                @if (! empty($blogDetails['excerpt']))
+                                    <p>{{ $blogDetails['excerpt'] }}</p>
+                                @endif
+                            </div>
+                        @endif
 
                         <div class="next-previous-post">
                             @if (! empty($blogDetails['previous']))

@@ -22,7 +22,7 @@ class BlogController extends Controller
                     'excerpt' => Str::limit(strip_tags($blog->content), 130),
                     'date' => $blog->inserted_at ? Carbon::parse($blog->inserted_at)->format('M d, Y') : null,
                     'url' => url('blogs', $blog->slug),
-                    'image' => $this->blogImage($blog->image1, 'assets/images/blog/blog-1.jpg'),
+                    'images' => $this->blogImages($blog),
                 ];
             });
 
@@ -56,11 +56,7 @@ class BlogController extends Controller
             'excerpt' => Str::limit(strip_tags($blog->content), 180),
             'date' => $blog->inserted_at ? Carbon::parse($blog->inserted_at)->format('M d, Y') : null,
             'category' => 'News',
-            'images' => [
-                'main' => $this->blogImage($blog->image1, 'assets/images/blog/blog-details.jpg'),
-                'secondary' => $this->blogImage($blog->image2, 'assets/images/blog/blog-details-2.jpg'),
-                'third' => $this->blogImage($blog->image3, 'assets/images/blog/blog-details-3.jpg'),
-            ],
+            'images' => $this->blogImages($blog),
             'previous' => $previousBlog ? [
                 'heading' => $previousBlog->heading,
                 'url' => url('blogs', $previousBlog->slug),
@@ -76,20 +72,23 @@ class BlogController extends Controller
         return view('blog.blogdetails', compact('blogDetails'));
     }
 
-    private function blogImage($image, $fallback = 'assets/images/blog/blog-1.jpg'): string
+    private function blogImages(Blog $blog): array
     {
-        $image = ltrim((string) $image, '/');
+        return collect([$blog->image1, $blog->image2, $blog->image3])
+            ->filter()
+            ->map(function ($image) {
+                $image = ltrim((string) $image, '/');
 
-        if ($image === '') {
-            return asset($fallback);
-        }
+                $candidates = str_starts_with($image, 'assets/')
+                    ? [$image]
+                    : [$image, 'assets/images/blog/' . $image];
 
-        $candidates = str_starts_with($image, 'assets/')
-            ? [$image]
-            : [$image, 'assets/images/blog/' . $image];
-
-        $path = collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
-
-        return asset($path ?: $fallback);
+                return collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
+            })
+            ->filter()
+            ->unique()
+            ->map(fn ($image) => asset($image))
+            ->values()
+            ->all();
     }
 }

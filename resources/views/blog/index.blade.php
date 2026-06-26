@@ -27,9 +27,21 @@
             <div class="row">
                 @forelse ($blogs as $blog)
                     <div class="col-xl-4 col-lg-4 col-md-6">
-                        <article class="blog-list-card">
+                        @php
+                            $blogImages = collect($blog['images'] ?? [])->filter()->values();
+                            $blogImage = $blogImages->first();
+                        @endphp
+                        <article class="blog-list-card js-blog-gallery-card">
                             <a class="blog-list-img" href="{{ $blog['url'] }}">
-                                <img src="{{ $blog['image'] }}" alt="{{ $blog['heading'] }}">
+                                @if ($blogImage)
+                                    <img class="js-blog-gallery-img"
+                                        src="{{ $blogImage }}"
+                                        alt="{{ $blog['heading'] }}"
+                                        data-default-src="{{ $blogImage }}"
+                                        data-gallery='@json($blogImages)'>
+                                @else
+                                    <span class="blog-list-image-missing">{{ $blog['heading'] }}</span>
+                                @endif
                             </a>
 
                             <div class="blog-list-content">

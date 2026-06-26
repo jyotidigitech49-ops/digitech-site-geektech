@@ -13,10 +13,9 @@
     @php
         $productAsset = function ($image) {
             $image = ltrim((string) $image, '/');
-            $fallback = 'assets/images/product/printer.png';
 
             if ($image === '') {
-                return asset($fallback);
+                return null;
             }
 
             $candidates = str_starts_with($image, 'assets/')
@@ -25,118 +24,38 @@
 
             $path = collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
 
-            return asset($path ?: $fallback);
+            return $path ? asset($path) : null;
         };
 
-        $blogAsset = function ($image) {
-            $image = ltrim((string) $image, '/');
-            $fallback = 'assets/images/blog/blog-1.jpg';
+        $blogImagesFromRecord = function ($blog) {
+            return collect([$blog['image1'] ?? null, $blog['image2'] ?? null, $blog['image3'] ?? null])
+                ->filter()
+                ->map(function ($image) {
+                    $image = ltrim((string) $image, '/');
+                    $candidates = str_starts_with($image, 'assets/')
+                        ? [$image]
+                        : [$image, 'assets/images/blog/' . $image];
 
-            if ($image === '') {
-                return asset($fallback);
-            }
-
-            $candidates = str_starts_with($image, 'assets/')
-                ? [$image]
-                : [$image, 'assets/images/blog/' . $image];
-
-            $path = collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
-
-            return asset($path ?: $fallback);
+                    return collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
+                })
+                ->filter()
+                ->unique()
+                ->map(fn ($image) => asset($image))
+                ->values();
         };
 
         $hero = $detailsData['hero'] ?? [];
         $breadcrumb = $detailsData['breadcrumb'] ?? [];
         $overview = $detailsData['overview'] ?? [];
         $specificationDescription = $detailsData['specification_description'] ?? null;
-        $printerImage = $productAsset($detailsData['gallery'][0]['image'] ?? null);
-        $thumbs = [
-            ['image' => asset('assets/images/product/printer.png'), 'label' => 'Printer front view'],
-            ['image' => asset('assets/images/product/scanner.png'), 'label' => 'Scanner view'],
-            ['image' => asset('assets/images/product/desktops.png'), 'label' => 'Desktop product view'],
-            ['image' => asset('assets/images/product/thin_client.png'), 'label' => 'Thin client view'],
-        ];
-
-        $features = [
-            ['title' => 'Reliable technology uniquely built to work at home', 'copy' => 'Say goodbye to noisy printing and stay focused on your work with quiet mode, dual-band Wi-Fi, and self-healing connectivity.'],
-            ['title' => 'Print from your couch with the best print app', 'copy' => 'Print, scan, copy right from your smartphone with the best and easiest-to-use print app for home offices.'],
-            ['title' => 'Always be ready to print. Never run out of ink.', 'copy' => 'With an Instant Ink subscription, you can get ink delivered directly to your door before you run out.'],
-        ];
+        $thumbs = [];
+        $features = [];
         $overviewNotes = [];
-
-        $specTabs = [
-            'top-specs' => [
-                'label' => 'Top Specs',
-                'rows' => [
-                    ['Functions', 'Print, copy, scan'],
-                    ['Print speed black (draft, letter)', 'Up to 29 ppm'],
-                    ['Print speed color (draft, letter)', 'Up to 25 ppm'],
-                    ['Print speed black (ISO, letter)', 'Up to 18 ppm'],
-                    ['Print speed color (ISO)', 'Up to 10 ppm'],
-                    ['Print speed duplex (letter)', 'Up to 10 ipm'],
-                    ['First page out (ready)', 'Black: As fast as 15 sec'],
-                    ['First page out color (letter, ready)', 'As fast as 18 sec'],
-                    ['Borderless printing', 'Yes, on Photo and Brochure only, up to 8.5 x 11 in'],
-                ],
-            ],
-            'all-specs' => [
-                'label' => 'All Specs',
-                'rows' => [
-                    ['Duplex printing', 'Automatic standard'],
-                    ['Duty cycle (monthly, letter)', 'Up to 20,000 pages. Duty cycle is the maximum number of pages that can be printed in a month.'],
-                    ['Recommended monthly page volume', 'Up to 800 pages for optimum device performance.'],
-                    ['Print technology', 'HP Thermal Inkjet'],
-                    ['Network capabilities', 'Yes, via built-in Ethernet and wireless 802.11 a/b/g/n/ac'],
-                    ['Wireless capability', 'Yes, built-in Wi-Fi 802.11 a/b/g/n/ac'],
-                    ['Print quality black (best)', '1200 x 1200 rendered dpi'],
-                    ['Print quality color (best)', 'Up to 4800 x 1200 optimized dpi on HP Advance Photo Paper'],
-                    ['Processor speed', '1.2 GHz'],
-                    ['Print languages', 'HP PCL3 GUI'],
-                    ['Mobile printing capability', 'Chrome OS, HP app, Apple AirPrint, Wi-Fi Direct Printing, Mopria certified'],
-                    ['Display', '2.7 in capacitive touchscreen CGD'],
-                    ['Connectivity, standard', '1 Ethernet, 1 Hi-Speed USB 2.0, host Wi-Fi 802.11 a/b/g/n/ac'],
-                    ['Memory', '512 MB'],
-                    ['Input capacity', 'Up to 225 sheets'],
-                    ['Output capacity', 'Up to 60 sheets'],
-                    ['Scan speed (normal, letter)', 'Up to 8 ppm black and up to 3.5 ppm color'],
-                ],
-            ],
-            'logistics' => [
-                'label' => 'Logistics',
-                'rows' => [
-                    ['Package dimensions', '19.2 x 13.7 x 9.1 in'],
-                    ['Package weight', '10.2 kg / 22.4 lb'],
-                    ['Pallet dimensions', '48 x 40 x 76 in'],
-                    ['Pallet weight', 'Approx. 410 kg'],
-                    ['Units per pallet', '36 units'],
-                    ['UPC number', '196337123456'],
-                    ['Country of origin', 'Made in Thailand'],
-                    ['What is in the box', 'Printer, setup cartridges, power cord, setup poster, reference guide'],
-                    ['Shipping availability', 'Standard ground, expedited, and partner warehouse shipment'],
-                ],
-            ],
-            'sustainability' => [
-                'label' => 'Sustainability',
-                'rows' => [
-                    ['Energy star certified', 'Yes'],
-                    ['EPEAT registered', 'Silver'],
-                    ['Recycled plastic content', 'Contains recycled plastic in printer body components'],
-                    ['Cartridge recycling', 'Recyclable through HP Planet Partners'],
-                    ['Power supply type', 'Internal universal power supply'],
-                    ['Power', 'Input voltage: 100 to 240 VAC, 50/60 Hz'],
-                    ['Power consumption', '4.07 watts ready, 1.02 watts sleep, 0.11 watts manual-off'],
-                    ['Operating humidity range', '20 to 80% RH'],
-                    ['Operating temperature range', '41 to 104 degrees F'],
-                ],
-            ],
-        ];
-
-        $blogs = [
-            ['title' => 'How the HP OfficeJet 8122e All-in-One...', 'copy' => 'Modern printing environments require devices that can support multiple document tasks without creating unnecessary workflow...', 'image' => $printerImage],
-            ['title' => 'Why the HP OfficeJet 8122e All-in-One...', 'copy' => 'Document workflows now involve a combination of printing, scanning, copying, wireless accessibility, and digital file management...', 'image' => $printerImage],
-            ['title' => 'Exploring Wireless Printing Features...', 'copy' => 'Wireless printing continues becoming one of the most practical features in modern document environments. Users increasingly...', 'image' => $printerImage],
-            ['title' => 'How the HP OfficeJet 8122e All-in-One...', 'copy' => 'Modern printing systems are expected to provide more than basic document output. Users now look for devices that support...', 'image' => $printerImage],
-        ];
+        $specTabs = [];
+        $blogs = [];
+        $parentCategorySlug = ! empty($breadcrumb['parent_category'])
+            ? \Illuminate\Support\Str::slug($breadcrumb['parent_category'])
+            : null;
 
         if (! empty($detailsData)) {
             $thumbs = collect($detailsData['gallery'] ?? [])
@@ -147,10 +66,6 @@
                 ->filter(fn ($thumb) => ! empty($thumb['image']))
                 ->values()
                 ->all();
-
-            if (empty($thumbs)) {
-                $thumbs = [['image' => asset('assets/images/product/printer.png'), 'label' => $hero['name'] ?? 'Product image']];
-            }
 
             $features = collect($overview['features'] ?? [])
                 ->filter(fn ($feature) => ! empty($feature['title']) || ! empty($feature['description']))
@@ -182,13 +97,13 @@
 
             $blogs = collect($detailsData['blogs'] ?? [])
                 ->map(fn ($blog) => [
-                    'title' => $blog['heading'] ?? 'Blog',
+                    'title' => $blog['heading'] ?? '',
                     'copy' => \Illuminate\Support\Str::limit(strip_tags($blog['content'] ?? ''), 130),
-                    'image' => $blogAsset($blog['image1'] ?? $blog['image2'] ?? $blog['image3'] ?? null),
+                    'images' => $blogImagesFromRecord($blog),
                     'date' => ! empty($blog['inserted_at'])
                         ? \Illuminate\Support\Carbon::parse($blog['inserted_at'])->format('M d, Y')
                         : null,
-                    'url' => ! empty($blog['slug']) ? url('blogs', $blog['slug']) : '#',
+                    'url' => ! empty($blog['slug']) ? url('blogs', $blog['slug']) : null,
                 ])
                 ->values()
                 ->all();
@@ -199,13 +114,23 @@
         <nav class="pd-breadcrumb" aria-label="breadcrumb">
             <div class="pd-container">
                 <ol class="pd-breadcrumb-list">
-                    <li><a href="#">{{ $breadcrumb['store'] ?? 'Product Store' }}</a></li>
+                    @if (! empty($breadcrumb['store']))
+                        <li><a href="{{ url('/products') }}">{{ $breadcrumb['store'] }}</a></li>
+                    @endif
+                    @if (! empty($breadcrumb['parent_category']))
+                        <li><i class="fa-solid fa-chevron-right"></i></li>
+                        <li><a href="{{ url('/products/' . $parentCategorySlug) }}">{{ $breadcrumb['parent_category'] }}</a></li>
+                    @endif
+                    @if (! empty($breadcrumb['category']['name']))
+                        <li><i class="fa-solid fa-chevron-right"></i></li>
+                        <li>
+                            <a href="{{ ! empty($breadcrumb['category']['url']) && $parentCategorySlug ? url('/products/' . $parentCategorySlug . '/' . $breadcrumb['category']['url']) : url('/products') }}">
+                                {{ $breadcrumb['category']['name'] }}
+                            </a>
+                        </li>
+                    @endif
                     <li><i class="fa-solid fa-chevron-right"></i></li>
-                    <li><a href="#">{{ $breadcrumb['parent_category'] ?? 'printer' }}</a></li>
-                    <li><i class="fa-solid fa-chevron-right"></i></li>
-                    <li><a href="#">{{ $breadcrumb['category']['name'] ?? 'Officejet Printer' }}</a></li>
-                    <li><i class="fa-solid fa-chevron-right"></i></li>
-                    <li class="active">{{ $breadcrumb['product_name'] ?? $hero['name'] ?? 'Product Details' }}</li>
+                    <li class="active">{{ $breadcrumb['product_name'] ?? $hero['name'] ?? '' }}</li>
                 </ol>
             </div>
         </nav>
@@ -232,56 +157,82 @@
 
                     <section class="pd-content">
                         <div id="overview" class="pd-panel active">
-                            <div class="pd-overview-grid">
-                                <div class="pd-thumbs" aria-label="Product gallery thumbnails">
-                                    <button type="button" class="pd-thumb-nav" aria-label="Previous image">
-                                        <i class="fa-solid fa-chevron-up"></i>
-                                    </button>
-                                    @foreach ($thumbs as $thumb)
-                                        <button type="button" class="pd-thumb {{ $loop->first ? 'active' : '' }}" data-image="{{ $thumb['image'] }}" data-label="{{ $thumb['label'] }}" aria-label="{{ $thumb['label'] }}">
-                                            <img src="{{ $thumb['image'] }}" alt="{{ $thumb['label'] }}">
+                            <div class="pd-overview-grid {{ empty($thumbs) ? 'pd-overview-grid-no-thumbs' : '' }}">
+                                @if (! empty($thumbs))
+                                    <div class="pd-thumbs" aria-label="Product gallery thumbnails">
+                                        <button type="button" class="pd-thumb-nav" aria-label="Previous image">
+                                            <i class="fa-solid fa-chevron-up"></i>
                                         </button>
-                                    @endforeach
-                                    <button type="button" class="pd-thumb-nav" aria-label="Next image">
-                                        <i class="fa-solid fa-chevron-down"></i>
-                                    </button>
-                                </div>
+                                        @foreach ($thumbs as $thumb)
+                                            <button type="button" class="pd-thumb {{ $loop->first ? 'active' : '' }}" data-image="{{ $thumb['image'] }}" data-label="{{ $thumb['label'] }}" aria-label="{{ $thumb['label'] }}">
+                                                <img src="{{ $thumb['image'] }}" alt="{{ $thumb['label'] }}">
+                                            </button>
+                                        @endforeach
+                                        <button type="button" class="pd-thumb-nav" aria-label="Next image">
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </button>
+                                    </div>
+                                @endif
 
                                 <div class="pd-gallery-main">
-                                    <img id="pd-main-image" src="{{ $thumbs[0]['image'] }}" alt="{{ $thumbs[0]['label'] }}">
+                                    @if (! empty($thumbs))
+                                        <img id="pd-main-image" src="{{ $thumbs[0]['image'] }}" alt="{{ $thumbs[0]['label'] }}">
+                                    @else
+                                        <span class="pd-product-image-missing">{{ $hero['name'] ?? $breadcrumb['product_name'] ?? '' }}</span>
+                                    @endif
                                 </div>
 
                                 <div class="pd-info">
                                     <div class="pd-info-main">
-                                        <div class="pd-badge">
-                                            <i class="fa-solid fa-share-nodes"></i>
-                                            <span>{{ $hero['badge'] ?? 'Active Product Line' }}</span>
+                                        @if (! empty($hero['badge']))
+                                            <div class="pd-badge">
+                                                <i class="fa-solid fa-share-nodes"></i>
+                                                <span>{{ $hero['badge'] }}</span>
+                                            </div>
+                                        @endif
+
+                                        @if (! empty($hero['name']))
+                                            <h1 class="pd-title">{{ $hero['name'] }}</h1>
+                                        @endif
+
+                                        @if (! empty($hero['lifecycle']))
+                                            <p class="pd-lifecycle">Corporate Availability lifecycle: <span>{{ $hero['lifecycle'] }}</span></p>
+                                        @endif
+
+                                        @if (! empty($hero['summary']))
+                                            <p class="pd-summary">{{ $hero['summary'] }}</p>
+                                        @endif
+                                    </div>
+
+                                    @if (! empty($hero['price']) || ! empty($hero['quote_url']))
+                                        <div class="pd-price-box">
+                                            <hr class="pd-divider">
+                                            @if (! empty($hero['price']))
+                                                <div class="pd-price-label">Estimated Contract List Price</div>
+                                                <div class="pd-price">${{ number_format((float) $hero['price'], 2) }}</div>
+                                            @endif
+                                            @if (! empty($hero['quote_url']))
+                                                <a href="{{ $hero['quote_url'] }}" class="pd-quote">Get a Quote <i class="fa-solid fa-arrow-right-long"></i></a>
+                                            @endif
                                         </div>
-
-                                        <h1 class="pd-title">{{ $hero['name'] ?? 'HP OfficeJet 8122e All-in-One Printer' }}</h1>
-
-                                        <p class="pd-lifecycle">Corporate Availability lifecycle: <span>{{ $hero['lifecycle'] ?? 'May 31, 2020 - Dec 30, 2030' }}</span></p>
-
-                                        <p class="pd-summary">{{ $hero['summary'] ?? 'Say hello to the professional color inkjet printer for your home office from America\'s most trusted printer brand, paired with the easiest-to-use print app. Enjoy easy printing designed to make you succeed at work.' }}</p>
-                                    </div>
-
-                                    <div class="pd-price-box">
-                                        <hr class="pd-divider">
-                                        <div class="pd-price-label">Estimated Contract List Price</div>
-                                        <div class="pd-price">${{ number_format((float) ($hero['price'] ?? 207.70), 2) }}</div>
-                                        <a href="{{ $hero['quote_url'] ?? url('/products-enquiry') }}" class="pd-quote">Get a Quote <i class="fa-solid fa-arrow-right-long"></i></a>
-                                    </div>
+                                    @endif
                                 </div>
                             </div>
 
-                            <div class="pd-feature-grid">
-                                @foreach ($features as $feature)
-                                    <article>
-                                        <h2 class="pd-feature-title">{{ $feature['title'] }}</h2>
-                                        <p class="pd-feature-copy">{{ $feature['copy'] }}</p>
-                                    </article>
-                                @endforeach
-                            </div>
+                            @if (! empty($features))
+                                <div class="pd-feature-grid">
+                                    @foreach ($features as $feature)
+                                        <article>
+                                            @if (! empty($feature['title']))
+                                                <h2 class="pd-feature-title">{{ $feature['title'] }}</h2>
+                                            @endif
+                                            @if (! empty($feature['copy']))
+                                                <p class="pd-feature-copy">{{ $feature['copy'] }}</p>
+                                            @endif
+                                        </article>
+                                    @endforeach
+                                </div>
+                            @endif
 
                             @if (! empty($overview['description']) || ! empty($overviewNotes))
                                 <div class="pd-notes">
@@ -336,9 +287,21 @@
                         <div id="blogs" class="pd-panel">
                             <div class="pd-blog-grid">
                                 @forelse ($blogs as $blog)
-                                    <article class="pd-blog-card">
+                                    @php
+                                        $pdBlogImages = collect($blog['images'] ?? [])->filter()->values();
+                                        $pdBlogImage = $pdBlogImages->first();
+                                    @endphp
+                                    <article class="pd-blog-card js-blog-gallery-card">
                                         <div class="pd-blog-image">
-                                            <img src="{{ $blog['image'] }}" alt="{{ $blog['title'] }}">
+                                            @if ($pdBlogImage)
+                                                <img class="js-blog-gallery-img"
+                                                    src="{{ $pdBlogImage }}"
+                                                    alt="{{ $blog['title'] }}"
+                                                    data-default-src="{{ $pdBlogImage }}"
+                                                    data-gallery='@json($pdBlogImages)'>
+                                            @else
+                                                <span class="pd-blog-image-missing">{{ $blog['title'] }}</span>
+                                            @endif
                                         </div>
                                         <div class="pd-blog-body">
                                             @if (! empty($blog['date']))
@@ -346,7 +309,9 @@
                                             @endif
                                             <h2 class="pd-blog-title">{{ $blog['title'] }}</h2>
                                             <p class="pd-blog-copy">{{ $blog['copy'] }}</p>
-                                            <a href="{{ $blog['url'] }}" class="pd-blog-link">Read More <i class="fa-solid fa-arrow-right-long"></i></a>
+                                            @if (! empty($blog['url']))
+                                                <a href="{{ $blog['url'] }}" class="pd-blog-link">Read More <i class="fa-solid fa-arrow-right-long"></i></a>
+                                            @endif
                                         </div>
                                     </article>
                                 @empty

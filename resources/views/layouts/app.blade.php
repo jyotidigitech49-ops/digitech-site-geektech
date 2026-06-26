@@ -53,6 +53,98 @@
     <script src="{{ asset('assets/js/plugins/ajax-mail.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
+    <script>
+        document.querySelectorAll('.js-product-gallery-card').forEach(function (card) {
+            var image = card.querySelector('.js-product-gallery-img');
+
+            if (!image) {
+                return;
+            }
+
+            var gallery = [];
+
+            try {
+                gallery = JSON.parse(image.dataset.gallery || '[]');
+            } catch (error) {
+                gallery = [];
+            }
+
+            gallery = gallery.filter(Boolean);
+
+            if (gallery.length < 2) {
+                return;
+            }
+
+            var timer = null;
+            var index = 0;
+            var defaultSrc = image.dataset.defaultSrc || gallery[0];
+
+            function showNextImage() {
+                index = (index + 1) % gallery.length;
+                image.src = gallery[index];
+            }
+
+            card.addEventListener('mouseenter', function () {
+                clearInterval(timer);
+                index = 0;
+                showNextImage();
+                timer = setInterval(showNextImage, 850);
+            });
+
+            card.addEventListener('mouseleave', function () {
+                clearInterval(timer);
+                timer = null;
+                index = 0;
+                image.src = defaultSrc;
+            });
+        });
+
+        document.querySelectorAll('.js-blog-gallery-card').forEach(function (card) {
+            var image = card.querySelector('.js-blog-gallery-img');
+
+            if (!image) {
+                return;
+            }
+
+            var gallery = [];
+
+            try {
+                gallery = JSON.parse(image.dataset.gallery || '[]');
+            } catch (error) {
+                gallery = [];
+            }
+
+            gallery = gallery.filter(Boolean);
+
+            if (gallery.length < 2) {
+                return;
+            }
+
+            var timer = null;
+            var index = 0;
+            var defaultSrc = image.dataset.defaultSrc || gallery[0];
+
+            function showNextImage() {
+                index = (index + 1) % gallery.length;
+                image.src = gallery[index];
+            }
+
+            card.addEventListener('mouseenter', function () {
+                clearInterval(timer);
+                index = 0;
+                showNextImage();
+                timer = setInterval(showNextImage, 850);
+            });
+
+            card.addEventListener('mouseleave', function () {
+                clearInterval(timer);
+                timer = null;
+                index = 0;
+                image.src = defaultSrc;
+            });
+        });
+    </script>
+
     @stack('scripts')
 </body>
 </html>
