@@ -3,8 +3,25 @@
 
 <head>
     <meta charset="utf-8">
-    <title>@yield('title', 'Eagles Repair')</title>
+    @php
+        $metaTitle = $pageMeta['title'] ?? trim($__env->yieldContent('title', 'Eagles Repair'));
+        $metaDescription = $pageMeta['description']
+            ?? trim($__env->yieldContent('meta_description', 'Browse printers, desktops, scanners, and business technology solutions.'));
+        $metaCanonical = $pageMeta['canonical'] ?? request()->url();
+        $metaType = $pageMeta['type'] ?? 'website';
+    @endphp
+    <title>{{ $metaTitle }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ $metaDescription }}">
+    <link rel="canonical" href="{{ $metaCanonical }}">
+
+    <meta property="og:title" content="{{ $metaTitle }}">
+    <meta property="og:description" content="{{ $metaDescription }}">
+    <meta property="og:type" content="{{ $metaType }}">
+    <meta property="og:url" content="{{ $metaCanonical }}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ $metaTitle }}">
+    <meta name="twitter:description" content="{{ $metaDescription }}">
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.png') }}">
 

@@ -365,7 +365,40 @@ class ProductPrinterController extends Controller {
             'blogs' => $blogs,
         ];
 
-        // dd( $detailsData );
+        // dd([
+        //     'page' => 'Product details page blogs',
+        //     'route' => request()->fullUrl(),
+        //     'product' => [
+        //         'id' => $product->id,
+        //         'name' => $product->name,
+        //         'slug' => $product->slug,
+        //         'blog_ids' => $blogIds,
+        //     ],
+        //     'blogs' => collect($blogs)->map(function ($blog) {
+        //         $images = collect([$blog['image1'], $blog['image2'], $blog['image3']])
+        //             ->filter()
+        //             ->values();
+        //         $resolved = $images->mapWithKeys(function ($image) {
+        //             $image = ltrim((string) $image, '/');
+        //             $candidates = str_starts_with($image, 'assets/')
+        //                 ? [$image]
+        //                 : [$image, 'assets/images/blog/' . $image];
+        //             $path = collect($candidates)
+        //                 ->first(fn ($candidate) => file_exists(public_path($candidate)));
+
+        //             return [$image => $path ? asset($path) : null];
+        //         });
+
+        //         return [
+        //             'id' => $blog['id'],
+        //             'heading' => $blog['heading'],
+        //             'slug' => $blog['slug'],
+        //             'db_images' => $images->all(),
+        //             'resolved_urls' => $resolved->filter()->values()->all(),
+        //             'missing_images' => $resolved->filter(fn ($url) => $url === null)->keys()->all(),
+        //         ];
+        //     })->values()->all(),
+        // ]);
 
         return view( 'products.product_details', compact( 'detailsData' ) );
     }

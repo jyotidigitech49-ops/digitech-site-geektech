@@ -1,6 +1,7 @@
 .privacy-banner {
     position: relative;
     min-height: 405px;
+    margin-top: -2px;
     background-image: url("../../images/faq/faq-hero.png");
     background-position: center;
     background-size: cover;

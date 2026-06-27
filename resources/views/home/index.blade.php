@@ -156,120 +156,164 @@
         </div>
     </div>
     {{-- Product Categories --}}
-    <div class="product-categories-area pt-115 pb-115">
+    <section class="product-categories-area home-category-section">
         <div class="container">
-            <div class="section-title-btn-wrap border-bottom-3 mb-50 pb-20">
-                <div class="section-title-6">
-                    <h2>Discover Our Product Categories</h2>
+            <div class="home-section-heading home-category-heading">
+                <div>
+                    <span class="home-section-eyebrow">Explore Our Range</span>
+                    <h2>Discover Our <span>Product Categories</span></h2>
+                    <p>Reliable devices and solutions designed for home, office, and everyday productivity.</p>
                 </div>
-                <div class="btn-style-7 btn-style-7-blue">
-                    <a href="{{ url('/products') }}">View Products</a>
-                </div>
+                <a class="home-outline-link" href="{{ url('/products') }}">
+                    View All Products <i class="icon-arrow-right"></i>
+                </a>
             </div>
-            <div class="product-categories-slider-1 nav-style-3">
-                <div class="product-plr-1">
-                    <div class="single-product-wrap">
-                        <div class="product-img product-img-border border-blue mb-20">
+
+            <div class="home-category-grid">
+                <article class="home-category-card">
+                    <div class="home-category-icon"><i class="icon-printer"></i></div>
+                    <div class="home-category-media">
+                        <div class="product-img">
                             <a href="{{ url('/products/printer') }}">
-                                <img src="{{ asset('assets/images/product/printer.png') }}" alt="">
+                                <img src="{{ asset('assets/images/product/printer.png') }}" alt="Printers">
                             </a>
                         </div>
-                        <div class="product-content-categories-2 product-content-blue text-center">
-                            <h5><a href="{{ url('/products/printer') }}">Printer</a></h5>
-                        </div>
                     </div>
-                </div>
-                <div class="product-plr-1">
-                    <div class="single-product-wrap">
-                        <div class="product-img product-img-border border-blue mb-20">
+                    <div class="home-category-content">
+                        <h3><a href="{{ url('/products/printer') }}">Printer</a></h3>
+                        <p>Reliable printers for clear output and smooth everyday workflows.</p>
+                        <a class="home-category-link" href="{{ url('/products/printer') }}">
+                            Explore Printers <i class="icon-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="home-category-card">
+                    <div class="home-category-icon"><i class="icon-screen-desktop"></i></div>
+                    <div class="home-category-media">
+                        <div class="product-img">
                             <a href="{{ url('/products/thin-client') }}">
-                                <img src="{{ asset('assets/images/product/thin_client.png') }}" alt="">
+                                <img src="{{ asset('assets/images/product/thin_client.png') }}" alt="Thin clients">
                             </a>
                         </div>
-                        <div class="product-content-categories-2 product-content-blue text-center">
-                            <h5><a href="{{ url('/products/thin-client') }}">Thin Client</a></h5>
-                        </div>
                     </div>
-                </div>
-                <div class="product-plr-1">
-                    <div class="single-product-wrap">
-                        <div class="product-img product-img-border border-blue mb-20">
+                    <div class="home-category-content">
+                        <h3><a href="{{ url('/products/thin-client') }}">Thin Client</a></h3>
+                        <p>Secure and efficient thin clients for streamlined workspaces.</p>
+                        <a class="home-category-link" href="{{ url('/products/thin-client') }}">
+                            Explore Thin Clients <i class="icon-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="home-category-card">
+                    <div class="home-category-icon"><i class="icon-screen-desktop"></i></div>
+                    <div class="home-category-media">
+                        <div class="product-img">
                             <a href="{{ url('/products/desktops') }}">
-                                <img src="{{ asset('assets/images/product/desktops.png') }}" alt="">
+                                <img src="{{ asset('assets/images/product/desktops.png') }}" alt="Desktop computers">
                             </a>
                         </div>
-                        <div class="product-content-categories-2 product-content-blue text-center">
-                            <h5><a href="{{ url('/products/desktops') }}">Desktops</a></h5>
-                        </div>
                     </div>
-                </div>
-                <div class="product-plr-1">
-                    <div class="single-product-wrap">
-                        <div class="product-img product-img-border border-blue mb-20">
+                    <div class="home-category-content">
+                        <h3><a href="{{ url('/products/desktops') }}">Desktops</a></h3>
+                        <p>Dependable desktop systems built for productive daily work.</p>
+                        <a class="home-category-link" href="{{ url('/products/desktops') }}">
+                            Explore Desktops <i class="icon-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="home-category-card">
+                    <div class="home-category-icon"><i class="icon-printer"></i></div>
+                    <div class="home-category-media">
+                        <div class="product-img">
                             <a href="{{ url('/products/scanner') }}">
-                                <img src="{{ asset('assets/images/product/scanner.png') }}" alt="">
+                                <img src="{{ asset('assets/images/product/scanner.png') }}" alt="Scanners">
                             </a>
                         </div>
-                        <div class="product-content-categories-2 product-content-blue text-center">
-                            <h5><a href="{{ url('/products/scanner') }}">Scanner</a></h5>
-                        </div>
                     </div>
-                </div>
+                    <div class="home-category-content">
+                        <h3><a href="{{ url('/products/scanner') }}">Scanner</a></h3>
+                        <p>Fast document scanning solutions for organized digital workflows.</p>
+                        <a class="home-category-link" href="{{ url('/products/scanner') }}">
+                            Explore Scanners <i class="icon-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
             </div>
         </div>
-    </div>
+    </section>
     {{-- Banner Area-1 --}}
-    <div class="banner-area pb-90">
+    <section class="banner-area home-promo-section home-promo-section--first">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="banner-wrap mb-30">
+            <div class="row home-promo-grid">
+                <div class="col-lg-6">
+                    <article class="banner-wrap home-promo-card">
                         <div class="banner-img banner-img-zoom">
-                            <a href="{{ url('/products/printer') }}"><img src="assets/images/banner/b1-area1.png"
-                                    alt=""></a>
+                            <a href="{{ url('/products/printer') }}">
+                                <img src="{{ asset('assets/images/banner/b1-area1.png') }}" alt="Printer solutions">
+                            </a>
                         </div>
                         <div class="banner-content-11 banner-content-11-modify">
-                            <h2><span>Made </span> For Better <br>Printing</h2>
-                            <p>Solutions designed for clear output <br> and smooth daily workflows.
-                            </p>
+                            <h2>
+                                <span class="home-promo-title-line"><b>Made</b> For</span>
+                                <span class="home-promo-title-line home-promo-title-accent">Better Printing</span>
+                            </h2>
+                            <p>Solutions designed for clear output and smooth daily workflows.</p>
                             <div class="btn-style-4">
                                 <a class="hover-red" href="{{ url('/products') }}">Explore Products <i
                                         class="icon-arrow-right"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </article>
                 </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="banner-wrap mb-30">
+                <div class="col-lg-6">
+                    <article class="banner-wrap home-promo-card">
                         <div class="banner-img banner-img-zoom">
-                            <a href="{{ url('/products/desktops') }}"><img src="assets/images/banner/b2-area1.png"
-                                    alt=""></a>
+                            <a href="{{ url('/products/desktops') }}">
+                                <img src="{{ asset('assets/images/banner/b2-area1.png') }}" alt="Desktop solutions">
+                            </a>
                         </div>
                         <div class="banner-content-11 banner-content-11-modify">
-                            <h2><span>Designed </span> To Do<br>More </h2>
-                            <p>Dependable desktop solutions <br>built for productivity, multitasking, <br>and modern
-                                workplace
-                                demands.</p>
+                            <h2>
+                                <span class="home-promo-title-line"><b>Designed</b></span>
+                                <span class="home-promo-title-line">To Do <strong>More</strong></span>
+                            </h2>
+                            <p>Dependable desktop solutions built for productivity, multitasking, and modern workplace demands.</p>
                             <div class="btn-style-4 ">
                                 <a class="hover-red" href="{{ url('/products') }}">Explore Products <i
                                         class="icon-arrow-right"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     {{-- Product Area--dynamics --}}
-    <div class="product-area home-dynamic-products-area pb-120">
+    <section class="product-area home-dynamic-products-area">
         <div class="container">
-            <div class="section-title-6 section-title-6-xs mb-25 text-center">
-                <h2>Selected For Your Needs</h2>
+            <div class="home-products-heading text-center">
+                <span class="home-section-eyebrow">Selected For Your Needs</span>
+                <h2>Shop Products by Your Needs</h2>
+                <p>Explore printers, scanners, desktops, and thin clients selected for home and office use.</p>
             </div>
-            <div class="tab-style-9 nav mb-60">
+            <div class="tab-style-9 nav home-product-tabs">
                 {{-- @dd($productTabs) --}}
                 @foreach ($productTabs as $tabKey => $tab)
+                    @php
+                        $tabLabel = strtolower($tab['label']);
+                        $tabIcon = str_contains($tabLabel, 'printer')
+                            ? 'icon-printer'
+                            : (str_contains($tabLabel, 'thin')
+                                ? 'icon-screen-desktop'
+                                : (str_contains($tabLabel, 'desktop')
+                                    ? 'icon-screen-desktop'
+                                    : (str_contains($tabLabel, 'scanner') ? 'icon-docs' : 'icon-star')));
+                    @endphp
                     <a class="{{ $loop->first ? 'active' : '' }}" href="#{{ $tabKey }}" data-bs-toggle="tab">
+                        <i class="{{ $tabIcon }}"></i>
                         {{ $tab['label'] }}
                     </a>
                 @endforeach
@@ -277,7 +321,7 @@
             <div class="tab-content jump">
                 @foreach ($productTabs as $tabKey => $tab)
                     <div id="{{ $tabKey }}" class="tab-pane {{ $loop->first ? 'active' : '' }}">
-                        <div class="product-slider-active-3 nav-style-3">
+                        <div class="home-needs-product-slider">
                             @forelse ($tab['products'] as $product)
                                 @php
                                     $homeProductType = \Illuminate\Support\Str::slug($product->parent_cat ?: 'printer');
@@ -322,15 +366,21 @@
                                             <h3 class="mrg-none">
                                                 <a href="{{ $homeProductUrl }}">{{ $product->name }}</a>
                                             </h3>
-                                            <div class="product-price-4">
-                                                <span
-                                                    class="new-price">&#8377;{{ number_format($product->price, 2) }}</span>
+                                            <div class="home-price-stock-row">
+                                                <div class="product-price-4">
+                                                    <span
+                                                        class="new-price">&#8377;{{ number_format($product->price, 2) }}</span>
+                                                </div>
+                                                <div class="home-card-stock-wrap">
+                                                    <span class="home-stock-badge">
+                                                        {{ $product->stock_status === 'available' ? 'In Stock' : 'Out of Stock' }}
+                                                    </span>
+                                                </div>
                                             </div>
-                                            <div class="home-card-stock-wrap">
-                                                <span class="home-stock-badge">
-                                                    {{ $product->stock_status === 'available' ? 'In Stock' : 'Out of Stock' }}
-                                                </span>
-                                            </div>
+                                            <a class="home-product-details-link" href="{{ $homeProductUrl }}">
+                                                <i class="icon-arrow-right-circle"></i>
+                                                View Details
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -345,58 +395,66 @@
 
             </div>
         </div>
-    </div>
+    </section>
     {{-- Banner Area-2 --}}
-    <div class="banner-area pb-90">
+    <section class="banner-area home-promo-section home-promo-section--second">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="banner-wrap mb-30">
+            <div class="row home-promo-grid">
+                <div class="col-lg-6">
+                    <article class="banner-wrap home-promo-card">
                         <div class="banner-img banner-img-zoom">
-                            <a href="{{ url('/products/thin-client') }}"><img src="assets/images/banner/b1-area2.png"
-                                    alt=""></a>
+                            <a href="{{ url('/products/thin-client') }}">
+                                <img src="{{ asset('assets/images/banner/b1-area2.png') }}" alt="Thin client solutions">
+                            </a>
                         </div>
                         <div class="banner-content-11 banner-content-11-modify">
-                            <h2><span>Small</span> Footprint, Big <br>Potential</h2>
-                            <p>Designed for streamlined access <br> and workplace efficiency.
-                            </p>
+                            <h2>
+                                <span class="home-promo-title-line"><b>Small</b> Footprint,</span>
+                                <span class="home-promo-title-line">Big <strong>Potential</strong></span>
+                            </h2>
+                            <p>Designed for streamlined access and workplace efficiency.</p>
                             <div class="btn-style-4">
                                 <a class="hover-red" href="{{ url('/products') }}">Explore Products<i
                                         class="icon-arrow-right"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </article>
                 </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="banner-wrap mb-30">
+                <div class="col-lg-6">
+                    <article class="banner-wrap home-promo-card">
                         <div class="banner-img banner-img-zoom">
-                            <a href="{{ url('/products/scanner') }}"><img src="assets/images/banner/b2-area2.png"
-                                    alt=""></a>
+                            <a href="{{ url('/products/scanner') }}">
+                                <img src="{{ asset('assets/images/banner/b2-area2.png') }}" alt="Scanner solutions">
+                            </a>
                         </div>
                         <div class="banner-content-11 banner-content-11-modify">
-                            <h2><span>Every </span> Detail <br>Preserved</h2>
-                            <p>Built to simplify document <br> digitization and organization.
-                            </p>
+                            <h2>
+                                <span class="home-promo-title-line"><b>Every</b> <strong>Detail</strong></span>
+                                <span class="home-promo-title-line">Preserved</span>
+                            </h2>
+                            <p>Built to simplify document digitization and organization.</p>
                             <div class="btn-style-4">
                                 <a class="hover-red" href="{{ url('/products') }}">Explore Products
                                     <i class="icon-arrow-right"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </div>
-    </div>
-    {{-- Suggested Products---dynamics --}}
-    <div class="product-area home-suggested-products-area pt-0 pb-0">
+    </section>
+    {{-- Suggested products --}}
+    <section class="product-area home-product-showcase home-suggested-products-area">
         <div class="container">
-            <div class="section-title-6 section-title-6-xs mb-60 text-center">
-                <h2>Sugguest today</h2>
+            <div class="home-showcase-heading text-center">
+                <span class="home-showcase-icon"><i class="icon-star"></i></span>
+                <h2>Suggested <span>For You</span></h2>
+                <p>Handpicked products selected around everyday home and workplace needs.</p>
             </div>
 
-            <div class="row">
+            <div class="home-showcase-grid">
 
-                @foreach ($suggestedProducts as $product)
+                @foreach ($suggestedProducts->take(5) as $product)
                     @php
                         $homeProductType = \Illuminate\Support\Str::slug($product->parent_cat ?: 'printer');
                         $homeProductType = $homeProductType === 'thin-client' ? 'thin-client' : $homeProductType;
@@ -417,9 +475,9 @@
 
                         $homeProductImage = $homeProductImages->first();
                     @endphp
-                    <div class="custom-col-5">
-                        <div class="single-product-wrap home-product-card mb-60">
-                            <div class="product-img product-img-zoom mb-15">
+                    <div>
+                        <article class="single-product-wrap home-product-card home-showcase-card">
+                            <div class="product-img product-img-zoom">
                                 <a href="{{ $homeProductUrl }}">
                                     @if ($homeProductImage)
                                         <img class="home-product-gallery-img"
@@ -444,6 +502,7 @@
                                     </a>
                                 </h3>
 
+                                <div class="home-price-stock-row">
                                 <div class="product-price-4">
                                     <span>₹{{ number_format($product->price, 2) }}</span>
                                 </div>
@@ -453,6 +512,11 @@
                                         {{ $product->stock_status === 'available' ? 'In Stock' : 'Out of Stock' }}
                                     </span>
                                 </div>
+                                </div>
+                                <a class="home-product-details-link" href="{{ $homeProductUrl }}">
+                                    <i class="icon-arrow-right-circle"></i>
+                                    View Details
+                                </a>
                             </div>
 
                             <div class="product-content-wrap-3 product-content-position-2 pro-position-2-padding-dec">
@@ -472,16 +536,92 @@
                                 </div>
                             </div>
 
-                        </div>
+                        </article>
                     </div>
                 @endforeach
 
             </div>
-            <div class="more-product-btn text-center mb-15">
-                <a href="{{ url('/products') }}">More Product</a>
+            <div class="more-product-btn text-center">
+                <a href="{{ url('/products') }}">View More Products <i class="icon-arrow-right"></i></a>
             </div>
         </div>
-    </div>
+    </section>
+
+    {{-- Additional products --}}
+    <section class="product-area home-product-showcase home-more-products-area">
+        <div class="container">
+            <div class="home-showcase-heading text-center">
+                <span class="home-showcase-icon"><i class="icon-handbag"></i></span>
+                <h2>More <span>Products</span></h2>
+                <p>Explore additional devices for home and office productivity.</p>
+            </div>
+
+            <div class="home-showcase-grid">
+                @foreach ($suggestedProducts->slice(5, 5) as $product)
+                    @php
+                        $homeProductType = \Illuminate\Support\Str::slug($product->parent_cat ?: 'printer');
+                        $homeProductType = $homeProductType === 'thin-client' ? 'thin-client' : $homeProductType;
+                        $homeProductUrl = url("products/{$homeProductType}/details", $product->slug);
+                        $homeProductImages = collect([$product->img1, $product->img2, $product->img3, $product->img4])
+                            ->filter()
+                            ->map(function ($image) {
+                                $candidates = array_filter([
+                                    $image,
+                                    'assets/images/product/' . ltrim($image, '/'),
+                                ]);
+
+                                return collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
+                            })
+                            ->filter()
+                            ->unique()
+                            ->values();
+                        $homeProductImage = $homeProductImages->first();
+                    @endphp
+
+                    <article class="single-product-wrap home-product-card home-showcase-card">
+                        <div class="product-img product-img-zoom">
+                            <a href="{{ $homeProductUrl }}">
+                                @if ($homeProductImage)
+                                    <img class="home-product-gallery-img"
+                                        src="{{ asset($homeProductImage) }}"
+                                        alt="{{ $product->name }}"
+                                        data-default-src="{{ asset($homeProductImage) }}"
+                                        data-gallery='@json($homeProductImages->map(fn ($image) => asset($image))->values())'>
+                                @else
+                                    <span class="home-product-image-missing">{{ $product->name }}</span>
+                                @endif
+                            </a>
+                        </div>
+
+                        <div class="product-content-wrap-3">
+                            <div class="home-product-category">{{ $product->parent_cat }}</div>
+                            <h3>
+                                <a href="{{ $homeProductUrl }}">{{ $product->name }}</a>
+                            </h3>
+                            <div class="home-price-stock-row">
+                                <div class="product-price-4">
+                                    <span>&#8377;{{ number_format($product->price, 2) }}</span>
+                                </div>
+                                <div class="home-card-stock-wrap">
+                                    <span class="home-stock-badge">
+                                        {{ $product->stock_status === 'available' ? 'In Stock' : 'Out of Stock' }}
+                                    </span>
+                                </div>
+                            </div>
+                            <a class="home-product-details-link" href="{{ $homeProductUrl }}">
+                                <i class="icon-arrow-right-circle"></i>
+                                View Details
+                            </a>
+                        </div>
+                    </article>
+                @endforeach
+            </div>
+
+            <div class="more-product-btn text-center">
+                <a href="{{ url('/products') }}">View More Products <i class="icon-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
 
     {{-- Deal Area --}}
     <div class="deal-area pt-150 pb-130 bg-img" style="background-image:url(assets/images/bg/deal-area-bg.png);">
@@ -502,14 +642,15 @@
         </div>
     </div>
     {{-- Insights and Blogs Area--dynamic --}}
-    <div class="blog-area bg-white mt-50">
+    <section class="blog-area home-insights-section">
         <div class="container">
-            <div class="section-title-2 text-center mb-45">
-                <h2><span>Ideas, Insights</span> & Blogs</h2>
-                <p>Explore perspectives, product highlights, and technology discussions shaping modern workplaces.</p>
+            <div class="home-insights-heading text-center">
+                <span class="home-insights-heading__line"></span>
+                <h2>Ideas, Insights & <span>Blogs</span></h2>
+                <p>Fresh perspectives, product highlights, and technology conversations shaping modern workplaces.</p>
             </div>
-            <div class="border-bottom-2 blog-area-pb home-blog-section">
-                <div class="row">
+            <div class="home-blog-section">
+                <div class="row home-blog-grid">
                     @foreach ($blogPosts as $blogPost)
                         @php
                             $homeBlogImages = collect([$blogPost->image1, $blogPost->image2, $blogPost->image3])
@@ -527,10 +668,13 @@
                                 ->values();
 
                             $homeBlogImage = $homeBlogImages->first();
+                            $homeBlogDate = $blogPost->inserted_at
+                                ? \Illuminate\Support\Carbon::parse($blogPost->inserted_at)->format('M d, Y')
+                                : null;
                         @endphp
                         <div class="col-lg-4 col-md-6">
-                            <div class="blog-wrap home-blog-card js-blog-gallery-card mb-30">
-                                <div class="blog-img mb-25">
+                            <article class="blog-wrap home-blog-card js-blog-gallery-card">
+                                <div class="blog-img">
                                     <a href="{{ url('/blogs', $blogPost->slug) }}">
                                         @if ($homeBlogImage)
                                             <img class="js-blog-gallery-img"
@@ -545,43 +689,94 @@
                                 </div>
 
                                 <div class="blog-content">
-                                    <div class="blog-meta">
-                                        <ul>
-                                            <li>
-                                                <a href="{{ url('/blogs', $blogPost->slug) }}">
-                                                    {{ $blogPost->heading }}
-                                                </a>
-                                            </li>
-                                        </ul>
+                                    <div class="home-blog-kicker">
+                                        <span>Technology</span>
+                                        @if ($homeBlogDate)
+                                            <i></i>
+                                            <time>{{ $homeBlogDate }}</time>
+                                        @endif
                                     </div>
 
-                                    <p>
-                                        {{ \Illuminate\Support\Str::limit(strip_tags($blogPost->content), 100, '...') }}
-                                    </p>
-
-                                    <div class="mt-2">
-                                        <a href="{{ url('/blogs', $blogPost->slug) }}"
-                                            class="btn btn-sm btn-primary">
-                                            Read More
+                                    <h3>
+                                        <a href="{{ url('/blogs', $blogPost->slug) }}">
+                                            {{ $blogPost->heading }}
                                         </a>
-                                    </div>
+                                    </h3>
+
+                                    <p>{{ \Illuminate\Support\Str::limit(strip_tags($blogPost->content), 120, '...') }}</p>
+
+                                    <a href="{{ url('/blogs', $blogPost->slug) }}" class="home-blog-read">
+                                        Read More <i class="icon-arrow-right"></i>
+                                    </a>
                                 </div>
-                            </div>
+                            </article>
                         </div>
                     @endforeach
 
                 </div>
                 <div class="more-blogs-btn text-center">
-                    <a href="{{ url('/blogs') }}">More Blogs</a>
+                    <a href="{{ url('/blogs') }}">Explore More Blogs <i class="icon-arrow-right"></i></a>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
 @endsection
 
 @push('scripts')
     <script>
+        (function ($) {
+            var sliders = $('.home-needs-product-slider');
+
+            sliders.not('.slick-initialized').slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                infinite: true,
+                autoplay: true,
+                autoplaySpeed: 2200,
+                speed: 550,
+                arrows: false,
+                dots: true,
+                pauseOnHover: true,
+                pauseOnFocus: true,
+                adaptiveHeight: false,
+                responsive: [
+                    {
+                        breakpoint: 1199,
+                        settings: {
+                            slidesToShow: 3
+                        }
+                    },
+                    {
+                        breakpoint: 767,
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 575,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+
+            sliders.each(function () {
+                if (!$(this).closest('.tab-pane').hasClass('active')) {
+                    $(this).slick('slickPause');
+                }
+            });
+
+            $('.home-product-tabs a[data-bs-toggle="tab"]').on('shown.bs.tab', function (event) {
+                sliders.slick('slickPause');
+
+                var activeSlider = $($(event.target).attr('href')).find('.home-needs-product-slider');
+                activeSlider.slick('setPosition');
+                activeSlider.slick('slickPlay');
+            });
+        })(jQuery);
+
         document.querySelectorAll('.home-product-card').forEach(function (card) {
             var image = card.querySelector('.home-product-gallery-img');
 

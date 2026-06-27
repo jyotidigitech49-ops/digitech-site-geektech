@@ -19,11 +19,21 @@ use App\Http\Controllers\QuoteRequestPolicyController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\TermsConditionsController;
 use App\Http\Controllers\WarrantyManufacturerInformationController;
+use Illuminate\Support\Facades\Artisan;
 
 Route::get('/welcome', function () {
     return view('welcome');
 });
 
+// cache clear route
+Route::get('/clear-cache', function () {
+    $exitCode = Artisan::call('cache:clear');
+    $exitCode = Artisan::call('config:clear');
+    $exitCode = Artisan::call('config:cache');
+    $exitCode = Artisan::call('view:clear');
+    $exitCode = Artisan::call('route:clear');
+    return 'Cache cleared successfully!';
+});
 
 // about us page route
 Route::get('/about-us', [AboutController::class, 'index']);

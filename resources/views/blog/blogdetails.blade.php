@@ -12,85 +12,120 @@
         $detailImages = $blogImages->slice(1)->values();
     @endphp
 
-    <div class="breadcrumb-area bg-gray blog-details-breadcrumb">
-        <div class="container">
-            <div class="breadcrumb-content text-center">
-                <ul>
-                    <li>
-                        <a href="{{ url('/') }}">Home</a>
-                    </li>
-                    <li class="active">{{ $blogDetails['heading'] ?? 'Blog details' }}</li>
-                </ul>
+    <section class="blog-details-banner">
+        <div class="blog-details-banner__overlay"></div>
+        <div class="blog-details-banner__content">
+            <h1>Blog Details</h1>
+            <div class="blog-details-banner__breadcrumb">
+                <a href="{{ url('/') }}">HOME</a>
+                <span>//</span>
+                <a href="{{ url('/blogs') }}">BLOGS</a>
+                <span>//</span>
+                <span>ARTICLE</span>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="blog-area blog-details-page pt-120 pb-120">
+    <main class="blog-details-page">
         <div class="container">
-            <div class="row flex-row-reverse">
-                <div class="col-lg-12">
-                    <div class="blog-details-wrapper">
-                        <div class="blog-details-top">
-                            <div class="blog-details-img js-blog-gallery-card">
-                                @if ($mainBlogImage)
-                                    <img class="js-blog-gallery-img"
-                                        alt="{{ $blogDetails['heading'] ?? 'Blog image' }}"
-                                        src="{{ $mainBlogImage }}"
-                                        data-default-src="{{ $mainBlogImage }}"
-                                        data-gallery='@json($blogImages)'>
-                                @else
-                                    <span class="blog-details-image-missing">{{ $blogDetails['heading'] ?? 'Blog image' }}</span>
-                                @endif
-                            </div>
-                            <div class="blog-details-content">
-                                <div class="blog-meta-2">
-                                    <ul>
-                                        <li>{{ $blogDetails['category'] ?? 'News' }}</li>
-                                        @if (! empty($blogDetails['date']))
-                                            <li>{{ $blogDetails['date'] }}</li>
-                                        @endif
-                                    </ul>
-                                </div>
-
-                                <h1>{{ $blogDetails['heading'] }}</h1>
-                                {!! $blogDetails['content'] !!}
-                            </div>
-                        </div>
-
-                        @if ($detailImages->isNotEmpty() || ! empty($blogDetails['excerpt']))
-                            <div class="dec-img-wrapper">
-                                @if ($detailImages->isNotEmpty())
-                                    <div class="row">
-                                        @foreach ($detailImages as $detailImage)
-                                            <div class="col-md-6 col-sm-6 col-12">
-                                                <div class="dec-img mb-50">
-                                                    <img alt="{{ $blogDetails['heading'] ?? 'Blog image' }}" src="{{ $detailImage }}">
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                @endif
-
-                                @if (! empty($blogDetails['excerpt']))
-                                    <p>{{ $blogDetails['excerpt'] }}</p>
-                                @endif
-                            </div>
+            <article class="blog-article">
+                <header class="blog-article-cover">
+                    <div class="blog-article-cover__media">
+                        @if ($mainBlogImage)
+                            <img
+                                alt="{{ $blogDetails['heading'] ?? 'Blog image' }}"
+                                src="{{ $mainBlogImage }}">
+                        @else
+                            <span class="blog-details-image-missing">{{ $blogDetails['heading'] ?? 'Blog image' }}</span>
                         @endif
+                    </div>
 
-                        <div class="next-previous-post">
-                            @if (! empty($blogDetails['previous']))
-                                <a href="{{ $blogDetails['previous']['url'] }}"><i class="fa fa-angle-left"></i> prev post</a>
-                            @else
-                                <span></span>
-                            @endif
-
-                            @if (! empty($blogDetails['next']))
-                                <a href="{{ $blogDetails['next']['url'] }}">next post <i class="fa fa-angle-right"></i></a>
+                    <div class="blog-article-cover__content">
+                        <div class="blog-article-meta">
+                            <span><i class="icon-book-open"></i>{{ $blogDetails['category'] ?? 'News' }}</span>
+                            @if (! empty($blogDetails['date']))
+                                <span><i class="icon-calendar"></i>{{ $blogDetails['date'] }}</span>
                             @endif
                         </div>
+                        <h2>{{ $blogDetails['heading'] }}</h2>
+                        @if (! empty($blogDetails['excerpt']))
+                            <p>{{ $blogDetails['excerpt'] }}</p>
+                        @endif
+                        <a class="blog-back-link" href="{{ url('/blogs') }}">
+                            <i class="icon-grid"></i>
+                            All Blogs
+                        </a>
+                    </div>
+                </header>
+
+                <div class="blog-article-body">
+                    <div class="blog-article-body__heading">
+                        <span>Article</span>
+                        <h3>Complete Details</h3>
+                    </div>
+                    <div class="blog-article-sections">
+                        @forelse ($blogDetails['content_sections'] ?? [] as $section)
+                            <section class="blog-article-section">
+                                <h4>{{ $section['title'] }}</h4>
+                                <div class="blog-article-section__content">
+                                    {!! $section['content'] !!}
+                                </div>
+                            </section>
+                        @empty
+                            <section class="blog-article-section">
+                                <h4>Article Details</h4>
+                                <div class="blog-article-section__content">
+                                    {!! $blogDetails['content'] !!}
+                                </div>
+                            </section>
+                        @endforelse
                     </div>
                 </div>
-            </div>
+
+                @if ($detailImages->isNotEmpty())
+                    <section class="blog-detail-gallery" aria-label="Article gallery">
+                        <div class="blog-detail-gallery__heading">
+                            <span>Gallery</span>
+                            <h3>More From This Story</h3>
+                        </div>
+                        <div class="row">
+                            @foreach ($detailImages as $detailImage)
+                                <div class="col-md-6 col-12">
+                                    <div class="blog-detail-gallery__image">
+                                        <img alt="{{ $blogDetails['heading'] ?? 'Blog image' }}" src="{{ $detailImage }}">
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </section>
+                @endif
+
+                <nav class="blog-post-navigation" aria-label="Blog post navigation">
+                    @if (! empty($blogDetails['previous']))
+                        <a class="blog-post-navigation__item blog-post-navigation__item--previous"
+                            href="{{ $blogDetails['previous']['url'] }}">
+                            <i class="icon-arrow-left"></i>
+                            <span>
+                                <small>Previous Article</small>
+                                <strong>{{ $blogDetails['previous']['heading'] }}</strong>
+                            </span>
+                        </a>
+                    @else
+                        <span></span>
+                    @endif
+
+                    @if (! empty($blogDetails['next']))
+                        <a class="blog-post-navigation__item blog-post-navigation__item--next"
+                            href="{{ $blogDetails['next']['url'] }}">
+                            <span>
+                                <small>Next Article</small>
+                                <strong>{{ $blogDetails['next']['heading'] }}</strong>
+                            </span>
+                            <i class="icon-arrow-right"></i>
+                        </a>
+                    @endif
+                </nav>
+            </article>
         </div>
-    </div>
+    </main>
 @endsection

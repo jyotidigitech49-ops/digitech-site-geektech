@@ -26,6 +26,18 @@ class BlogController extends Controller
                 ];
             });
 
+        // dd([
+        //     'page' => 'All blogs page',
+        //     'route' => url('/blogs'),
+        //     'blogs' => Blog::query()
+        //         ->where('status', 'A')
+        //         ->orderBy('id', 'desc')
+        //         ->get()
+        //         ->map(fn (Blog $blog) => $this->blogImageDebugData($blog))
+        //         ->values()
+        //         ->all(),
+        // ]);
+
         return view('blog.index', compact('blogs'));
     }
 
@@ -53,6 +65,7 @@ class BlogController extends Controller
             'heading' => $blog->heading,
             'slug' => $blog->slug,
             'content' => $blog->content,
+            'content_sections' => $this->articleSections((string) $blog->content),
             'excerpt' => Str::limit(strip_tags($blog->content), 180),
             'date' => $blog->inserted_at ? Carbon::parse($blog->inserted_at)->format('M d, Y') : null,
             'category' => 'News',
@@ -67,9 +80,67 @@ class BlogController extends Controller
             ] : null,
         ];
 
-        // dd($blogDetails);
+        // dd([
+        //     'page' => 'Blog details page',
+        //     'route' => url('blogs', $blog->slug),
+        //     'blog' => $this->blogImageDebugData($blog),
+        // ]);
 
         return view('blog.blogdetails', compact('blogDetails'));
+    }
+
+    private function articleSections(string $content): array
+    {
+        if (trim($content) === '') {
+            return [];
+        }
+
+        $document = new \DOMDocument('1.0', 'UTF-8');
+        $previousState = libxml_use_internal_errors(true);
+        $document->loadHTML(
+            '<?xml encoding="UTF-8"><div id="article-content-root">' . $content . '</div>',
+            LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+        );
+        libxml_clear_errors();
+        libxml_use_internal_errors($previousState);
+
+        $root = $document->getElementById('article-content-root');
+
+        if (! $root) {
+            return [['title' => 'Overview', 'content' => $content]];
+        }
+
+        $sections = [];
+        $currentTitle = 'Overview';
+        $currentContent = '';
+
+        foreach (iterator_to_array($root->childNodes) as $node) {
+            $tagName = $node instanceof \DOMElement ? strtolower($node->tagName) : null;
+
+            if (in_array($tagName, ['h2', 'h3', 'h4'], true)) {
+                if (trim(strip_tags($currentContent)) !== '') {
+                    $sections[] = [
+                        'title' => $currentTitle,
+                        'content' => $currentContent,
+                    ];
+                }
+
+                $currentTitle = trim($node->textContent) ?: 'Article Details';
+                $currentContent = '';
+                continue;
+            }
+
+            $currentContent .= $document->saveHTML($node);
+        }
+
+        if (trim(strip_tags($currentContent)) !== '') {
+            $sections[] = [
+                'title' => $currentTitle,
+                'content' => $currentContent,
+            ];
+        }
+
+        return $sections ?: [['title' => 'Overview', 'content' => $content]];
     }
 
     private function blogImages(Blog $blog): array
@@ -90,5 +161,31 @@ class BlogController extends Controller
             ->map(fn ($image) => asset($image))
             ->values()
             ->all();
+    }
+
+    private function blogImageDebugData(Blog $blog): array
+    {
+        $images = collect([$blog->image1, $blog->image2, $blog->image3])
+            ->filter()
+            ->values();
+
+        $resolved = $images->mapWithKeys(function ($image) {
+            $image = ltrim((string) $image, '/');
+            $candidates = str_starts_with($image, 'assets/')
+                ? [$image]
+                : [$image, 'assets/images/blog/' . $image];
+            $path = collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
+
+            return [$image => $path ? asset($path) : null];
+        });
+
+        return [
+            'id' => $blog->id,
+            'heading' => $blog->heading,
+            'slug' => $blog->slug,
+            'db_images' => $images->all(),
+            'resolved_urls' => $resolved->filter()->values()->all(),
+            'missing_images' => $resolved->filter(fn ($url) => $url === null)->keys()->all(),
+        ];
     }
 }
