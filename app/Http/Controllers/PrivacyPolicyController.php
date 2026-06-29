@@ -135,6 +135,8 @@ class PrivacyPolicyController extends Controller
             ],
         ];
 
-        return view('policy.privacy', compact('policy'));
+        $bannerImage = asset('assets/images/common-banner/comm-banner.png');
+
+        return view('policy.privacy', compact('policy', 'bannerImage'));
     }
 }

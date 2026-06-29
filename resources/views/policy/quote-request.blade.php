@@ -6,7 +6,7 @@
 @endpush
 
 @section('content')
-    <section class="quote-policy-banner">
+    <section class="quote-policy-banner" style="background-image: url('{{ $bannerImage }}');">
         <div class="quote-policy-banner__overlay"></div>
         <div class="quote-policy-banner__content">
             <h1>{{ $quotePolicy['title'] }}</h1>

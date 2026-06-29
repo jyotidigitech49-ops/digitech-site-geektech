@@ -6,7 +6,7 @@
 @endpush
 
 @section('content')
-    <section class="product-info-policy-banner">
+    <section class="product-info-policy-banner" style="background-image: url('{{ $bannerImage }}');">
         <div class="product-info-policy-banner__overlay"></div>
         <div class="product-info-policy-banner__content">
             <h1>{{ $productDisclaimer['title'] }}</h1>

@@ -120,6 +120,8 @@ class QuoteRequestPolicyController extends Controller
             ],
         ];
 
-        return view('policy.quote-request', compact('quotePolicy'));
+        $bannerImage = asset('assets/images/common-banner/comm-banner.png');
+
+        return view('policy.quote-request', compact('quotePolicy', 'bannerImage'));
     }
 }

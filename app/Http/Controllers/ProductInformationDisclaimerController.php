@@ -122,6 +122,8 @@ class ProductInformationDisclaimerController extends Controller
             ],
         ];
 
-        return view('policy.product-information-disclaimer', compact('productDisclaimer'));
+        $bannerImage = asset('assets/images/common-banner/comm-banner.png');
+
+        return view('policy.product-information-disclaimer', compact('productDisclaimer', 'bannerImage'));
     }
 }

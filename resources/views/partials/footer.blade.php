@@ -14,12 +14,9 @@
 
                         <div class="footer-info-list">
                             <p>
-                                Eagles Repair is an independent technology information platform.
-                                All trademarks, product names, logos, and brand references are the
-                                property of their respective owners and are used solely for
-                                identification and informational purposes. Eagles Repair does not
-                                claim ownership of any third-party trademarks unless expressly
-                                stated.
+                                Eagles Repair is an information platform offering technology resources, product
+                                insights, and
+                                helpful content across multiple technology categories.
                             </p>
                         </div>
                     </div>
@@ -56,9 +53,11 @@
                                 <li><a href="{{ url('/policy/trademark-disclaimer') }}">Trademark Disclaimer</a></li>
                                 <li><a href="{{ url('/policy/cookie-policy') }}">Cookie Policy</a></li>
                                 <li><a href="{{ url('/policy/quote-request-policy') }}">Quote Request Policy</a></li>
-                                <li><a href="{{ url('/policy/product-information-disclaimer') }}">Product Information Disclaimer</a></li>
+                                <li><a href="{{ url('/policy/product-information-disclaimer') }}">Product Information
+                                        Disclaimer</a></li>
                                 <li><a href="{{ url('/policy/dmca-copyright-policy') }}">DMCA Copyright Policy</a></li>
-                                <li><a href="{{ url('/policy/warranty-manufacturer-information') }}">Warranty and Manufacturer Information</a></li>
+                                <li><a href="{{ url('/policy/warranty-manufacturer-information') }}">Warranty and
+                                        Manufacturer Information</a></li>
                             </ul>
                         </div>
                     </div>
@@ -71,13 +70,17 @@
 
                         <div class="footer-info-list">
                             <ul class="footer-contact-list">
-                                <li><i class="icon-location-pin"></i><span>196 Tosto RD<br>Beaufort, NC 28526</span></li>
-                                <li><i class="icon-envelope"></i><a href="mailto:info@geektechbuzz.us">info@geektechbuzz.us</a></li>
+                                <li><i class="icon-location-pin"></i><span>196 Tosto RD<br>Beaufort, NC 28526</span>
+                                </li>
+                                <li><i class="icon-envelope"></i><a
+                                        href="mailto:info@geektechbuzz.us">info@geektechbuzz.us</a></li>
                             </ul>
 
                             <div class="footer-trust-badges">
-                                <img src="{{ asset('assets/images/trust-badges/google-safe-browsing.png') }}" alt="Google Safe Browsing">
-                                <img src="{{ asset('assets/images/trust-badges/sectigo-secured.png') }}" alt="Secured by Sectigo">
+                                <img src="{{ asset('assets/images/trust-badges/google-safe-browsing.png') }}"
+                                    alt="Google Safe Browsing">
+                                <img src="{{ asset('assets/images/trust-badges/sectigo-secured.png') }}"
+                                    alt="Secured by Sectigo">
                             </div>
                         </div>
                     </div>
@@ -90,8 +93,12 @@
             <div class="row">
                 <div class="col-12">
                     <p class="footer-note">
-                        Eagles Repair is an information platform offering technology resources, product insights, and
-                        helpful content across multiple technology categories.
+                        Eagles Repair is an independent technology information platform.
+                        All trademarks, product names, logos, and brand references are the
+                        property of their respective owners and are used solely for
+                        identification and informational purposes. Eagles Repair does not
+                        claim ownership of any third-party trademarks unless expressly
+                        stated.
                     </p>
                 </div>
             </div>
@@ -105,7 +112,8 @@
 
                 <div class="col-lg-6 col-md-6 text-lg-end text-center mb-3 mb-md-0">
                     <div class="payment-img footer-payment-img">
-                        <img src="{{ asset('assets/images/icon-img/payment-img.png') }}" alt="Accepted payment methods">
+                        <img src="{{ asset('assets/images/icon-img/payment-img.png') }}"
+                            alt="Accepted payment methods">
                     </div>
                 </div>
 

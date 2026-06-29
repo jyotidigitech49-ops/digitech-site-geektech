@@ -6,7 +6,7 @@
 @endpush
 
 @section('content')
-    <section class="warranty-policy-banner">
+    <section class="warranty-policy-banner" style="background-image: url('{{ $bannerImage }}');">
         <div class="warranty-policy-banner__overlay"></div>
         <div class="warranty-policy-banner__content">
             <h1>{{ $warrantyPolicy['title'] }}</h1>

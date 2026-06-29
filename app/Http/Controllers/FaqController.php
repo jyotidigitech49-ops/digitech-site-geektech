@@ -49,6 +49,8 @@ class FaqController extends Controller
             ],
         ];
 
-        return view('faq.index', compact('faqs'));
+        $bannerImage = asset('assets/images/common-banner/comm-banner.png');
+
+        return view('faq.index', compact('faqs', 'bannerImage'));
     }
 }

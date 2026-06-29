@@ -164,6 +164,8 @@ class TermsConditionsController extends Controller
             ],
         ];
 
-        return view('policy.terms', compact('terms'));
+        $bannerImage = asset('assets/images/common-banner/comm-banner.png');
+
+        return view('policy.terms', compact('terms', 'bannerImage'));
     }
 }

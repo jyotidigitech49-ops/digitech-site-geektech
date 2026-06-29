@@ -7,7 +7,7 @@
 
 @section('content')
 
-    <section class="contact-banner">
+    <section class="contact-banner" style="background-image: url('{{ $bannerImage }}');">
         <div class="contact-banner__overlay"></div>
         <div class="contact-banner__content">
             <h1>Contact Us</h1>

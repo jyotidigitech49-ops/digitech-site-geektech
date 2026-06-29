@@ -139,6 +139,8 @@ class DmcaCopyrightPolicyController extends Controller
             ],
         ];
 
-        return view('policy.dmca-copyright-policy', compact('dmcaPolicy'));
+        $bannerImage = asset('assets/images/common-banner/comm-banner.png');
+
+        return view('policy.dmca-copyright-policy', compact('dmcaPolicy', 'bannerImage'));
     }
 }

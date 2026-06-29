@@ -113,6 +113,8 @@ class DisclaimerController extends Controller
             ],
         ];
 
-        return view('policy.disclaimer', compact('disclaimer'));
+        $bannerImage = asset('assets/images/common-banner/comm-banner.png');
+
+        return view('policy.disclaimer', compact('disclaimer', 'bannerImage'));
     }
 }

@@ -6,7 +6,7 @@
 @endpush
 
 @section('content')
-    <section class="dmca-policy-banner">
+    <section class="dmca-policy-banner" style="background-image: url('{{ $bannerImage }}');">
         <div class="dmca-policy-banner__overlay"></div>
         <div class="dmca-policy-banner__content">
             <h1>{{ $dmcaPolicy['title'] }}</h1>

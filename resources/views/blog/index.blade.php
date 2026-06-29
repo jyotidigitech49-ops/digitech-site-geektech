@@ -7,7 +7,7 @@
 
 @section('content')
 
-    <section class="blog-list-banner">
+    <section class="blog-list-banner" style="background-image: url('{{ $bannerImage }}');">
         <div class="blog-list-banner__overlay"></div>
         <div class="blog-list-banner__content">
             <h1>Blogs</h1>

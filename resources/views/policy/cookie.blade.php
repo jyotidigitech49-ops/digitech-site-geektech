@@ -6,7 +6,7 @@
 @endpush
 
 @section('content')
-    <section class="cookie-banner">
+    <section class="cookie-banner" style="background-image: url('{{ $bannerImage }}');">
         <div class="cookie-banner__overlay"></div>
         <div class="cookie-banner__content">
             <h1>{{ $cookiePolicy['title'] }}</h1>

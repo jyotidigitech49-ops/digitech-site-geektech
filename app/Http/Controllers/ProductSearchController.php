@@ -47,6 +47,7 @@ class ProductSearchController extends Controller
             ->get();
 
         $displaySearch = $searchText ?: 'All Products';
+        $bannerImage = asset('assets/images/common-banner/comm-banner.png');
 
         return view('products.search_results', compact(
             'categories',
@@ -54,7 +55,8 @@ class ProductSearchController extends Controller
             'displaySearch',
             'searchText',
             'categoryFilter',
-            'matchedCategory'
+            'matchedCategory',
+            'bannerImage'
         ));
     }
 

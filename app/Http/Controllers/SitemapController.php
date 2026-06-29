@@ -11,7 +11,7 @@ class SitemapController extends Controller
             ['title' => 'About Us', 'url' => url('/about-us')],
             ['title' => 'Products', 'url' => url('/products')],
             ['title' => 'Blogs', 'url' => url('/blogs')],
-            ['title' => 'Contact', 'url' => url('/contact-us')],
+            ['title' => 'Contact Us', 'url' => url('/contact-us')],
         ];
 
         $productCategories = [
@@ -48,6 +48,8 @@ class SitemapController extends Controller
             ['title' => 'Authorized Partner Disclosure', 'url' => url('/authorized-partner-disclosure')],
         ];
 
-        return view('sitemap.index', compact('mainPages', 'productCategories', 'policies'));
+        $bannerImage = asset('assets/images/common-banner/comm-banner.png');
+
+        return view('sitemap.index', compact('mainPages', 'productCategories', 'policies', 'bannerImage'));
     }
 }

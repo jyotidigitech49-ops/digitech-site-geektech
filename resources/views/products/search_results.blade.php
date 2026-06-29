@@ -19,7 +19,8 @@
         };
     @endphp
 
-    <section class="search-hero-area">
+    <section class="search-hero-area"
+        style="background-image: linear-gradient(90deg, rgba(0, 35, 84, 0.92) 0%, rgba(0, 78, 173, 0.82) 48%, rgba(0, 0, 0, 0.38) 100%), url('{{ $bannerImage }}'); background-position: center top;">
         <div class="container">
             <div class="search-hero-content">
                 <span class="search-hero-label">Product Search</span>
@@ -72,7 +73,7 @@
                             @endphp
 
                             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                                <div class="single-product-wrap printer-product-card search-product-card js-product-gallery-card mb-35">
+                                <article class="single-product-wrap printer-product-card theme-product-card search-product-card js-product-gallery-card mb-35">
                                     <div class="product-img product-img-zoom mb-15">
                                         <a href="{{ url("products/{$productTypeUrl}/details", $product->slug) }}">
                                             @if ($productImage)
@@ -87,7 +88,7 @@
                                         </a>
                                     </div>
 
-                                    <div class="product-content-wrap-2 text-center">
+                                    <div class="product-content-wrap-2 theme-product-card__content">
                                         <div class="printer-product-category">
                                             {{ $product->category_name ?? $product->parent_cat }}
                                         </div>
@@ -100,34 +101,17 @@
 
                                         <div class="product-price-2 printer-product-price-stock">
                                             <span>${{ number_format($product->price, 2) }}</span>
-                                            <span class="printer-stock-badge">
+                                            <span class="printer-stock-badge {{ $product->stock_status === 'available' ? '' : 'is-unavailable' }}">
                                                 {{ $product->stock_status === 'available' ? 'In Stock' : 'Out of Stock' }}
                                             </span>
                                         </div>
+                                        <a class="theme-product-card__link"
+                                            href="{{ url("products/{$productTypeUrl}/details", $product->slug) }}">
+                                            <i class="icon-arrow-right-circle"></i>
+                                            View Details
+                                        </a>
                                     </div>
-
-                                    <div class="product-content-wrap-2 product-content-position text-center">
-                                        <div class="printer-product-category">
-                                            {{ $product->category_name ?? $product->parent_cat }}
-                                        </div>
-
-                                        <h3>
-                                            <a href="{{ url("products/{$productTypeUrl}/details", $product->slug) }}">
-                                                {{ $product->name }}
-                                            </a>
-                                        </h3>
-
-                                        <div class="product-price-2">
-                                            <span>${{ number_format($product->price, 2) }}</span>
-                                        </div>
-
-                                        <div class="pro-add-to-cart">
-                                            <a href="{{ url("products/{$productTypeUrl}/details", $product->slug) }}">
-                                                <button title="View Details">View Details</button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                </article>
                             </div>
                         @endforeach
                     </div>

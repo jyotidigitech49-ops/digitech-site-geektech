@@ -10,7 +10,9 @@ class ContactUsController extends Controller
 {
     public function index()
     {
-        return view('contactus.contact');
+        $bannerImage = asset('assets/images/common-banner/comm-banner.png');
+
+        return view('contactus.contact', compact('bannerImage'));
     }
 
     public function store(Request $request)

@@ -122,6 +122,8 @@ class WarrantyManufacturerInformationController extends Controller
             ],
         ];
 
-        return view('policy.warranty-manufacturer-information', compact('warrantyPolicy'));
+        $bannerImage = asset('assets/images/common-banner/comm-banner.png');
+
+        return view('policy.warranty-manufacturer-information', compact('warrantyPolicy', 'bannerImage'));
     }
 }

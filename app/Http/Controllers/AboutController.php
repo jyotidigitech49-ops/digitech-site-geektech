@@ -85,6 +85,8 @@ class AboutController extends Controller
             'url' => url('/products'),
         ];
 
-        return view('about.aboutus', compact('intro', 'features', 'banners', 'collection', 'whyChoose', 'cta'));
+        $bannerImage = asset('assets/images/common-banner/comm-banner.png');
+
+        return view('about.aboutus', compact('intro', 'features', 'banners', 'collection', 'whyChoose', 'cta', 'bannerImage'));
     }
 }

@@ -6,7 +6,7 @@
 @endpush
 
 @section('content')
-    <section class="privacy-banner">
+    <section class="privacy-banner" style="background-image: url('{{ $bannerImage }}');">
         <div class="privacy-banner__overlay"></div>
         <div class="privacy-banner__content">
             <h1>{{ $policy['title'] }}</h1>

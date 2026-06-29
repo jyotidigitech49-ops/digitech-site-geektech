@@ -12,7 +12,7 @@
         $detailImages = $blogImages->slice(1)->values();
     @endphp
 
-    <section class="blog-details-banner">
+    <section class="blog-details-banner" style="background-image: url('{{ $bannerImage }}');">
         <div class="blog-details-banner__overlay"></div>
         <div class="blog-details-banner__content">
             <h1>Blog Details</h1>

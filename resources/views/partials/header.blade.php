@@ -84,7 +84,7 @@
 
                                             </li>
                                             <li><a href="{{ url('/blogs') }}">BLOGS</a></li>
-                                            <li><a href="{{ url('contact-us') }}">CONTACT</a></li>
+                                            <li><a href="{{ url('contact-us') }}">CONTACT US</a></li>
                                         </ul>
                                     </nav>
                                 </div>

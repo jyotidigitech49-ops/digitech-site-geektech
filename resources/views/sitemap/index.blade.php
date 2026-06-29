@@ -6,24 +6,65 @@
 @endpush
 
 @section('content')
+    <section class="sitemap-hero" style="background-image: url('{{ $bannerImage }}');">
+        <div class="sitemap-hero__overlay"></div>
+        <div class="sitemap-hero__glow"></div>
+        <div class="sitemap-hero__content">
+            <span class="sitemap-hero__eyebrow">Find your way</span>
+            <h1>Website Sitemap</h1>
+            <p>Every useful corner of Eagles Repair, organized in one simple place.</p>
+            <div class="sitemap-hero__breadcrumb">
+                <a href="{{ url('/') }}">HOME</a>
+                <span>//</span>
+                <span>SITEMAP</span>
+            </div>
+        </div>
+    </section>
+
     <section class="sitemap-page">
         <div class="sitemap-shell">
-            <div class="sitemap-heading">
-                <span class="sitemap-kicker">Explore</span>
-                <h1>Website Sitemap</h1>
-                <p>Easily explore all pages, categories, products, blogs, and important resources of Geek Techbuzz.</p>
+            <div class="sitemap-toolbar">
+                <div class="sitemap-toolbar__copy">
+                    <span>Quick navigator</span>
+                    <strong>Where would you like to go?</strong>
+                </div>
+                <div class="sitemap-search">
+                    <span class="sitemap-search__icon"></span>
+                    <input type="search" id="sitemapSearch" placeholder="Search pages, products or policies..."
+                        aria-label="Search sitemap links">
+                    <kbd>⌘ K</kbd>
+                </div>
             </div>
 
-            <div class="sitemap-search">
-                <input type="search" id="sitemapSearch" placeholder="Search sitemap links..." aria-label="Search sitemap links">
-                <span class="sitemap-search__icon"></span>
+            <div class="sitemap-overview" aria-label="Sitemap overview">
+                <div class="sitemap-overview__intro">
+                    <span class="sitemap-kicker">Explore the website</span>
+                    <h2>Everything is only a click away.</h2>
+                    <p>Browse our core pages, jump into product categories, or review important website information.</p>
+                </div>
+                <div class="sitemap-stat">
+                    <strong>{{ count($mainPages) }}</strong>
+                    <span>Main pages</span>
+                </div>
+                <div class="sitemap-stat">
+                    <strong>{{ count($productCategories) }}</strong>
+                    <span>Categories</span>
+                </div>
+                <div class="sitemap-stat">
+                    <strong>{{ count($policies) }}</strong>
+                    <span>Policies</span>
+                </div>
             </div>
 
             <div class="sitemap-grid" id="sitemapGrid">
-                <article class="sitemap-card">
+                <article class="sitemap-card sitemap-card--pages">
                     <div class="sitemap-card__top">
                         <span class="sitemap-card__mark sitemap-card__mark--pages"></span>
-                        <h2>Main Pages</h2>
+                        <div>
+                            <span class="sitemap-card__label">Start here</span>
+                            <h2>Main Pages</h2>
+                        </div>
+                        <span class="sitemap-card__count">{{ count($mainPages) }}</span>
                     </div>
                     <ul class="sitemap-list">
                         @foreach ($mainPages as $page)
@@ -34,10 +75,14 @@
                     </ul>
                 </article>
 
-                <article class="sitemap-card sitemap-card--featured">
+                <article class="sitemap-card sitemap-card--featured sitemap-card--products">
                     <div class="sitemap-card__top">
                         <span class="sitemap-card__mark sitemap-card__mark--products"></span>
-                        <h2>Product Categories</h2>
+                        <div>
+                            <span class="sitemap-card__label">Browse solutions</span>
+                            <h2>Product Categories</h2>
+                        </div>
+                        <span class="sitemap-card__count">{{ count($productCategories) }}</span>
                     </div>
                     <ul class="sitemap-list sitemap-list--tree">
                         @foreach ($productCategories as $category)
@@ -58,10 +103,14 @@
                     </ul>
                 </article>
 
-                <article class="sitemap-card">
+                <article class="sitemap-card sitemap-card--policies">
                     <div class="sitemap-card__top">
                         <span class="sitemap-card__mark sitemap-card__mark--policies"></span>
-                        <h2>Important Policies</h2>
+                        <div>
+                            <span class="sitemap-card__label">Stay informed</span>
+                            <h2>Important Policies</h2>
+                        </div>
+                        <span class="sitemap-card__count">{{ count($policies) }}</span>
                     </div>
                     <ul class="sitemap-list">
                         @foreach ($policies as $policy)
@@ -73,7 +122,11 @@
                 </article>
             </div>
 
-            <p class="sitemap-empty" id="sitemapEmpty">No sitemap links found.</p>
+            <div class="sitemap-empty" id="sitemapEmpty">
+                <span>?</span>
+                <strong>No matching links found</strong>
+                <p>Try a shorter or different search term.</p>
+            </div>
         </div>
     </section>
 @endsection
@@ -89,6 +142,13 @@
             if (!searchInput) {
                 return;
             }
+
+            document.addEventListener('keydown', function (event) {
+                if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+                    event.preventDefault();
+                    searchInput.focus();
+                }
+            });
 
             searchInput.addEventListener('input', function () {
                 var query = searchInput.value.trim().toLowerCase();

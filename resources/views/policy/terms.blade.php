@@ -6,7 +6,7 @@
 @endpush
 
 @section('content')
-    <section class="terms-banner">
+    <section class="terms-banner" style="background-image: url('{{ $bannerImage }}');">
         <div class="terms-banner__overlay"></div>
         <div class="terms-banner__content">
             <h1>{{ $terms['title'] }}</h1>

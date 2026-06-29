@@ -104,6 +104,8 @@ class TrademarkDisclaimerController extends Controller
             ],
         ];
 
-        return view('policy.trademark_disclaimer', compact('disclaimer'));
+        $bannerImage = asset('assets/images/common-banner/comm-banner.png');
+
+        return view('policy.trademark_disclaimer', compact('disclaimer', 'bannerImage'));
     }
 }

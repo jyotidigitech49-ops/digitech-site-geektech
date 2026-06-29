@@ -6,7 +6,7 @@
 @endpush
 
 @section('content')
-    <section class="faq-hero">
+    <section class="faq-hero" style="background-image: url('{{ $bannerImage }}');">
         <div class="faq-hero__overlay"></div>
         <div class="faq-hero__content">
             <h1>Faq</h1>

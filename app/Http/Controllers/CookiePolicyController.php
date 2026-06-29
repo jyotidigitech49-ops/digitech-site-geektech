@@ -133,6 +133,8 @@ class CookiePolicyController extends Controller
             ],
         ];
 
-        return view('policy.cookie', compact('cookiePolicy'));
+        $bannerImage = asset('assets/images/common-banner/comm-banner.png');
+
+        return view('policy.cookie', compact('cookiePolicy', 'bannerImage'));
     }
 }

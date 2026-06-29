@@ -23,6 +23,15 @@
 
 .mobile-header-active {
     z-index: 1001;
+    pointer-events: none;
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+}
+
+.mobile-header-active.sidebar-visible {
+    pointer-events: auto;
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
 }
 
 .header-small-device .mobile-logo img {
