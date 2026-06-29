@@ -85,19 +85,21 @@ class ProductEnquiryController extends Controller
 
     private function productImage(?string $image): string
     {
-        $image = ltrim((string) $image, '/');
+        $image = trim(str_replace('\\', '/', (string) $image));
         $fallback = 'assets/images/product/printer.png';
 
         if ($image === '') {
             return asset($fallback);
         }
 
-        $candidates = str_starts_with($image, 'assets/')
-            ? [$image]
-            : [$image, 'assets/images/product/' . $image];
+        $urlPath = parse_url($image, PHP_URL_PATH);
+        $image = ltrim($urlPath ?: $image, '/');
+        $image = preg_replace('#^public/#i', '', $image);
 
-        $path = collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
+        if (! str_starts_with(strtolower($image), 'assets/')) {
+            $image = 'assets/images/product/' . $image;
+        }
 
-        return asset($path ?: $fallback);
+        return asset($image);
     }
 }

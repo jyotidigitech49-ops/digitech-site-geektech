@@ -54,19 +54,7 @@
                     <div class="row">
                         @foreach ($products as $product)
                             @php
-                                $productImages = collect([$product->img1, $product->img2, $product->img3, $product->img4])
-                                    ->filter()
-                                    ->map(function ($image) {
-                                        $candidates = array_filter([
-                                            $image,
-                                            'assets/images/product/' . ltrim($image, '/'),
-                                        ]);
-
-                                        return collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
-                                    })
-                                    ->filter()
-                                    ->unique()
-                                    ->values();
+                                $productImages = collect($product->imagePaths());
 
                                 $productImage = $productImages->first();
                                 $productTypeUrl = $typeUrlFor($product);

@@ -88,11 +88,14 @@ class HomeController extends Controller {
             ->values();
 
         $resolved = $images->mapWithKeys(function ($image) {
-            $image = ltrim((string) $image, '/');
-            $candidates = str_starts_with($image, 'assets/')
-                ? [$image]
-                : [$image, 'assets/images/blog/' . $image];
-            $path = collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
+            $path = trim(str_replace('\\', '/', (string) $image));
+            $urlPath = parse_url($path, PHP_URL_PATH);
+            $path = ltrim($urlPath ?: $path, '/');
+            $path = preg_replace('#^public/#i', '', $path);
+
+            if ($path !== '' && ! str_starts_with(strtolower($path), 'assets/')) {
+                $path = 'assets/images/blog/' . $path;
+            }
 
             return [$image => $path ? asset($path) : null];
         });

@@ -149,19 +149,7 @@ class BlogController extends Controller
 
     private function blogImages(Blog $blog): array
     {
-        return collect([$blog->image1, $blog->image2, $blog->image3])
-            ->filter()
-            ->map(function ($image) {
-                $image = ltrim((string) $image, '/');
-
-                $candidates = str_starts_with($image, 'assets/')
-                    ? [$image]
-                    : [$image, 'assets/images/blog/' . $image];
-
-                return collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
-            })
-            ->filter()
-            ->unique()
+        return collect($blog->imagePaths())
             ->map(fn ($image) => asset($image))
             ->values()
             ->all();
@@ -174,11 +162,14 @@ class BlogController extends Controller
             ->values();
 
         $resolved = $images->mapWithKeys(function ($image) {
-            $image = ltrim((string) $image, '/');
-            $candidates = str_starts_with($image, 'assets/')
-                ? [$image]
-                : [$image, 'assets/images/blog/' . $image];
-            $path = collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
+            $path = trim(str_replace('\\', '/', (string) $image));
+            $urlPath = parse_url($path, PHP_URL_PATH);
+            $path = ltrim($urlPath ?: $path, '/');
+            $path = preg_replace('#^public/#i', '', $path);
+
+            if ($path !== '' && ! str_starts_with(strtolower($path), 'assets/')) {
+                $path = 'assets/images/blog/' . $path;
+            }
 
             return [$image => $path ? asset($path) : null];
         });

@@ -12,31 +12,37 @@
 @section('content')
     @php
         $productAsset = function ($image) {
-            $image = ltrim((string) $image, '/');
+            $image = trim(str_replace('\\', '/', (string) $image));
 
             if ($image === '') {
                 return null;
             }
 
-            $candidates = str_starts_with($image, 'assets/')
-                ? [$image]
-                : [$image, 'assets/images/product/' . $image];
+            $urlPath = parse_url($image, PHP_URL_PATH);
+            $image = ltrim($urlPath ?: $image, '/');
+            $image = preg_replace('#^public/#i', '', $image);
 
-            $path = collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
+            if (! str_starts_with(strtolower($image), 'assets/')) {
+                $image = 'assets/images/product/' . $image;
+            }
 
-            return $path ? asset($path) : null;
+            return asset($image);
         };
 
         $blogImagesFromRecord = function ($blog) {
             return collect([$blog['image1'] ?? null, $blog['image2'] ?? null, $blog['image3'] ?? null])
                 ->filter()
                 ->map(function ($image) {
-                    $image = ltrim((string) $image, '/');
-                    $candidates = str_starts_with($image, 'assets/')
-                        ? [$image]
-                        : [$image, 'assets/images/blog/' . $image];
+                    $image = trim(str_replace('\\', '/', (string) $image));
+                    $urlPath = parse_url($image, PHP_URL_PATH);
+                    $image = ltrim($urlPath ?: $image, '/');
+                    $image = preg_replace('#^public/#i', '', $image);
 
-                    return collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
+                    if (! str_starts_with(strtolower($image), 'assets/')) {
+                        $image = 'assets/images/blog/' . $image;
+                    }
+
+                    return $image;
                 })
                 ->filter()
                 ->unique()

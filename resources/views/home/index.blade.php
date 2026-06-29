@@ -327,19 +327,7 @@
                                     $homeProductType = \Illuminate\Support\Str::slug($product->parent_cat ?: 'printer');
                                     $homeProductType = $homeProductType === 'thin-client' ? 'thin-client' : $homeProductType;
                                     $homeProductUrl = url("products/{$homeProductType}/details", $product->slug);
-                                    $homeProductImages = collect([$product->img1, $product->img2, $product->img3, $product->img4])
-                                        ->filter()
-                                        ->map(function ($image) {
-                                            $candidates = array_filter([
-                                                $image,
-                                                'assets/images/product/' . ltrim($image, '/'),
-                                            ]);
-
-                                            return collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
-                                        })
-                                        ->filter()
-                                        ->unique()
-                                        ->values();
+                                    $homeProductImages = collect($product->imagePaths());
 
                                     $homeProductImage = $homeProductImages->first();
                                 @endphp
@@ -459,19 +447,7 @@
                         $homeProductType = \Illuminate\Support\Str::slug($product->parent_cat ?: 'printer');
                         $homeProductType = $homeProductType === 'thin-client' ? 'thin-client' : $homeProductType;
                         $homeProductUrl = url("products/{$homeProductType}/details", $product->slug);
-                        $homeProductImages = collect([$product->img1, $product->img2, $product->img3, $product->img4])
-                            ->filter()
-                            ->map(function ($image) {
-                                $candidates = array_filter([
-                                    $image,
-                                    'assets/images/product/' . ltrim($image, '/'),
-                                ]);
-
-                                return collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
-                            })
-                            ->filter()
-                            ->unique()
-                            ->values();
+                        $homeProductImages = collect($product->imagePaths());
 
                         $homeProductImage = $homeProductImages->first();
                     @endphp
@@ -562,19 +538,7 @@
                         $homeProductType = \Illuminate\Support\Str::slug($product->parent_cat ?: 'printer');
                         $homeProductType = $homeProductType === 'thin-client' ? 'thin-client' : $homeProductType;
                         $homeProductUrl = url("products/{$homeProductType}/details", $product->slug);
-                        $homeProductImages = collect([$product->img1, $product->img2, $product->img3, $product->img4])
-                            ->filter()
-                            ->map(function ($image) {
-                                $candidates = array_filter([
-                                    $image,
-                                    'assets/images/product/' . ltrim($image, '/'),
-                                ]);
-
-                                return collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
-                            })
-                            ->filter()
-                            ->unique()
-                            ->values();
+                        $homeProductImages = collect($product->imagePaths());
                         $homeProductImage = $homeProductImages->first();
                     @endphp
 
@@ -653,19 +617,7 @@
                 <div class="row home-blog-grid">
                     @foreach ($blogPosts as $blogPost)
                         @php
-                            $homeBlogImages = collect([$blogPost->image1, $blogPost->image2, $blogPost->image3])
-                                ->filter()
-                                ->map(function ($image) {
-                                    $image = ltrim((string) $image, '/');
-                                    $candidates = str_starts_with($image, 'assets/')
-                                        ? [$image]
-                                        : [$image, 'assets/images/blog/' . $image];
-
-                                    return collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
-                                })
-                                ->filter()
-                                ->unique()
-                                ->values();
+                            $homeBlogImages = collect($blogPost->imagePaths());
 
                             $homeBlogImage = $homeBlogImages->first();
                             $homeBlogDate = $blogPost->inserted_at

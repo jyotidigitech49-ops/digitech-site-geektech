@@ -206,9 +206,7 @@ class ProductPrinterController extends Controller {
                     : $fallback;
 
                 return [
-                    'image' => file_exists( public_path( $image ) )
-                        ? $image
-                        : ( file_exists( public_path( $fallbackImage ) ) ? $fallbackImage : $fallback ),
+                    'image' => $prefix ? $image : $fallbackImage,
                     'url' => $bannerLink,
                 ];
             } )

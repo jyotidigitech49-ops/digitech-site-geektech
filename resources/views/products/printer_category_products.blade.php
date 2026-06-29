@@ -15,6 +15,26 @@
             'scanner' => 'scanner.png',
             default => 'printer.png',
         };
+        $categoryImagePath = function ($image) {
+            $image = trim(str_replace('\\', '/', (string) $image));
+            $urlPath = parse_url($image, PHP_URL_PATH);
+            $image = ltrim($urlPath ?: $image, '/');
+            $image = preg_replace('#^public/#i', '', $image);
+
+            if ($image === '') {
+                return null;
+            }
+
+            if (! str_starts_with(strtolower($image), 'assets/')) {
+                $image = 'assets/images/product/' . $image;
+            }
+
+            return $image;
+        };
+        $categoryImageMap = [
+            'officejet-printer' => 'officejet-printer.png',
+            'deskjet-printer' => 'deskjet.png',
+        ];
     @endphp
 
     {{-- Slider Area --}}
@@ -80,17 +100,9 @@
 
                 @foreach ($printerCategoriesAll as $category)
                     @php
-                        $categoryImageCandidates = array_filter([
-                            $category->image,
-                            pathinfo($category->image ?? '', PATHINFO_FILENAME) . '.png',
-                            str_replace('-', '_', pathinfo($category->image ?? '', PATHINFO_FILENAME)) . '.png',
-                            str_replace('-printer', '', pathinfo($category->image ?? '', PATHINFO_FILENAME)) . '.png',
-                            $typeFallbackImage,
-                            'printer.png',
-                        ]);
-
-                        $categoryImage = collect($categoryImageCandidates)
-                            ->first(fn ($image) => file_exists(public_path('assets/images/product/' . $image)));
+                        $categoryImage = $categoryImageMap[$category->url] ?? $category->image ?? $typeFallbackImage;
+                        $categoryImage = $categoryImagePath($categoryImage) ?? $categoryImagePath($typeFallbackImage);
+                        $categoryFallbackImage = asset($categoryImagePath($typeFallbackImage) ?? 'assets/images/product/printer.png');
 
                         $categoryUrl = (int) $category->parent_id === 0
                             ? url('products', $category->url)
@@ -106,7 +118,8 @@
                             <span class="printer-category-icon"><i class="{{ $categoryIcon }}"></i></span>
                             <div class="product-img product-img-zoom">
                                 <a href="{{ $categoryUrl }}">
-                                    <img src="{{ asset('assets/images/product/' . $categoryImage) }}" alt="{{ $category->name }}" class="img-fluid">
+                                    <img src="{{ asset($categoryImage) }}" alt="{{ $category->name }}" class="img-fluid"
+                                        onerror="this.onerror=null;this.src='{{ $categoryFallbackImage }}';">
                                 </a>
                             </div>
 
@@ -156,19 +169,7 @@
 
                         @foreach ($products as $product)
                             @php
-                                $productImages = collect([$product->img1, $product->img2, $product->img3, $product->img4])
-                                    ->filter()
-                                    ->map(function ($image) {
-                                        $candidates = array_filter([
-                                            $image,
-                                            'assets/images/product/' . ltrim($image, '/'),
-                                        ]);
-
-                                        return collect($candidates)->first(fn ($candidate) => file_exists(public_path($candidate)));
-                                    })
-                                    ->filter()
-                                    ->unique()
-                                    ->values();
+                                $productImages = collect($product->imagePaths());
 
                                 $productImage = $productImages->first();
                             @endphp
