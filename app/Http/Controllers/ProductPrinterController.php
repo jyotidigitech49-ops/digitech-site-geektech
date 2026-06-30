@@ -21,6 +21,7 @@ class ProductPrinterController extends Controller {
             ->where( 'status', 'A' )
             ->orderBy( 'sort', 'asc' )
             ->get();
+        $this->attachCategoryImageUrls( $printerCategories );
 
         $productsQuery = Product::query()
             ->leftJoin( 'categories', 'categories.id', '=', 'products.cat_id' )
@@ -86,6 +87,7 @@ class ProductPrinterController extends Controller {
                 ->where( 'status', 'A' )
                 ->orderBy( 'sort', 'asc' )
                 ->get();
+        $this->attachCategoryImageUrls( $printerCategories );
 
         $productCategoryIds = $childCategories->isNotEmpty()
             ? $childCategories->pluck( 'id' )
@@ -140,6 +142,7 @@ class ProductPrinterController extends Controller {
                 ->orderBy( 'sort', 'asc' )
                 ->get();
         }
+        $this->attachCategoryImageUrls( $printerCategoriesAll );
 
         $printerCategories = Category::query()
         ->where( 'url', $url )
@@ -168,14 +171,33 @@ class ProductPrinterController extends Controller {
         ) );
     }
 
+    /**
+     * Category images are stored by filename in the database and served from
+     * public/assets/images/category_type on both local and cPanel hosting.
+     */
+    private function attachCategoryImageUrls( $categories ): void {
+        $categories->each( function ( Category $category ) {
+            $image = trim( str_replace( '\\', '/', (string) $category->image ) );
+            $urlPath = parse_url( $image, PHP_URL_PATH );
+            $filename = basename( $urlPath ?: $image );
+
+            $category->setAttribute(
+                'category_image_url',
+                $filename !== ''
+                    ? asset( 'assets/images/category_type/' . $filename )
+                    : null
+            );
+        } );
+    }
+
     private function productHeroBanners( string $type, ?string $link = null, ?string $categoryUrl = null ): array {
         $type = $type ?: 'all';
         $typePrefixes = [
-            'printer' => 'pre',
+            'printer' => 'pr',
             'desktops' => 'dk',
             'thin-client' => 'tc',
             'scanner' => 'scn',
-            'all' => 'pre',
+            'all' => 'pr',
         ];
 
         $categoryPrefixes = [
@@ -185,28 +207,19 @@ class ProductPrinterController extends Controller {
             'deskjet-printer' => 'dp',
         ];
 
-        $fallbackPrefixes = [
-            'pre' => 'pr',
-        ];
-
         $prefix = $categoryUrl && isset( $categoryPrefixes[ $categoryUrl ] )
             ? $categoryPrefixes[ $categoryUrl ]
-            : ( $typePrefixes[ $type ] ?? Str::slug( $type ) );
+            : ( $typePrefixes[ $type ] ?? 'pr' );
 
-        $fallback = 'assets/images/products_banners/pr01.png';
         $defaultLink = $type === 'all' ? url( '/products' ) : url( '/products/' . $type );
         $bannerLink = $link ?: $defaultLink;
 
         return collect( range( 1, 3 ) )
-            ->map( function ( $number ) use ( $prefix, $fallbackPrefixes, $fallback, $bannerLink ) {
+            ->map( function ( $number ) use ( $prefix, $bannerLink ) {
                 $image = sprintf( 'assets/images/products_banners/%s%02d.png', $prefix, $number );
-                $fallbackPrefix = $fallbackPrefixes[ $prefix ] ?? null;
-                $fallbackImage = $fallbackPrefix
-                    ? sprintf( 'assets/images/products_banners/%s%02d.png', $fallbackPrefix, $number )
-                    : $fallback;
 
                 return [
-                    'image' => $prefix ? $image : $fallbackImage,
+                    'image' => asset( $image ),
                     'url' => $bannerLink,
                 ];
             } )

@@ -291,7 +291,18 @@
                         </div>
 
                         <div id="blogs" class="pd-panel">
-                            <div class="pd-blog-grid">
+                            @if (count($blogs))
+                                <div class="pd-blog-heading">
+                                    <div>
+                                        <span class="pd-blog-eyebrow">Product insights</span>
+                                        <h2>Helpful reads for this product</h2>
+                                        <p>Explore practical guidance, features, and everyday use ideas.</p>
+                                    </div>
+                                    <span class="pd-blog-count">{{ count($blogs) }} Articles</span>
+                                </div>
+                            @endif
+
+                            <div class="pd-blog-grid {{ count($blogs) === 2 ? 'pd-blog-grid--two' : '' }}">
                                 @forelse ($blogs as $blog)
                                     @php
                                         $pdBlogImages = collect($blog['images'] ?? [])->filter()->values();
@@ -300,14 +311,21 @@
                                     <article class="pd-blog-card js-blog-gallery-card">
                                         <div class="pd-blog-image">
                                             @if ($pdBlogImage)
-                                                <img class="js-blog-gallery-img"
-                                                    src="{{ $pdBlogImage }}"
-                                                    alt="{{ $blog['title'] }}"
-                                                    data-default-src="{{ $pdBlogImage }}"
-                                                    data-gallery='@json($pdBlogImages)'>
+                                                @if (! empty($blog['url']))
+                                                    <a href="{{ $blog['url'] }}" aria-label="Read {{ $blog['title'] }}">
+                                                @endif
+                                                    <img class="js-blog-gallery-img"
+                                                        src="{{ $pdBlogImage }}"
+                                                        alt="{{ $blog['title'] }}"
+                                                        data-default-src="{{ $pdBlogImage }}"
+                                                        data-gallery='@json($pdBlogImages)'>
+                                                @if (! empty($blog['url']))
+                                                    </a>
+                                                @endif
                                             @else
                                                 <span class="pd-blog-image-missing">{{ $blog['title'] }}</span>
                                             @endif
+                                            <span class="pd-blog-card-number">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
                                         </div>
                                         <div class="pd-blog-body">
                                             @if (! empty($blog['date']))

@@ -68,8 +68,44 @@ class HomeController extends Controller {
         //blogs-list-random---
         $blogPosts = Blog::where( 'status', 'A' )
             ->inRandomOrder()
-            ->limit( 3 )
+            ->limit( 6 )
             ->get();
+
+        $homeCategories = Category::query()
+            ->where( 'parent_id', 0 )
+            ->where( 'status', 'A' )
+            ->orderBy( 'sort', 'asc' )
+            ->get()
+            ->each( function ( Category $category ) {
+                $image = trim( str_replace( '\\', '/', (string) $category->image ) );
+                $urlPath = parse_url( $image, PHP_URL_PATH );
+                $filename = basename( $urlPath ?: $image );
+
+                $category->setAttribute(
+                    'category_image_url',
+                    $filename !== ''
+                        ? asset( 'assets/images/category_type/' . $filename )
+                        : null
+                );
+            } );
+
+        $footerBanners = [
+            [
+                'image' => asset('assets/images/banner/home-footer-banner1.png'),
+                'url' => url('/contact-us'),
+                'alt' => 'Request a technology quote',
+            ],
+            [
+                'image' => asset('assets/images/banner/home-footer-banner2.png'),
+                'url' => url('/products'),
+                'alt' => 'Explore business technology solutions',
+            ],
+            [
+                'image' => asset('assets/images/banner/home-footer-banner3.png'),
+                'url' => url('/products/printer'),
+                'alt' => 'Explore printers for modern workplaces',
+            ],
+        ];
 
         // dd([
         //     'page' => 'Home page',
@@ -77,7 +113,13 @@ class HomeController extends Controller {
         //     'blogs' => $blogPosts->map(fn (Blog $blog) => $this->blogImageDebugData($blog))->values()->all(),
         // ]);
 
-        return view( 'home.index', compact( 'productTabs', 'suggestedProducts', 'blogPosts' ) );
+        return view( 'home.index', compact(
+            'productTabs',
+            'suggestedProducts',
+            'blogPosts',
+            'homeCategories',
+            'footerBanners'
+        ) );
 
     }
 

@@ -19,14 +19,14 @@ class AboutController extends Controller
                 'description' => 'Detailed product specifications.',
             ],
             [
-                'icon' => 'icon-plane',
-                'title' => 'Shipping Details',
-                'description' => 'Delivery and shipping information.',
+                'icon' => 'icon-envelope',
+                'title' => 'Quote Requests',
+                'description' => 'Submit your enquiry.',
             ],
             [
-                'icon' => 'icon-lock',
-                'title' => 'Secure Checkout',
-                'description' => 'Protected online transactions.',
+                'icon' => 'icon-briefcase',
+                'title' => 'Business Solutions',
+                'description' => 'Built for workplaces.',
             ],
             [
                 'icon' => 'icon-grid',
@@ -37,20 +37,20 @@ class AboutController extends Controller
 
         $banners = [
             [
-                'label' => 'Left Banner',
+                'label' => '',
                 'title' => 'Thoughtfully Organized For Easier Selection',
                 'description' => 'Browse printer collections arranged to help simplify product discovery and comparison.',
                 'button' => 'Browse Range',
                 'url' => url('/products'),
-                'image' => asset('assets/images/product/printer.png'),
+                'image' => asset('assets/images/category_type/printer.png'),
             ],
             [
-                'label' => 'Right Banner',
+                'label' => '',
                 'title' => 'Different Technologies, One Collection',
                 'description' => 'Explore a range of printing options designed for varying environments, workflows, and output preferences.',
                 'button' => 'View Products',
                 'url' => url('/products'),
-                'image' => asset('assets/images/product/officejet-printer.png'),
+                'image' => asset('assets/images/category_type/officejet-printer.png'),
             ],
         ];
 
@@ -86,7 +86,17 @@ class AboutController extends Controller
         ];
 
         $bannerImage = asset('assets/images/common-banner/comm-banner.png');
+        $heroImage = asset('assets/images/category_type/officejet-printer.png');
 
-        return view('about.aboutus', compact('intro', 'features', 'banners', 'collection', 'whyChoose', 'cta', 'bannerImage'));
+        return view('about.aboutus', compact(
+            'intro',
+            'features',
+            'banners',
+            'collection',
+            'whyChoose',
+            'cta',
+            'bannerImage',
+            'heroImage'
+        ));
     }
 }

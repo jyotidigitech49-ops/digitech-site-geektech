@@ -28,14 +28,17 @@
                         <div class="single-contact-info-3 text-center mb-30">
                             <i class="icon-location-pin "></i>
                             <h4>our address</h4>
-                            <p>196 Tosto RD, Beaufort, NC 28526</p>
+                            <p>1137 ALABAMA AVE
+                                FT LAUDERDALE, FL 33312
+                            </p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4">
                         <div class="single-contact-info-3 extra-contact-info text-center mb-30">
                             <ul>
                                 <li><i class="icon-screen-smartphone"></i> Contact our support team </li>
-                                <li><i class="icon-envelope "></i> <a href="mailto:info@geektechbuzz.us">info@geektechbuzz.us</a></li>
+                                <li><i class="icon-envelope "></i> <a
+                                        href="mailto:info@eaglesrepair.us">info@eaglesrepair.us </a></li>
                             </ul>
                         </div>
                     </div>
@@ -84,15 +87,15 @@
                     <div class="contact-map-info">
                         <span>Our Location</span>
                         <h3>Visit Eagles Repair</h3>
-                        <p>Find us at 196 Tosto RD, Beaufort, NC 28526. Use the map below for quick directions and nearby location context.</p>
-                        <a href="https://www.google.com/maps/search/?api=1&query=196%20Tosto%20RD%2C%20Beaufort%2C%20NC%2028526" target="_blank" rel="noopener">Open in Google Maps</a>
+                        <p>Find us at 1137 Alabama Ave, Fort Lauderdale, FL 33312. Use the map below for quick directions
+                            and nearby location context.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=26.1079241%2C-80.1921181"
+                            target="_blank" rel="noopener">Open in Google Maps</a>
                     </div>
                     <div class="contact-map-frame">
                         <iframe class="map-size"
-                            src="https://www.google.com/maps?q=196%20Tosto%20RD%2C%20Beaufort%2C%20NC%2028526&output=embed"
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"
-                            allowfullscreen>
+                            src="https://www.google.com/maps?q=26.1079241%2C-80.1921181&z=17&output=embed"
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
                         </iframe>
                     </div>
                 </div>
@@ -128,7 +131,8 @@
                     },
                     success: function(response) {
                         $('#success-message').html(
-                            '<p class="text-success">' + (response.message || 'Your message has been sent successfully!') + '</p>'
+                            '<p class="text-success">' + (response.message ||
+                                'Your message has been sent successfully!') + '</p>'
                         );
                         form[0].reset();
                     },

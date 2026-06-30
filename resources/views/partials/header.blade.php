@@ -49,14 +49,14 @@
                         <div class="row align-items-center">
                             <div class="col-lg-3">
                                 <div class="main-categori-wrap main-categori-wrap-modify-2">
-                                    <a class="categori-show categori-blue" href="#">All Departments <i class="icon-arrow-down icon-right"></i></a>
+                                    <a class="categori-show categori-blue" href="#">All CATEGORIES <i class="icon-arrow-down icon-right"></i></a>
                                     <div class="category-menu-2 category-menu-2-blue categori-hide categori-not-visible-2">
                                         <nav>
                                             <ul>
-                                                <li><a href="{{ url('/products/printer') }}"><i class="icon-energy"></i>PRINTERS</a></li>
-                                                <li><a href="{{ url('/products/desktops') }}"><i class="icon-handbag"></i>DESKTOPS</a></li>
-                                                <li><a href="{{ url('/products/thin-client') }}"><i class="icon-home"></i>THIN CLIENT</a></li>
-                                                <li><a href="{{ url('/products/scanner') }}"><i class="icon-game-controller"></i>SCANNERS</a></li>
+                                                <li><a href="{{ url('/products/printer') }}"><i class=""></i>PRINTERS</a></li>
+                                                <li><a href="{{ url('/products/desktops') }}"><i class=""></i>DESKTOPS</a></li>
+                                                <li><a href="{{ url('/products/thin-client') }}"><i class=""></i>THIN CLIENT</a></li>
+                                                <li><a href="{{ url('/products/scanner') }}"><i class=""></i>SCANNERS</a></li>
                                             </ul>
                                         </nav>
                                     </div>

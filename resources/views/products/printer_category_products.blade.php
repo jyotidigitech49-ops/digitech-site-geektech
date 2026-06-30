@@ -9,32 +9,6 @@
     @php
         $typeUrl = $productType->url ?? 'printer';
         $typeName = $productType->name ?? 'Printer';
-        $typeFallbackImage = match ($typeUrl) {
-            'thin-client' => 'thin_client.png',
-            'desktops' => 'desktops.png',
-            'scanner' => 'scanner.png',
-            default => 'printer.png',
-        };
-        $categoryImagePath = function ($image) {
-            $image = trim(str_replace('\\', '/', (string) $image));
-            $urlPath = parse_url($image, PHP_URL_PATH);
-            $image = ltrim($urlPath ?: $image, '/');
-            $image = preg_replace('#^public/#i', '', $image);
-
-            if ($image === '') {
-                return null;
-            }
-
-            if (! str_starts_with(strtolower($image), 'assets/')) {
-                $image = 'assets/images/product/' . $image;
-            }
-
-            return $image;
-        };
-        $categoryImageMap = [
-            'officejet-printer' => 'officejet-printer.png',
-            'deskjet-printer' => 'deskjet.png',
-        ];
     @endphp
 
     {{-- Slider Area --}}
@@ -43,7 +17,7 @@
             @foreach (($heroBanners ?? []) as $banner)
                 <div class="single-hero-slider single-animation-wrap product-hero-slide">
                     <a href="{{ $banner['url'] }}" class="product-hero-banner-link" aria-label="{{ $typeName }} banner">
-                        <img src="{{ asset($banner['image']) }}" alt="{{ $typeName }} banner {{ $loop->iteration }}">
+                        <img src="{{ $banner['image'] }}" alt="{{ $typeName }} banner {{ $loop->iteration }}">
                     </a>
                 </div>
             @endforeach
@@ -100,26 +74,17 @@
 
                 @foreach ($printerCategoriesAll as $category)
                     @php
-                        $categoryImage = $categoryImageMap[$category->url] ?? $category->image ?? $typeFallbackImage;
-                        $categoryImage = $categoryImagePath($categoryImage) ?? $categoryImagePath($typeFallbackImage);
-                        $categoryFallbackImage = asset($categoryImagePath($typeFallbackImage) ?? 'assets/images/product/printer.png');
-
                         $categoryUrl = (int) $category->parent_id === 0
                             ? url('products', $category->url)
                             : url("products/{$typeUrl}", $category->url);
 
-                        $categoryLabel = strtolower($category->name);
-                        $categoryIcon = str_contains($categoryLabel, 'printer')
-                            ? 'icon-printer'
-                            : (str_contains($categoryLabel, 'scanner') ? 'icon-docs' : 'icon-screen-desktop');
                     @endphp
                     <div class="printer-category-item">
                         <div class="single-product-wrap printer-category-card h-100">
-                            <span class="printer-category-icon"><i class="{{ $categoryIcon }}"></i></span>
                             <div class="product-img product-img-zoom">
                                 <a href="{{ $categoryUrl }}">
-                                    <img src="{{ asset($categoryImage) }}" alt="{{ $category->name }}" class="img-fluid"
-                                        onerror="this.onerror=null;this.src='{{ $categoryFallbackImage }}';">
+                                    <img src="{{ $category->category_image_url }}" alt="{{ $category->name }}"
+                                        class="img-fluid">
                                 </a>
                             </div>
 

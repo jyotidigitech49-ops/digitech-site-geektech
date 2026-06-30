@@ -165,82 +165,32 @@
                     <p>Reliable devices and solutions designed for home, office, and everyday productivity.</p>
                 </div>
                 <a class="home-outline-link" href="{{ url('/products') }}">
-                    View All Products <i class="icon-arrow-right"></i>
+                    View Products <i class="icon-arrow-right"></i>
                 </a>
             </div>
 
             <div class="home-category-grid">
-                <article class="home-category-card">
-                    <div class="home-category-icon"><i class="icon-printer"></i></div>
-                    <div class="home-category-media">
-                        <div class="product-img">
-                            <a href="{{ url('/products/printer') }}">
-                                <img src="{{ asset('assets/images/product/printer.png') }}" alt="Printers">
+                @foreach ($homeCategories as $category)
+                    @php
+                        $categoryUrl = url('/products/' . $category->url);
+                    @endphp
+                    <article class="home-category-card">
+                        <div class="home-category-media">
+                            <div class="product-img">
+                                <a href="{{ $categoryUrl }}">
+                                    <img src="{{ $category->category_image_url }}" alt="{{ $category->name }}">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="home-category-content">
+                            <h3><a href="{{ $categoryUrl }}">{{ $category->name }}</a></h3>
+                            <p>{{ $category->description }}</p>
+                            <a class="home-category-link" href="{{ $categoryUrl }}">
+                                Explore {{ $category->name }} <i class="icon-arrow-right"></i>
                             </a>
                         </div>
-                    </div>
-                    <div class="home-category-content">
-                        <h3><a href="{{ url('/products/printer') }}">Printer</a></h3>
-                        <p>Reliable printers for clear output and smooth everyday workflows.</p>
-                        <a class="home-category-link" href="{{ url('/products/printer') }}">
-                            Explore Printers <i class="icon-arrow-right"></i>
-                        </a>
-                    </div>
-                </article>
-
-                <article class="home-category-card">
-                    <div class="home-category-icon"><i class="icon-screen-desktop"></i></div>
-                    <div class="home-category-media">
-                        <div class="product-img">
-                            <a href="{{ url('/products/thin-client') }}">
-                                <img src="{{ asset('assets/images/product/thin_client.png') }}" alt="Thin clients">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="home-category-content">
-                        <h3><a href="{{ url('/products/thin-client') }}">Thin Client</a></h3>
-                        <p>Secure and efficient thin clients for streamlined workspaces.</p>
-                        <a class="home-category-link" href="{{ url('/products/thin-client') }}">
-                            Explore Thin Clients <i class="icon-arrow-right"></i>
-                        </a>
-                    </div>
-                </article>
-
-                <article class="home-category-card">
-                    <div class="home-category-icon"><i class="icon-screen-desktop"></i></div>
-                    <div class="home-category-media">
-                        <div class="product-img">
-                            <a href="{{ url('/products/desktops') }}">
-                                <img src="{{ asset('assets/images/product/desktops.png') }}" alt="Desktop computers">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="home-category-content">
-                        <h3><a href="{{ url('/products/desktops') }}">Desktops</a></h3>
-                        <p>Dependable desktop systems built for productive daily work.</p>
-                        <a class="home-category-link" href="{{ url('/products/desktops') }}">
-                            Explore Desktops <i class="icon-arrow-right"></i>
-                        </a>
-                    </div>
-                </article>
-
-                <article class="home-category-card">
-                    <div class="home-category-icon"><i class="icon-printer"></i></div>
-                    <div class="home-category-media">
-                        <div class="product-img">
-                            <a href="{{ url('/products/scanner') }}">
-                                <img src="{{ asset('assets/images/product/scanner.png') }}" alt="Scanners">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="home-category-content">
-                        <h3><a href="{{ url('/products/scanner') }}">Scanner</a></h3>
-                        <p>Fast document scanning solutions for organized digital workflows.</p>
-                        <a class="home-category-link" href="{{ url('/products/scanner') }}">
-                            Explore Scanners <i class="icon-arrow-right"></i>
-                        </a>
-                    </div>
-                </article>
+                    </article>
+                @endforeach
             </div>
         </div>
     </section>
@@ -262,7 +212,7 @@
                             </h2>
                             <p>Solutions designed for clear output and smooth daily workflows.</p>
                             <div class="btn-style-4">
-                                <a class="hover-red" href="{{ url('/products') }}">Explore Products <i
+                                <a class="hover-red" href="{{ url('/products/printer') }}">Explore Products <i
                                         class="icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -282,7 +232,7 @@
                             </h2>
                             <p>Dependable desktop solutions built for productivity, multitasking, and modern workplace demands.</p>
                             <div class="btn-style-4 ">
-                                <a class="hover-red" href="{{ url('/products') }}">Explore Products <i
+                                <a class="hover-red" href="{{ url('/products/desktops') }}">Explore Products <i
                                         class="icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -357,7 +307,7 @@
                                             <div class="home-price-stock-row">
                                                 <div class="product-price-4">
                                                     <span
-                                                        class="new-price">&#8377;{{ number_format($product->price, 2) }}</span>
+                                                        class="new-price">${{ number_format($product->price, 2) }}</span>
                                                 </div>
                                                 <div class="home-card-stock-wrap">
                                                     <span class="home-stock-badge">
@@ -402,7 +352,7 @@
                             </h2>
                             <p>Designed for streamlined access and workplace efficiency.</p>
                             <div class="btn-style-4">
-                                <a class="hover-red" href="{{ url('/products') }}">Explore Products<i
+                                <a class="hover-red" href="{{ url('/products/thin-client') }}">Explore Products<i
                                         class="icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -422,7 +372,7 @@
                             </h2>
                             <p>Built to simplify document digitization and organization.</p>
                             <div class="btn-style-4">
-                                <a class="hover-red" href="{{ url('/products') }}">Explore Products
+                                <a class="hover-red" href="{{ url('/products/scanner') }}">Explore Products
                                     <i class="icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -440,9 +390,9 @@
                 <p>Handpicked products selected around everyday home and workplace needs.</p>
             </div>
 
-            <div class="home-showcase-grid">
+            <div class="home-showcase-grid home-suggested-product-slider">
 
-                @foreach ($suggestedProducts->take(5) as $product)
+                @foreach ($suggestedProducts as $product)
                     @php
                         $homeProductType = \Illuminate\Support\Str::slug($product->parent_cat ?: 'printer');
                         $homeProductType = $homeProductType === 'thin-client' ? 'thin-client' : $homeProductType;
@@ -480,7 +430,7 @@
 
                                 <div class="home-price-stock-row">
                                 <div class="product-price-4">
-                                    <span>₹{{ number_format($product->price, 2) }}</span>
+                                    <span>${{ number_format($product->price, 2) }}</span>
                                 </div>
 
                                 <div class="home-card-stock-wrap">
@@ -504,7 +454,7 @@
 
 
                                 <div class="product-price-4">
-                                    <span>₹{{ number_format($product->price, 2) }}</span>
+                                    <span>${{ number_format($product->price, 2) }}</span>
                                 </div>
 
                                 <div class="pro-add-to-cart-2">
@@ -524,7 +474,7 @@
     </section>
 
     {{-- Additional products --}}
-    <section class="product-area home-product-showcase home-more-products-area">
+    {{-- <section class="product-area home-product-showcase home-more-products-area">
         <div class="container">
             <div class="home-showcase-heading text-center">
                 <span class="home-showcase-icon"><i class="icon-handbag"></i></span>
@@ -564,7 +514,7 @@
                             </h3>
                             <div class="home-price-stock-row">
                                 <div class="product-price-4">
-                                    <span>&#8377;{{ number_format($product->price, 2) }}</span>
+                                    <span>${{ number_format($product->price, 2) }}</span>
                                 </div>
                                 <div class="home-card-stock-wrap">
                                     <span class="home-stock-badge">
@@ -585,22 +535,19 @@
                 <a href="{{ url('/products') }}">View More Products <i class="icon-arrow-right"></i></a>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     {{-- Deal Area --}}
     <div class="deal-area pt-150 pb-130 bg-img" style="background-image:url(assets/images/bg/deal-area-bg.png);">
         <div class="container">
             <div class="deal-content-1">
                 <span>FEATURED COLLECTION</span>
-                <h2><span>Ideas Deserve</span> The <br>Right Tools</h2>
+                <h2><span>Ideas Deserve</span> <br>The Right Tools</h2>
                 <p>Explore technology solutions designed to support the way people create, connect, and work.
                 </p>
-                <div class="timer-wrap">
-                    <h4>Expires in:</h4>
-                    <div class="timer-style-1" id="timer-1-active"></div>
-                </div>
+
                 <div class="deal-btn">
-                    <a href="{{ url('/products/printer') }}">Discover More</a>
+                    <a href="{{ url('/contact-us') }}">Contact Now</a>
                 </div>
             </div>
         </div>
@@ -611,10 +558,10 @@
             <div class="home-insights-heading text-center">
                 <span class="home-insights-heading__line"></span>
                 <h2>Ideas, Insights & <span>Blogs</span></h2>
-                <p>Fresh perspectives, product highlights, and technology conversations shaping modern workplaces.</p>
+                <p>Explore perspectives, product highlights, and technology discussions shaping modern workplaces.</p>
             </div>
             <div class="home-blog-section">
-                <div class="row home-blog-grid">
+                <div class="home-blog-grid home-blog-card-slider">
                     @foreach ($blogPosts as $blogPost)
                         @php
                             $homeBlogImages = collect($blogPost->imagePaths());
@@ -624,7 +571,7 @@
                                 ? \Illuminate\Support\Carbon::parse($blogPost->inserted_at)->format('M d, Y')
                                 : null;
                         @endphp
-                        <div class="col-lg-4 col-md-6">
+                        <div>
                             <article class="blog-wrap home-blog-card js-blog-gallery-card">
                                 <div class="blog-img">
                                     <a href="{{ url('/blogs', $blogPost->slug) }}">
@@ -673,12 +620,28 @@
         </div>
     </section>
 
+    {{-- Footer Banner Slider --}}
+    <section class="home-footer-banner-section" aria-label="Featured solutions">
+        <div class="home-footer-banner-slider">
+            @foreach ($footerBanners as $banner)
+                <div class="home-footer-banner-slide">
+                    <a href="{{ $banner['url'] }}" aria-label="{{ $banner['alt'] }}">
+                        <img src="{{ $banner['image'] }}" alt="{{ $banner['alt'] }}">
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </section>
+
 @endsection
 
 @push('scripts')
     <script>
         (function ($) {
             var sliders = $('.home-needs-product-slider');
+            var suggestedSlider = $('.home-suggested-product-slider');
+            var blogSlider = $('.home-blog-card-slider');
+            var footerBannerSlider = $('.home-footer-banner-slider');
 
             sliders.not('.slick-initialized').slick({
                 slidesToShow: 4,
@@ -726,6 +689,84 @@
                 var activeSlider = $($(event.target).attr('href')).find('.home-needs-product-slider');
                 activeSlider.slick('setPosition');
                 activeSlider.slick('slickPlay');
+            });
+
+            suggestedSlider.not('.slick-initialized').slick({
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                infinite: true,
+                autoplay: true,
+                autoplaySpeed: 1400,
+                speed: 450,
+                arrows: false,
+                dots: true,
+                pauseOnHover: true,
+                pauseOnFocus: true,
+                adaptiveHeight: false,
+                responsive: [
+                    {
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 3
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 576,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+
+            blogSlider.not('.slick-initialized').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                infinite: true,
+                autoplay: true,
+                autoplaySpeed: 1400,
+                speed: 450,
+                arrows: false,
+                dots: true,
+                pauseOnHover: true,
+                pauseOnFocus: true,
+                adaptiveHeight: false,
+                responsive: [
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 576,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+
+            footerBannerSlider.not('.slick-initialized').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: true,
+                autoplay: true,
+                autoplaySpeed: 2400,
+                speed: 650,
+                fade: true,
+                cssEase: 'ease-in-out',
+                arrows: false,
+                dots: true,
+                pauseOnHover: true,
+                pauseOnFocus: true,
+                adaptiveHeight: false
             });
         })(jQuery);
 

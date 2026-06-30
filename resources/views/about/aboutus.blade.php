@@ -22,11 +22,8 @@
         <div class="container">
             <div class="about-hero__grid">
                 <div class="about-brand-card">
-                    <a href="{{ url('/') }}" class="about-brand-card__logo">
-                        <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Eagles Repair">
-                    </a>
                     <div class="about-brand-card__image">
-                        <img src="{{ asset('assets/images/product/officejet-printer.png') }}" alt="Printer collection">
+                        <img src="{{ $heroImage }}" alt="Printer collection">
                     </div>
                 </div>
 
@@ -108,7 +105,6 @@
         <div class="container">
             <div class="about-cta">
                 <div>
-                    <span class="about-eyebrow">Printer Collection</span>
                     <h2>{{ $cta['title'] }}</h2>
                     <p>{{ $cta['description'] }}</p>
                 </div>

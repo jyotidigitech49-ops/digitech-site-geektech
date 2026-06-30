@@ -88,16 +88,6 @@
     background: rgba(11, 98, 255, 0.08);
 }
 
-.about-brand-card__logo {
-    position: relative;
-    display: inline-flex;
-    margin-bottom: 28px;
-}
-
-.about-brand-card__logo img {
-    max-width: 168px;
-}
-
 .about-brand-card__image {
     position: relative;
     min-height: 245px;

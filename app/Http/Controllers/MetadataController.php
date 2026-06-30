@@ -18,6 +18,7 @@ class MetadataController extends Controller
             'description' => $metadata?->meta_description,
             'canonical' => $request->url(),
             'type' => $this->pageType($request),
+            'image' => asset('assets/images/products_banners/pr01.png'),
         ];
     }
 

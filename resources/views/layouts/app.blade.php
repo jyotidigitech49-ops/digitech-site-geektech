@@ -9,6 +9,7 @@
             ?? trim($__env->yieldContent('meta_description', 'Browse printers, desktops, scanners, and business technology solutions.'));
         $metaCanonical = $pageMeta['canonical'] ?? request()->url();
         $metaType = $pageMeta['type'] ?? 'website';
+        $metaImage = $pageMeta['image'] ?? asset('assets/images/products_banners/pr01.png');
     @endphp
     <title>{{ $metaTitle }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,9 +20,12 @@
     <meta property="og:description" content="{{ $metaDescription }}">
     <meta property="og:type" content="{{ $metaType }}">
     <meta property="og:url" content="{{ $metaCanonical }}">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="{{ $metaImage }}">
+    <meta property="og:image:alt" content="{{ $metaTitle }}">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $metaTitle }}">
     <meta name="twitter:description" content="{{ $metaDescription }}">
+    <meta name="twitter:image" content="{{ $metaImage }}">
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.png') }}">
 

@@ -17,6 +17,19 @@
     box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
 }
 
+/* Replace the template's red menu state with the site blue/navy palette. */
+.header-area .main-menu.main-menu-white > nav > ul > li:hover > a,
+.header-area .main-menu.main-menu-white > nav > ul > li > a:focus-visible,
+.header-area .main-menu.main-menu-white > nav > ul > li > a.active {
+    color: #071a3d;
+}
+
+.header-area .main-menu > nav > ul > li > ul li:hover > a,
+.header-area .main-menu > nav > ul > li > ul li > a:focus-visible,
+.header-area .main-menu > nav > ul > li > ul li > a.active {
+    color: #0064e0;
+}
+
 .main-wrapper {
     padding-top: var(--site-header-height);
 }

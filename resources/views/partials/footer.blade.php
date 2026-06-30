@@ -70,10 +70,13 @@
 
                         <div class="footer-info-list">
                             <ul class="footer-contact-list">
-                                <li><i class="icon-location-pin"></i><span>196 Tosto RD<br>Beaufort, NC 28526</span>
+                                <li><i class="icon-location-pin"></i>
+                                    <span><br>1137 ALABAMA <br>AVE
+                                        FT LAUDERDALE <br> FL 33312
+                                    </span>
                                 </li>
-                                <li><i class="icon-envelope"></i><a
-                                        href="mailto:info@geektechbuzz.us">info@geektechbuzz.us</a></li>
+                                <li><i class="icon-envelope"></i><a href="mailto:info@eaglesrepair.us">
+                                        info@eaglesrepair.us</a></li>
                             </ul>
 
                             <div class="footer-trust-badges">
