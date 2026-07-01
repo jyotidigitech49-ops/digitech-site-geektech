@@ -22,10 +22,8 @@
         <div class="container">
             <div class="terms-layout">
                 <aside class="terms-summary">
-                    <span class="terms-summary__label">Effective Date</span>
+                    <span class="terms-summary__label">Date</span>
                     <strong>{{ $terms['date'] }}</strong>
-                    <p>Understand the rules, responsibilities, and conditions for using Eagles Repair.</p>
-                    <a href="{{ url('/contact-us') }}">Contact Us</a>
                 </aside>
 
                 <div class="terms-content">
@@ -55,6 +53,10 @@
                             @if (!empty($section['note']))
                                 <p class="terms-note">{{ $section['note'] }}</p>
                             @endif
+
+                            @foreach (($section['notes'] ?? []) as $note)
+                                <p class="terms-note">{{ $note }}</p>
+                            @endforeach
 
                             @if (!empty($section['link']))
                                 <a class="terms-inline-link" href="{{ $section['link']['url'] }}">{{ $section['link']['label'] }}</a>

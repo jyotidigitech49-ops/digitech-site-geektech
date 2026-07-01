@@ -9,7 +9,6 @@ class DisclaimerController extends Controller
         $disclaimer = [
             'title' => 'Website Disclaimer',
             'date' => 'June, 2026',
-            'summary' => 'Website information is provided for general informational, educational, and business reference purposes only.',
             'intro' => [
                 'The information provided on Eagles Repair ("the Website," "we," "our," or "us") is intended for general informational, educational, and business reference purposes only.',
                 'By accessing and using this website, you acknowledge that you have read, understood, and agreed to the terms of this Disclaimer. If you do not agree with any part of this Disclaimer, you should discontinue use of the website.',
@@ -56,7 +55,9 @@ class DisclaimerController extends Controller
                     'title' => 'Third-Party Brand Disclaimer',
                     'body' => ['The website may reference third-party brands, product names, trademarks, logos, and trade names.', 'All trademarks, service marks, product names, logos, and brand names remain the property of their respective owners.', 'References to third-party products and brands are provided solely for:'],
                     'items' => ['Product Identification', 'Informational Purposes', 'Compatibility References', 'Descriptive Purposes'],
-                    'note' => 'Such references do not imply ownership, sponsorship, partnership, affiliation, endorsement, or authorization unless expressly stated.',
+                    'secondary_description' => 'Such references do not imply:',
+                    'secondary_items' => ['Ownership', 'Sponsorship', 'Partnership', 'Affiliation', 'Endorsement', 'Authorization'],
+                    'note' => 'Unless expressly stated.',
                 ],
                 [
                     'title' => 'No Professional Advice',
@@ -78,8 +79,10 @@ class DisclaimerController extends Controller
                 ],
                 [
                     'title' => 'Limitation Of Liability',
-                    'body' => ['To the fullest extent permitted by applicable law, Eagles Repair shall not be liable for any direct, indirect, incidental, consequential, business, revenue, opportunity, data, or service interruption losses arising from:'],
-                    'items' => ['Use Of The Website', 'Reliance Upon Website Information', 'Website Unavailability', 'Product Information Errors', 'Third-Party Content'],
+                    'body' => ['To the fullest extent permitted by applicable law, Eagles Repair shall not be liable for any:'],
+                    'items' => ['Direct Damages', 'Indirect Damages', 'Incidental Damages', 'Consequential Damages', 'Business Losses', 'Lost Revenue', 'Lost Opportunities', 'Data Loss', 'Service Interruptions'],
+                    'secondary_description' => 'arising from:',
+                    'secondary_items' => ['Use Of The Website', 'Reliance Upon Website Information', 'Website Unavailability', 'Product Information Errors', 'Third-Party Content'],
                     'note' => 'Users assume full responsibility for their use of the website and reliance upon website content.',
                 ],
                 [
@@ -101,9 +104,9 @@ class DisclaimerController extends Controller
                     'title' => 'Contact Information',
                     'body' => ['If you have questions regarding this Disclaimer or the information provided on the website, please contact us using the details below.'],
                     'contact' => [
-                        'Business Name' => 'Eagles Repair',
-                        'Business Address' => '196 Tosto RD, Beaufort, NC 28526',
-                        'Email Address' => 'info@geektechbuzz.us',
+                        'Business Name:' => 'Eagles Repair',
+                        'Email:' => 'info@eaglesrepair.us',
+                        'Address:' => "1137 ALABAMA AVE\nFT LAUDERDALE, FL 33312",
                     ],
                 ],
                 [

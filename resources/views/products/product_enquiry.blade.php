@@ -44,14 +44,14 @@
                     </div>
 
                     <div class="why-box">
-                        <h4>Why Enquire With Geek Techbuzz?</h4>
+                        <h4>Why Explore With Eagles Repairs?</h4>
 
                         <ul>
-                            <li>Genuine HP Product Categories</li>
-                            <li>Faster Business Enquiry Responses</li>
-                            <li>Bulk Quantity Enquiry Support</li>
-                            <li>Organized Product Accessibility</li>
-                            <li>Dedicated Quote Assistance</li>
+                            <li>Well-Organized Product Categories</li>
+                            <li>Easy Access To Product Information</li>
+                            <li>Business-Focused Technology Solutions</li>
+                            <li>Clear Product Specifications</li>
+                            <li>Simple Enquiry Process</li>
                         </ul>
                     </div>
                 </div>

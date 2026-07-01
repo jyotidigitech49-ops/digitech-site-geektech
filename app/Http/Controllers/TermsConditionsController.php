@@ -99,7 +99,10 @@ class TermsConditionsController extends Controller
                     'title' => 'Intellectual Property Rights',
                     'body' => ['All website content, including:'],
                     'items' => ['Text', 'Graphics', 'Logos', 'Layouts', 'Designs', 'Website Features', 'Images', 'Content Structure'],
-                    'note' => 'Website content is protected by applicable intellectual property laws unless otherwise stated. Users may not reproduce, distribute, modify, publish, or exploit website content without prior written permission.',
+                    'notes' => [
+                        'is protected by applicable intellectual property laws unless otherwise stated.',
+                        'Users may not reproduce, distribute, modify, publish, or exploit website content without prior written permission.',
+                    ],
                 ],
                 [
                     'title' => 'Third-Party Trademarks',
@@ -126,7 +129,10 @@ class TermsConditionsController extends Controller
                     'title' => 'Limitation Of Liability',
                     'body' => ['To the fullest extent permitted by law, Eagles Repair shall not be liable for:'],
                     'items' => ['Direct Damages', 'Indirect Damages', 'Incidental Damages', 'Consequential Damages', 'Business Losses', 'Lost Revenue', 'Lost Opportunities', 'Data Loss', 'Website Interruptions'],
-                    'note' => 'Users assume full responsibility for their reliance upon website content.',
+                    'notes' => [
+                        'arising from the use of or inability to use the website.',
+                        'Users assume full responsibility for their reliance upon website content.',
+                    ],
                 ],
                 [
                     'title' => 'Privacy',
@@ -134,7 +140,6 @@ class TermsConditionsController extends Controller
                         'Use of the website is also governed by the Privacy Policy.',
                         'Users are encouraged to review the Privacy Policy to understand how information is collected, used, and protected.',
                     ],
-                    'link' => ['label' => 'View Privacy Policy', 'url' => url('/privacy-policy')],
                 ],
                 [
                     'title' => 'Changes To These Terms',
@@ -152,9 +157,9 @@ class TermsConditionsController extends Controller
                     'title' => 'Contact Information',
                     'body' => ['If you have questions regarding these Terms and Conditions, please contact us using the details below.'],
                     'contact' => [
-                        'Business Name' => 'Eagles Repair',
-                        'Business Address' => '196 Tosto RD, Beaufort, NC 28526',
-                        'Email Address' => 'info@geektechbuzz.us',
+                        'Business Name:' => 'Eagles Repair',
+                        'Email:' => 'info@eaglesrepair.us',
+                        'Address:' => "1137 ALABAMA AVE\nFT LAUDERDALE, FL 33312",
                     ],
                 ],
                 [

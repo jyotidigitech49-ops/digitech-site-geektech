@@ -257,6 +257,7 @@
     color: #071a44;
     font-size: 15px;
     line-height: 1.45;
+    white-space: pre-line;
 }
 
 @media (max-width: 991px) {

@@ -24,8 +24,6 @@
                 <aside class="privacy-summary">
                     <span class="privacy-summary__label">Policy Date</span>
                     <strong>{{ $policy['date'] }}</strong>
-                    <p>Review how Eagles Repair collects, uses, stores, shares, and protects website information.</p>
-                    <a href="{{ url('/contact-us') }}">Contact Us</a>
                 </aside>
 
                 <div class="privacy-content">

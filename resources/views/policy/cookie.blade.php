@@ -22,10 +22,8 @@
         <div class="container">
             <div class="cookie-layout">
                 <aside class="cookie-summary">
-                    <span class="cookie-kicker">Policy Date</span>
+                    <span class="cookie-kicker">Date</span>
                     <strong>{{ $cookiePolicy['date'] }}</strong>
-                    <p>Understand how cookies support performance, security, preferences, and website improvements.</p>
-                    <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
                 </aside>
 
                 <div class="cookie-content">
@@ -75,6 +73,14 @@
                                     @endforeach
                                 </ul>
                             @endif
+
+                            @if (!empty($section['note']))
+                                <p class="cookie-note">{{ $section['note'] }}</p>
+                            @endif
+
+                            @foreach (($section['notes'] ?? []) as $note)
+                                <p class="cookie-note">{{ $note }}</p>
+                            @endforeach
 
                             @if (!empty($section['contact']))
                                 <div class="cookie-contact-box">

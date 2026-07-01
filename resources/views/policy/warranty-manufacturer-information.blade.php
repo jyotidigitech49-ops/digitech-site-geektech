@@ -22,10 +22,8 @@
         <div class="container">
             <div class="warranty-policy-layout">
                 <aside class="warranty-policy-summary">
-                    <span class="warranty-policy-kicker">Disclaimer Date</span>
+                    <span class="warranty-policy-kicker">Date</span>
                     <strong>{{ $warrantyPolicy['date'] }}</strong>
-                    <p>{{ $warrantyPolicy['summary'] }}</p>
-                    <a href="{{ url('/products') }}">Browse Products</a>
                 </aside>
 
                 <div class="warranty-policy-content">
@@ -56,6 +54,10 @@
                                 @if (!empty($section['note']))
                                     <p class="warranty-policy-note">{{ $section['note'] }}</p>
                                 @endif
+
+                                @foreach (($section['notes'] ?? []) as $note)
+                                    <p class="warranty-policy-note">{{ $note }}</p>
+                                @endforeach
 
                                 @if (!empty($section['contact']))
                                     <div class="warranty-policy-contact">

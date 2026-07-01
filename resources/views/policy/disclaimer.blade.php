@@ -22,10 +22,9 @@
         <div class="container">
             <div class="disclaimer-header-card">
                 <div>
-                    <span class="disclaimer-kicker">Policy Date</span>
+                    <span class="disclaimer-kicker">Date</span>
                     <h2>{{ $disclaimer['date'] }}</h2>
                 </div>
-                <p>{{ $disclaimer['summary'] ?? 'Website information is provided for general informational, educational, and business reference purposes only.' }}</p>
             </div>
 
             <article class="disclaimer-intro">
@@ -47,6 +46,18 @@
                         @if (!empty($section['items']))
                             <ul class="disclaimer-list">
                                 @foreach ($section['items'] as $item)
+                                    <li>{{ $item }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
+
+                        @if (!empty($section['secondary_description']))
+                            <p>{{ $section['secondary_description'] }}</p>
+                        @endif
+
+                        @if (!empty($section['secondary_items']))
+                            <ul class="disclaimer-list">
+                                @foreach ($section['secondary_items'] as $item)
                                     <li>{{ $item }}</li>
                                 @endforeach
                             </ul>

@@ -9,7 +9,6 @@ class WarrantyManufacturerInformationController extends Controller
         $warrantyPolicy = [
             'title' => 'Warranty and Manufacturer Responsibility Disclaimer',
             'date' => 'June 2026',
-            'summary' => 'Warranty coverage, product support, repairs, replacements, and eligibility decisions generally remain the responsibility of the applicable manufacturer.',
             'intro' => [
                 'This Warranty and Manufacturer Responsibility Disclaimer explains the relationship between Eagles Repair, product manufacturers, and any warranties that may apply to products referenced on this website.',
                 'Eagles Repair operates as a technology, information, and product discovery platform. The website provides information regarding technology products, including printers, scanners, desktops, thin clients, and related technology solutions.',
@@ -33,7 +32,10 @@ class WarrantyManufacturerInformationController extends Controller
                     'title' => 'Manufacturer Responsibility',
                     'body' => ['Product manufacturers are solely responsible for:'],
                     'items' => ['Product Design', 'Product Development', 'Product Manufacturing', 'Product Quality Control', 'Product Safety', 'Product Documentation', 'Product Specifications', 'Warranty Coverage', 'Warranty Terms', 'Warranty Administration', 'Product Support Programs', 'Product Recalls'],
-                    'note' => 'Any warranty associated with a product is generally governed by the policies, terms, and conditions established by the manufacturer. Users should review official manufacturer documentation for complete warranty details.',
+                    'notes' => [
+                        'Any warranty associated with a product is generally governed by the policies, terms, and conditions established by the manufacturer.',
+                        'Users should review official manufacturer documentation for complete warranty details.',
+                    ],
                 ],
                 [
                     'title' => 'No Independent Product Warranty',
@@ -46,13 +48,20 @@ class WarrantyManufacturerInformationController extends Controller
                     'title' => 'Manufacturer Warranty Information',
                     'body' => ['Warranty information displayed on the website may be provided for informational purposes only.', 'Such information may include:'],
                     'items' => ['Warranty Periods', 'Warranty Categories', 'Coverage Descriptions', 'Manufacturer Support Information', 'Product Registration Information'],
-                    'note' => 'Eagles Repair does not guarantee that warranty information displayed on the website is complete, current, or unchanged. Manufacturers may revise warranty terms at any time without notice. Users should verify warranty information directly with the manufacturer.',
+                    'notes' => [
+                        'Eagles Repair does not guarantee that warranty information displayed on the website is complete, current, or unchanged.',
+                        'Manufacturers may revise warranty terms at any time without notice.',
+                        'Users should verify warranty information directly with the manufacturer.',
+                    ],
                 ],
                 [
                     'title' => 'Warranty Eligibility',
                     'body' => ['Warranty eligibility may depend upon factors including:'],
                     'items' => ['Product Model', 'Product Serial Number', 'Geographic Region', 'Date Of Purchase', 'Registration Status', 'Manufacturer Requirements', 'Product Condition', 'Original Ownership Status'],
-                    'note' => 'Eagles Repair does not determine warranty eligibility and cannot guarantee that any particular product qualifies for warranty coverage. Warranty determinations remain solely the responsibility of the manufacturer.',
+                    'notes' => [
+                        'Eagles Repair does not determine warranty eligibility and cannot guarantee that any particular product qualifies for warranty coverage.',
+                        'Warranty determinations remain solely the responsibility of the manufacturer.',
+                    ],
                 ],
                 [
                     'title' => 'Warranty Claims',
@@ -62,7 +71,7 @@ class WarrantyManufacturerInformationController extends Controller
                 ],
                 [
                     'title' => 'Product Repairs And Replacements',
-                    'body' => ['Any repairs, replacements, or warranty-related services are generally governed by the manufacturer\'s warranty policies.', 'Eagles Repair does not guarantee:'],
+                    'body' => ['Any repairs, replacements, or warranty-related services are generally governed by the manufacturer’s warranty policies.', 'Eagles Repair does not guarantee:'],
                     'items' => ['Product Repair Services', 'Product Replacement Services', 'Warranty Service Availability', 'Warranty Service Timelines', 'Warranty Service Approval'],
                     'note' => 'All repair and replacement decisions remain subject to the manufacturer\'s policies and procedures.',
                 ],
@@ -110,9 +119,9 @@ class WarrantyManufacturerInformationController extends Controller
                     'title' => 'Contact Information',
                     'body' => ['If you have questions regarding this Warranty and Manufacturer Responsibility Disclaimer, please contact us using the information below.'],
                     'contact' => [
-                        'Business Name' => 'Eagles Repair',
-                        'Business Address' => '196 Tosto RD, Beaufort, NC 28526',
-                        'Email Address' => 'info@geektechbuzz.us',
+                        'Business Name:' => 'Eagles Repair',
+                        'Email:' => 'info@eaglesrepair.us',
+                        'Address:' => "1137 ALABAMA AVE\nFT LAUDERDALE, FL 33312",
                     ],
                 ],
                 [

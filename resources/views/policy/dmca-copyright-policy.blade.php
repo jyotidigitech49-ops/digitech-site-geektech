@@ -22,10 +22,8 @@
         <div class="container">
             <div class="dmca-policy-layout">
                 <aside class="dmca-policy-summary">
-                    <span class="dmca-policy-kicker">Policy Date</span>
+                    <span class="dmca-policy-kicker">Date</span>
                     <strong>{{ $dmcaPolicy['date'] }}</strong>
-                    <p>{{ $dmcaPolicy['summary'] }}</p>
-                    <a href="{{ url('/contact-us') }}">Contact Us</a>
                 </aside>
 
                 <div class="dmca-policy-content">

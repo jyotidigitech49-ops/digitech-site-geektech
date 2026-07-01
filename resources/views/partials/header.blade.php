@@ -157,7 +157,7 @@
                         <ul>
                             <li>
                                 <i class="icon-envelope-open"></i>
-                                <a href="mailto:info@geektechbuzz.us">info@geektechbuzz.us</a>
+                                <a href="mailto:info@eaglesrepair.us">info@eaglesrepair.us</a>
                             </li>
                             <li><i class="icon-home"></i>196 Tosto RD, Beaufort, NC 28526</li>
                             <li><i class="icon-clock"></i>Monday - Friday, 9:00am - 5:00pm</li>

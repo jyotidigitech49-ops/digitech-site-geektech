@@ -42,7 +42,7 @@ class AboutController extends Controller
                 'description' => 'Browse printer collections arranged to help simplify product discovery and comparison.',
                 'button' => 'Browse Range',
                 'url' => url('/products'),
-                'image' => asset('assets/images/category_type/printer.png'),
+                'image' => asset('assets/images/banner/banner-card1.png'),
             ],
             [
                 'label' => '',
@@ -50,7 +50,7 @@ class AboutController extends Controller
                 'description' => 'Explore a range of printing options designed for varying environments, workflows, and output preferences.',
                 'button' => 'View Products',
                 'url' => url('/products'),
-                'image' => asset('assets/images/category_type/officejet-printer.png'),
+                'image' => asset('assets/images/banner/banner-card2.png'),
             ],
         ];
 
@@ -80,13 +80,13 @@ class AboutController extends Controller
 
         $cta = [
             'title' => 'Ready To Explore Our Printer Collection?',
-            'description' => 'Access a carefully organized range of printing technologies and discover products suited to your workflow.',
+            'description' => 'Access a carefully organized range of printing<br>technologies and discover products suited to your workflow.',
             'button' => 'Browse Products',
             'url' => url('/products'),
         ];
 
         $bannerImage = asset('assets/images/common-banner/comm-banner.png');
-        $heroImage = asset('assets/images/category_type/officejet-printer.png');
+        $heroImage = asset('assets/images/banner/about-pic.png');
 
         return view('about.aboutus', compact(
             'intro',

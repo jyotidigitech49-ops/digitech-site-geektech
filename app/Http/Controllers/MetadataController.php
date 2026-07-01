@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BlogMeta;
 use App\Models\DetailsPage;
 use App\Models\ProductsDetailsPage;
 use Illuminate\Http\Request;
@@ -11,7 +12,9 @@ class MetadataController extends Controller
 {
     public function resolve(Request $request): array
     {
-        $metadata = $this->productMetadata($request) ?? $this->pageMetadata($request);
+        $metadata = $this->blogMetadata($request)
+            ?? $this->productMetadata($request)
+            ?? $this->pageMetadata($request);
 
         return [
             'title' => $metadata?->meta_title,
@@ -20,6 +23,24 @@ class MetadataController extends Controller
             'type' => $this->pageType($request),
             'image' => asset('assets/images/products_banners/pr01.png'),
         ];
+    }
+
+    private function blogMetadata(Request $request): ?BlogMeta
+    {
+        if (! $this->isBlogDetailsRoute($request)) {
+            return null;
+        }
+
+        $slug = Str::lower(trim((string) $request->route()?->parameter('url'), '/'));
+
+        if ($slug === '') {
+            return null;
+        }
+
+        return BlogMeta::query()
+            ->active()
+            ->where('url', $slug)
+            ->first(['url', 'meta_title', 'meta_description']);
     }
 
     private function productMetadata(Request $request): ?ProductsDetailsPage
@@ -132,9 +153,7 @@ class MetadataController extends Controller
             return 'product';
         }
 
-        $action = $request->route()?->getActionMethod();
-
-        if ($action === 'index' && str_contains((string) $request->route()?->getActionName(), 'BlogController')) {
+        if ($this->isBlogDetailsRoute($request)) {
             return 'article';
         }
 
@@ -149,5 +168,13 @@ class MetadataController extends Controller
             'printerCategoryProductsDetails',
             'productDetailsByType',
         ], true) || $route?->getName() === 'product.enquiry.show';
+    }
+
+    private function isBlogDetailsRoute(Request $request): bool
+    {
+        $route = $request->route();
+
+        return $route?->getActionMethod() === 'index'
+            && str_contains((string) $route->getActionName(), 'BlogController');
     }
 }

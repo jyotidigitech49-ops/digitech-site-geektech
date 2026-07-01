@@ -9,7 +9,6 @@ class DmcaCopyrightPolicyController extends Controller
         $dmcaPolicy = [
             'title' => 'DMCA Copyright Policy',
             'date' => 'June 2026',
-            'summary' => 'Eagles Repair respects intellectual property rights and responds to valid copyright concerns in accordance with applicable law.',
             'intro' => [
                 'Eagles Repair respects the intellectual property rights of others and expects users of the website to do the same.',
                 'This Digital Millennium Copyright Act ("DMCA") Policy outlines the procedures for reporting alleged copyright infringement and submitting copyright-related notices concerning content appearing on the Eagles Repair website.',
@@ -38,7 +37,7 @@ class DmcaCopyrightPolicyController extends Controller
                         'Identification of the copyrighted work claimed to have been infringed.',
                         'Identification of the material claimed to be infringing, including sufficient information to locate the material on the website.',
                         'Your full legal name.',
-                        'Your company name, if applicable.',
+                        'Your company name (if applicable).',
                         'Your mailing address.',
                         'Your telephone number.',
                         'Your email address.',
@@ -127,9 +126,9 @@ class DmcaCopyrightPolicyController extends Controller
                     'title' => 'Contact Information',
                     'body' => ['If you wish to submit a copyright notice, counter-notification, or have questions regarding this DMCA Copyright Policy, please contact us using the information below.'],
                     'contact' => [
-                        'Business Name' => 'Eagles Repair',
-                        'Business Address' => '196 Tosto RD, Beaufort, NC 28526',
-                        'Email Address' => 'info@geektechbuzz.us',
+                        'Business Name:' => 'Eagles Repair',
+                        'Email:' => 'info@eaglesrepair.us',
+                        'Address:' => "1137 ALABAMA AVE\nFT LAUDERDALE, FL 33312",
                     ],
                 ],
                 [

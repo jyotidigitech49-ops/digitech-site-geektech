@@ -22,10 +22,8 @@
         <div class="container">
             <div class="product-info-policy-layout">
                 <aside class="product-info-policy-summary">
-                    <span class="product-info-policy-kicker">Disclaimer Date</span>
+                    <span class="product-info-policy-kicker">Date</span>
                     <strong>{{ $productDisclaimer['date'] }}</strong>
-                    <p>Product names, specifications, images, compatibility notes, and availability details are shared for reference only.</p>
-                    <a href="{{ url('/products') }}">Browse Products</a>
                 </aside>
 
                 <div class="product-info-policy-content">
@@ -53,9 +51,25 @@
                                     </ul>
                                 @endif
 
+                                @if (!empty($section['secondary_description']))
+                                    <p>{{ $section['secondary_description'] }}</p>
+                                @endif
+
+                                @if (!empty($section['secondary_items']))
+                                    <ul class="product-info-policy-list">
+                                        @foreach ($section['secondary_items'] as $item)
+                                            <li>{{ $item }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+
                                 @if (!empty($section['note']))
                                     <p class="product-info-policy-note">{{ $section['note'] }}</p>
                                 @endif
+
+                                @foreach (($section['notes'] ?? []) as $note)
+                                    <p class="product-info-policy-note">{{ $note }}</p>
+                                @endforeach
 
                                 @if (!empty($section['contact']))
                                     <div class="product-info-policy-contact">

@@ -22,10 +22,9 @@
         <div class="container">
             <div class="disclaimer-header-card">
                 <div>
-                    <span class="disclaimer-kicker">Policy Date</span>
+                    <span class="disclaimer-kicker">Date</span>
                     <h2>{{ $disclaimer['date'] }}</h2>
                 </div>
-                <p>Trademark references on Eagles Repair are used for identification, informational, descriptive, and reference purposes only.</p>
             </div>
 
             <article class="disclaimer-intro">
@@ -52,9 +51,25 @@
                             </ul>
                         @endif
 
+                        @if (!empty($section['secondary_description']))
+                            <p>{{ $section['secondary_description'] }}</p>
+                        @endif
+
+                        @if (!empty($section['secondary_items']))
+                            <ul class="disclaimer-list">
+                                @foreach ($section['secondary_items'] as $item)
+                                    <li>{{ $item }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
+
                         @if (!empty($section['note']))
                             <p class="disclaimer-note">{{ $section['note'] }}</p>
                         @endif
+
+                        @foreach (($section['notes'] ?? []) as $note)
+                            <p class="disclaimer-note">{{ $note }}</p>
+                        @endforeach
 
                         @if (!empty($section['contact']))
                             <div class="disclaimer-contact-box">

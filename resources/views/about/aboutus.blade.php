@@ -6,6 +6,8 @@
 @endpush
 
 @section('content')
+
+{{-- Page Banner --}}
     <section class="about-page-banner" style="background-image: url('{{ $bannerImage }}');">
         <div class="about-page-banner__overlay"></div>
         <div class="about-page-banner__content">
@@ -53,6 +55,7 @@
         </div>
     </section>
 
+    {{-- banner section cards --}}
     <section class="about-banner-section">
         <div class="container">
             <div class="about-banner-grid">
@@ -101,14 +104,15 @@
         </div>
     </section>
 
+    {{-- CTA -banner-Section --}}
     <section class="about-cta-section">
         <div class="container">
             <div class="about-cta">
-                <div>
+                <div class="about-cta__content">
                     <h2>{{ $cta['title'] }}</h2>
-                    <p>{{ $cta['description'] }}</p>
+                    <p>{!! $cta['description'] !!}</p>
+                    <a class="about-primary-btn about-primary-btn--light" href="{{ $cta['url'] }}">{{ $cta['button'] }}</a>
                 </div>
-                <a class="about-primary-btn about-primary-btn--light" href="{{ $cta['url'] }}">{{ $cta['button'] }}</a>
             </div>
         </div>
     </section>

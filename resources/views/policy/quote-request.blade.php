@@ -22,10 +22,8 @@
         <div class="container">
             <div class="quote-policy-layout">
                 <aside class="quote-policy-summary">
-                    <span class="quote-policy-kicker">Policy Date</span>
+                    <span class="quote-policy-kicker">Date</span>
                     <strong>{{ $quotePolicy['date'] }}</strong>
-                    <p>Understand how quote requests, enquiries, pricing notes, and follow-up communication are handled.</p>
-                    <a href="{{ url('/products') }}">Browse Products</a>
                 </aside>
 
                 <div class="quote-policy-content">
@@ -56,6 +54,10 @@
                                 @if (!empty($section['note']))
                                     <p class="quote-policy-note">{{ $section['note'] }}</p>
                                 @endif
+
+                                @foreach (($section['notes'] ?? []) as $note)
+                                    <p class="quote-policy-note">{{ $note }}</p>
+                                @endforeach
 
                                 @if (!empty($section['link']))
                                     <a class="quote-policy-inline-link" href="{{ $section['link']['url'] }}">{{ $section['link']['label'] }}</a>

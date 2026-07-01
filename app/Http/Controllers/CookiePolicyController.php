@@ -25,8 +25,9 @@ class CookiePolicyController extends Controller
                 ],
                 [
                     'title' => 'Why We Use Cookies',
-                    'body' => ['Eagles Repair may use cookies and similar technologies to:', 'Cookies help us understand how visitors use the website so that we can continue improving our content and services.'],
+                    'body' => ['Eagles Repair may use cookies and similar technologies to:'],
                     'items' => ['Improve Website Functionality', 'Enhance User Experience', 'Remember User Preferences', 'Maintain Website Security', 'Analyze Website Performance', 'Understand Visitor Behavior', 'Improve Website Navigation', 'Monitor Technical Performance', 'Support Website Administration', 'Provide Relevant Content'],
+                    'note' => 'Cookies help us understand how visitors use the website so that we can continue improving our content and services.',
                 ],
                 [
                     'title' => 'Types Of Cookies We May Use',
@@ -62,36 +63,43 @@ class CookiePolicyController extends Controller
                     'body' => [
                         'The website may utilize services provided by third parties that place cookies on users\' devices.',
                         'These third parties may include:',
+                    ],
+                    'items' => ['Analytics Providers', 'Website Performance Services', 'Security Services', 'Marketing Service Providers', 'Embedded Content Providers'],
+                    'notes' => [
                         'Third-party cookies are governed by the privacy and cookie policies of the respective third-party providers.',
                         'Eagles Repair does not control how third parties collect or process information through their cookies.',
                         'Users are encouraged to review the privacy policies of any third-party services used on the website.',
                     ],
-                    'items' => ['Analytics Providers', 'Website Performance Services', 'Security Services', 'Marketing Service Providers', 'Embedded Content Providers'],
                 ],
                 [
                     'title' => 'Analytics Technologies',
                     'body' => [
                         'We may use website analytics tools to better understand visitor activity and website performance.',
                         'Analytics tools may collect information such as:',
+                    ],
+                    'items' => ['Pages Viewed', 'Session Duration', 'Referral Sources', 'Device Information', 'Browser Information', 'General Geographic Information', 'User Interaction Data'],
+                    'notes' => [
                         'This information helps us improve website content, navigation, and functionality.',
                         'Analytics information is generally used in an aggregated form and is not intended to identify individual users.',
                     ],
-                    'items' => ['Pages Viewed', 'Session Duration', 'Referral Sources', 'Device Information', 'Browser Information', 'General Geographic Information', 'User Interaction Data'],
                 ],
                 [
                     'title' => 'Information Collected Through Cookies',
-                    'body' => ['Depending on the type of cookie used, information collected may include:', 'The information collected may vary depending on browser settings and website functionality.'],
+                    'body' => ['Depending on the type of cookie used, information collected may include:'],
                     'items' => ['IP Address', 'Browser Type', 'Device Type', 'Operating System', 'Pages Visited', 'Time Spent On The Website', 'Website Interaction Data', 'Referral Information', 'Language Preferences', 'Geographic Region Information'],
+                    'note' => 'The information collected may vary depending on browser settings and website functionality.',
                 ],
                 [
                     'title' => 'Managing Cookie Preferences',
                     'body' => [
                         'Most web browsers allow users to manage, block, or delete cookies through browser settings.',
                         'Users may generally:',
+                    ],
+                    'items' => ['Accept Cookies', 'Reject Cookies', 'Delete Existing Cookies', 'Configure Cookie Preferences', 'Receive Notifications Before Cookies Are Stored'],
+                    'notes' => [
                         'Instructions for managing cookies can typically be found within the browser\'s help section.',
                         'Please note that disabling certain cookies may affect website functionality and user experience.',
                     ],
-                    'items' => ['Accept Cookies', 'Reject Cookies', 'Delete Existing Cookies', 'Configure Cookie Preferences', 'Receive Notifications Before Cookies Are Stored'],
                 ],
                 [
                     'title' => 'Do Not Track Signals',
@@ -121,9 +129,9 @@ class CookiePolicyController extends Controller
                     'title' => 'Contact Information',
                     'body' => ['If you have questions regarding this Cookie Policy or our use of cookies and related technologies, please contact us using the information below.'],
                     'contact' => [
-                        'Business Name' => 'Eagles Repair',
-                        'Business Address' => '196 Tosto RD, Beaufort, NC 28526',
-                        'Email Address' => 'info@geektechbuzz.us',
+                        'Business Name:' => 'Eagles Repair',
+                        'Email:' => 'info@eaglesrepair.us',
+                        'Address:' => "1137 ALABAMA AVE\nFT LAUDERDALE, FL 33312",
                     ],
                 ],
                 [

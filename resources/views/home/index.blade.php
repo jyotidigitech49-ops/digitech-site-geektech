@@ -245,10 +245,18 @@
     <section class="product-area home-dynamic-products-area">
         <div class="container">
             <div class="home-products-heading text-center">
-                <span class="home-section-eyebrow">Selected For Your Needs</span>
-                <h2>Shop Products by Your Needs</h2>
+                {{-- <span class="home-section-eyebrow">Selected For Your Needs</span> --}}
+                <h2>Selected For Your Needs</h2>
                 <p>Explore printers, scanners, desktops, and thin clients selected for home and office use.</p>
             </div>
+            @php
+                $defaultProductTab = collect($productTabs)->search(
+                    fn ($tab) => strtolower(trim($tab['label'])) === 'printer'
+                );
+                $defaultProductTab = $defaultProductTab !== false
+                    ? $defaultProductTab
+                    : array_key_first($productTabs);
+            @endphp
             <div class="tab-style-9 nav home-product-tabs">
                 {{-- @dd($productTabs) --}}
                 @foreach ($productTabs as $tabKey => $tab)
@@ -262,15 +270,17 @@
                                     ? 'icon-screen-desktop'
                                     : (str_contains($tabLabel, 'scanner') ? 'icon-docs' : 'icon-star')));
                     @endphp
-                    <a class="{{ $loop->first ? 'active' : '' }}" href="#{{ $tabKey }}" data-bs-toggle="tab">
+                    <a class="{{ $tabKey === $defaultProductTab ? 'active' : '' }}" href="#{{ $tabKey }}"
+                        data-bs-toggle="tab">
                         <i class="{{ $tabIcon }}"></i>
-                        {{ $tab['label'] }}
+                        {{ \Illuminate\Support\Str::title(str_replace(['-', '_'], ' ', $tab['label'])) }}
                     </a>
                 @endforeach
             </div>
             <div class="tab-content jump">
                 @foreach ($productTabs as $tabKey => $tab)
-                    <div id="{{ $tabKey }}" class="tab-pane {{ $loop->first ? 'active' : '' }}">
+                    <div id="{{ $tabKey }}"
+                        class="tab-pane {{ $tabKey === $defaultProductTab ? 'active' : '' }}">
                         <div class="home-needs-product-slider">
                             @forelse ($tab['products'] as $product)
                                 @php
@@ -386,7 +396,7 @@
         <div class="container">
             <div class="home-showcase-heading text-center">
                 <span class="home-showcase-icon"><i class="icon-star"></i></span>
-                <h2>Suggested <span>For You</span></h2>
+                <h2>Browse <span>Product Range</span></h2>
                 <p>Handpicked products selected around everyday home and workplace needs.</p>
             </div>
 

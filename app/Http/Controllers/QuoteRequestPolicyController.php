@@ -25,14 +25,20 @@ class QuoteRequestPolicyController extends Controller
                     'title' => 'No Purchase Agreement',
                     'body' => ['Submission of a quote request does not constitute:'],
                     'items' => ['A Product Purchase', 'A Product Reservation', 'A Sales Contract', 'A Binding Offer', 'A Product Order', 'A Commitment To Buy', 'A Commitment To Sell'],
-                    'note' => 'A quote request is simply a request for information and does not create any contractual relationship between the user and Eagles Repair. No transaction is considered completed solely because a quote request has been submitted.',
+                    'notes' => [
+                        'A quote request is simply a request for information and does not create any contractual relationship between the user and Eagles Repair.',
+                        'No transaction is considered completed solely because a quote request has been submitted.',
+                    ],
                     'highlight' => true,
                 ],
                 [
                     'title' => 'Information Required For Quote Requests',
                     'body' => ['Users may be asked to provide information such as:'],
                     'items' => ['Full Name', 'Company Name', 'Email Address', 'Telephone Number', 'Product Category', 'Product Requirements', 'Quantity Information', 'Business Needs', 'Additional Comments'],
-                    'note' => 'Users are responsible for ensuring that information submitted through quote request forms is accurate, complete, and current. Eagles Repair may be unable to respond effectively to requests containing incomplete or inaccurate information.',
+                    'notes' => [
+                        'Users are responsible for ensuring that information submitted through quote request forms is accurate, complete, and current.',
+                        'Eagles Repair may be unable to respond effectively to requests containing incomplete or inaccurate information.',
+                    ],
                 ],
                 [
                     'title' => 'Review Of Quote Requests',
@@ -44,13 +50,19 @@ class QuoteRequestPolicyController extends Controller
                     'title' => 'Product Availability',
                     'body' => ['Product information presented on the website may not reflect current availability.', 'Availability may vary due to:'],
                     'items' => ['Product Changes', 'Supplier Availability', 'Product Discontinuation', 'Inventory Conditions', 'Manufacturer Updates', 'Market Conditions'],
-                    'note' => 'Eagles Repair does not guarantee that products referenced on the website will be available at any specific time. Availability information may change without notice.',
+                    'notes' => [
+                        'Eagles Repair does not guarantee that products referenced on the website will be available at any specific time.',
+                        'Availability information may change without notice.',
+                    ],
                 ],
                 [
                     'title' => 'Pricing Information',
                     'body' => ['Any pricing information that may be communicated in response to a quote request is subject to change.', 'Pricing may vary based on factors including:'],
                     'items' => ['Product Configuration', 'Product Availability', 'Quantity Requirements', 'Market Conditions', 'Supplier Information', 'Product Updates'],
-                    'note' => 'Pricing information provided in response to a quote request should not be interpreted as a binding commitment unless expressly stated in writing. Eagles Repair reserves the right to modify or withdraw pricing information at any time.',
+                    'notes' => [
+                        'Pricing information provided in response to a quote request should not be interpreted as a binding commitment unless expressly stated in writing.',
+                        'Eagles Repair reserves the right to modify or withdraw pricing information at any time.',
+                    ],
                 ],
                 [
                     'title' => 'Product Information Accuracy',
@@ -88,7 +100,6 @@ class QuoteRequestPolicyController extends Controller
                         'Information submitted through quote request forms is handled in accordance with the website\'s Privacy Policy.',
                         'Users are encouraged to review the Privacy Policy to understand how information is collected, stored, and used.',
                     ],
-                    'link' => ['label' => 'View Privacy Policy', 'url' => url('/privacy-policy')],
                 ],
                 [
                     'title' => 'Limitation Of Liability',
@@ -108,9 +119,9 @@ class QuoteRequestPolicyController extends Controller
                     'title' => 'Contact Information',
                     'body' => ['If you have questions regarding this Quote Request Policy or a submitted enquiry, please contact us using the details below.'],
                     'contact' => [
-                        'Business Name' => 'Eagles Repair',
-                        'Business Address' => '196 Tosto RD, Beaufort, NC 28526',
-                        'Email Address' => 'info@geektechbuzz.us',
+                        'Business Name:' => 'Eagles Repair',
+                        'Email:' => 'info@eaglesrepair.us',
+                        'Address:' => "1137 ALABAMA AVE\nFT LAUDERDALE, FL 33312",
                     ],
                 ],
                 [

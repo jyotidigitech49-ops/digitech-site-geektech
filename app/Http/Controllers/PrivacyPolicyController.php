@@ -65,18 +65,19 @@ class PrivacyPolicyController extends Controller
                     'title' => 'Cookies And Tracking Technologies',
                     'body' => [
                         'The website may use cookies and similar technologies to improve functionality and user experience.',
-                        'Users may control cookie preferences through their browser settings. Disabling cookies may affect certain website features.',
+                        'Cookies may be used for:',
                     ],
                     'items' => ['Website Performance', 'User Preferences', 'Analytics', 'Security Functions', 'Session Management'],
+                    'note' => 'Users may control cookie preferences through their browser settings. Disabling cookies may affect certain website features.',
                 ],
                 [
                     'title' => 'Information Sharing And Disclosure',
                     'body' => [
                         'Eagles Repair does not sell personal information to third parties.',
                         'Information may be shared only when reasonably necessary, including:',
-                        'Any disclosure is limited to purposes consistent with this Privacy Policy.',
                     ],
                     'items' => ['Service Providers Supporting Website Operations', 'Website Hosting Providers', 'Analytics Providers', 'Legal Authorities When Required By Law', 'Professional Advisors Assisting Business Operations'],
+                    'note' => 'Any disclosure is limited to purposes consistent with this Privacy Policy.',
                 ],
                 [
                     'title' => 'Data Security',
@@ -123,9 +124,9 @@ class PrivacyPolicyController extends Controller
                     'title' => 'Contact Information',
                     'body' => ['If you have questions regarding this Policy, your use of the website, submitted quote requests, or any related matter, please contact us using the information below.'],
                     'contact' => [
-                        'Business Name' => 'Eagles Repair',
-                        'Business Address' => '196 Tosto RD, Beaufort, NC 28526',
-                        'Email Address' => 'info@geektechbuzz.us',
+                        'Business Name:' => 'Eagles Repair',
+                        'Email:' => 'info@eaglesrepair.us',
+                        'Address:' => "1137 ALABAMA AVE\nFT LAUDERDALE, FL 33312",
                     ],
                 ],
                 [

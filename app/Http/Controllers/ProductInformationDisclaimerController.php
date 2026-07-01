@@ -22,20 +22,28 @@ class ProductInformationDisclaimerController extends Controller
                         'Product information may include:',
                     ],
                     'items' => ['Product Names', 'Product Descriptions', 'Product Specifications', 'Product Features', 'Product Categories', 'Product Images', 'Product Documentation References', 'Compatibility Information', 'Technical Details', 'Informational Content'],
-                    'note' => 'The information provided should not be interpreted as professional advice, purchasing advice, technical recommendations, or guarantees regarding product performance. Users are encouraged to independently verify all information before making business, purchasing, or operational decisions.',
+                    'notes' => [
+                        'The information provided should not be interpreted as professional advice, purchasing advice, technical recommendations, or guarantees regarding product performance.',
+                        'Users are encouraged to independently verify all information before making business, purchasing, or operational decisions.',
+                    ],
                     'highlight' => true,
                 ],
                 [
                     'title' => 'No Guarantee Of Accuracy',
                     'body' => ['While reasonable efforts are made to maintain accurate and current information, Eagles Repair does not guarantee that all product information available on the website is:'],
                     'items' => ['Complete', 'Accurate', 'Current', 'Error-Free', 'Up-To-Date', 'Suitable For Specific Purposes'],
-                    'note' => 'Manufacturers and suppliers may update product information without notice, and website content may not always immediately reflect such changes. Users should independently verify important information before relying upon it.',
+                    'notes' => [
+                        'Manufacturers and suppliers may update product information without notice, and website content may not always immediately reflect such changes.',
+                        'Users should independently verify important information before relying upon it.',
+                    ],
                 ],
                 [
                     'title' => 'Product Specifications',
                     'body' => ['Product specifications presented on the website are provided for informational purposes only.', 'Specifications may include:'],
                     'items' => ['Dimensions', 'Technical Features', 'Hardware Configurations', 'Connectivity Information', 'Performance Information', 'System Requirements', 'Functional Capabilities'],
-                    'note' => 'Specifications may change without prior notice due to manufacturer updates, product revisions, regional variations, model changes, or production modifications. Eagles Repair does not guarantee that listed specifications remain unchanged after publication.',
+                    'secondary_description' => 'Specifications may change without prior notice due to:',
+                    'secondary_items' => ['Manufacturer Updates', 'Product Revisions', 'Regional Variations', 'Model Changes', 'Production Modifications'],
+                    'note' => 'Eagles Repair does not guarantee that listed specifications remain unchanged after publication.',
                 ],
                 [
                     'title' => 'Product Features',
@@ -53,13 +61,19 @@ class ProductInformationDisclaimerController extends Controller
                     'title' => 'Product Availability',
                     'body' => ['The appearance of a product on the website does not guarantee:'],
                     'items' => ['Product Availability', 'Product Continuity', 'Future Availability', 'Product Supply', 'Inventory Status'],
-                    'note' => 'Availability may change without notice due to market conditions, supplier updates, manufacturer decisions, or other factors. Users should not assume that a product remains available simply because it appears on the website.',
+                    'notes' => [
+                        'Availability may change without notice due to market conditions, supplier updates, manufacturer decisions, or other factors.',
+                        'Users should not assume that a product remains available simply because it appears on the website.',
+                    ],
                 ],
                 [
                     'title' => 'Product Compatibility',
                     'body' => ['Any compatibility information provided on the website is intended solely for general informational purposes.', 'Compatibility may vary based on:'],
                     'items' => ['Hardware Configurations', 'Software Environments', 'Operating Systems', 'Firmware Versions', 'Network Environments', 'User Requirements'],
-                    'note' => 'Eagles Repair does not guarantee compatibility between any product and a user\'s specific environment or requirements. Users are responsible for independently verifying compatibility before relying upon such information.',
+                    'notes' => [
+                        'Eagles Repair does not guarantee compatibility between any product and a user\'s specific environment or requirements.',
+                        'Users are responsible for independently verifying compatibility before relying upon such information.',
+                    ],
                 ],
                 [
                     'title' => 'Product Performance',
@@ -77,7 +91,10 @@ class ProductInformationDisclaimerController extends Controller
                     'title' => 'No Product Recommendations',
                     'body' => ['Information displayed on the website should not be interpreted as:'],
                     'items' => ['Product Recommendations', 'Product Endorsements', 'Professional Advice', 'Technical Consulting', 'Procurement Guidance'],
-                    'note' => 'The website provides information intended to assist users in conducting their own research and evaluation. Users remain responsible for determining whether a product is suitable for their needs.',
+                    'notes' => [
+                        'The website provides information intended to assist users in conducting their own research and evaluation.',
+                        'Users remain responsible for determining whether a product is suitable for their needs.',
+                    ],
                 ],
                 [
                     'title' => 'Third-Party Information',
@@ -110,9 +127,9 @@ class ProductInformationDisclaimerController extends Controller
                     'title' => 'Contact Information',
                     'body' => ['If you have questions regarding this Product Information Disclaimer or product-related content displayed on the website, please contact us using the details below.'],
                     'contact' => [
-                        'Business Name' => 'Eagles Repair',
-                        'Business Address' => '196 Tosto RD, Beaufort, NC 28526',
-                        'Email Address' => 'info@geektechbuzz.us',
+                        'Business Name:' => 'Eagles Repair',
+                        'Email:' => 'info@eaglesrepair.us',
+                        'Address:' => "1137 ALABAMA AVE\nFT LAUDERDALE, FL 33312",
                     ],
                 ],
                 [

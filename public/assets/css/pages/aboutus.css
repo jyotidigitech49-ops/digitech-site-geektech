@@ -380,12 +380,17 @@
 .about-cta {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 32px;
+    aspect-ratio: 1170 / 325;
     border-radius: 18px;
-    background: linear-gradient(135deg, #071a44 0%, #0b62ff 100%);
+    background: url("../../images/banner/cta-banner-about.png") center center / cover no-repeat;
     padding: 46px 48px;
     overflow: hidden;
+}
+
+.about-cta__content {
+    position: relative;
+    z-index: 1;
+    width: 55%;
 }
 
 .about-cta .about-eyebrow {
@@ -394,28 +399,27 @@
 }
 
 .about-cta h2 {
-    color: #ffffff;
+    color: #071a44;
     font-size: 32px;
     line-height: 1.25;
     margin: 0 0 12px;
 }
 
 .about-cta p {
-    color: rgba(255, 255, 255, 0.82);
+    color: #44536a;
     max-width: 640px;
 }
 
 .about-primary-btn--light {
-    flex: 0 0 auto;
-    margin-top: 0;
-    background: #ffffff;
-    color: #0b62ff;
-    box-shadow: none;
+    margin-top: 24px;
+    background: #0b62ff;
+    color: #ffffff;
+    box-shadow: 0 12px 26px rgba(11, 98, 255, 0.25);
 }
 
 .about-primary-btn--light:hover {
-    color: #0b62ff;
-    background: #eef4ff;
+    color: #ffffff;
+    background: #084fd1;
 }
 
 @media (max-width: 991px) {
@@ -437,6 +441,10 @@
     .about-cta {
         align-items: flex-start;
         flex-direction: column;
+    }
+
+    .about-cta__content {
+        width: 58%;
     }
 }
 
@@ -481,5 +489,19 @@
     .about-choice-card,
     .about-cta {
         padding: 28px 22px;
+    }
+
+    .about-cta {
+        aspect-ratio: auto;
+        min-height: 420px;
+        background-position: 68% center;
+    }
+
+    .about-cta__content {
+        width: 100%;
+        padding: 18px;
+        border-radius: 12px;
+        background: rgba(235, 244, 255, 0.88);
+        backdrop-filter: blur(2px);
     }
 }

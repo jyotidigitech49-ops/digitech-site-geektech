@@ -9,11 +9,11 @@
     <section class="faq-hero" style="background-image: url('{{ $bannerImage }}');">
         <div class="faq-hero__overlay"></div>
         <div class="faq-hero__content">
-            <h1>Faq</h1>
+            <h1>Faqs</h1>
             <div class="faq-hero__breadcrumb">
                 <a href="{{ url('/') }}">HOME</a>
                 <span>//</span>
-                <span>FAQ</span>
+                <span>FAQS</span>
             </div>
         </div>
     </section>
