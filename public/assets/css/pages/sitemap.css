@@ -641,7 +641,7 @@
 .sitemap-card__mark--policies::after { left: 20px; top: 20px; }
 
 .sitemap-card__count {
-    display: inline-flex;
+    display: none !important;
     width: 30px;
     height: 30px;
     align-items: center;

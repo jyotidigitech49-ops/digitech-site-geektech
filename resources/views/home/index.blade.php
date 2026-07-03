@@ -2,27 +2,32 @@
 @section('title', 'Home')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/pages/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/home.css') }}?v=20260703-3">
 @endpush
 
 @section('content')
 
     {{-- Slider area- --}}
     <section class="home-main-slider-area" aria-label="Featured technology">
-        <div class="home-main-slider">
-            <a class="home-main-slide" href="{{ url('/products') }}" aria-label="Explore featured technology solutions">
-                <img src="{{ asset('assets/images/slider/hb1.webp') }}"
-                    alt="Innovation made simple - explore featured technology solutions">
-            </a>
-            <a class="home-main-slide" href="{{ url('/products/printer') }}" aria-label="Explore modern printer solutions">
-                <img src="{{ asset('assets/images/slider/hb2.webp') }}"
-                    alt="Built for modern living - explore modern printer solutions">
-            </a>
-            <a class="home-main-slide" href="{{ url('/products/thin-client') }}"
-                aria-label="Explore reliable technology essentials">
-                <img src="{{ asset('assets/images/slider/hb3.webp') }}"
-                    alt="Reliable solutions ahead - explore technology essentials">
-            </a>
+        <div class="home-main-slider hero-slider-active-1">
+            <div class="single-hero-slider single-animation-wrap home-main-slide">
+                <a href="{{ url('/products') }}" aria-label="Explore featured technology solutions">
+                    <img src="{{ asset('assets/images/slider/hb1.webp') }}" width="2000" height="502"
+                        fetchpriority="high" alt="Innovation made simple - explore featured technology solutions">
+                </a>
+            </div>
+            <div class="single-hero-slider single-animation-wrap home-main-slide">
+                <a href="{{ url('/products/printer') }}" aria-label="Explore modern printer solutions">
+                    <img src="{{ asset('assets/images/slider/hb2.webp') }}" width="2000" height="502"
+                        alt="Built for modern living - explore modern printer solutions">
+                </a>
+            </div>
+            <div class="single-hero-slider single-animation-wrap home-main-slide">
+                <a href="{{ url('/products/thin-client') }}" aria-label="Explore reliable technology essentials">
+                    <img src="{{ asset('assets/images/slider/hb3.webp') }}" width="2000" height="502"
+                        alt="Reliable solutions ahead - explore technology essentials">
+                </a>
+            </div>
         </div>
     </section>
     {{-- Service Area --}}
@@ -565,24 +570,6 @@
 @endsection
 
 @push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            $('.home-main-slider').not('.slick-initialized').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                infinite: true,
-                autoplay: true,
-                autoplaySpeed: 1600,
-                speed: 500,
-                arrows: false,
-                dots: true,
-                swipe: true,
-                touchMove: true,
-                pauseOnHover: false,
-                pauseOnFocus: false
-            });
-        });
-    </script>
     <script>
         (function($) {
             var sliders = $('.home-needs-product-slider');

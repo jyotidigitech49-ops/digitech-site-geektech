@@ -72,7 +72,7 @@
     <script src="{{ asset('assets/js/plugins/easyzoom.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/scrollup.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/ajax-mail.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}?v=20260703-2"></script>
 
     <script>
         document.querySelectorAll('.js-product-gallery-card').forEach(function (card) {

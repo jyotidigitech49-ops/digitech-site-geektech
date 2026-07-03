@@ -2045,7 +2045,25 @@
     line-height: 0;
 }
 
+/* Prevent all hero slides flashing before Slick finishes initializing. */
+.home-main-slider {
+    overflow: hidden;
+}
+
+.home-main-slider:not(.slick-initialized) > .home-main-slide {
+    display: none !important;
+}
+
+.home-main-slider:not(.slick-initialized) > .home-main-slide:first-child {
+    display: block !important;
+}
+
 .home-main-slide {
+    display: block;
+    width: 100%;
+}
+
+.home-main-slide > a {
     display: block;
     width: 100%;
 }
