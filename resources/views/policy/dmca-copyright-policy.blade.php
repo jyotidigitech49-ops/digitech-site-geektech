@@ -18,58 +18,50 @@
         </div>
     </section>
 
-    <section class="dmca-policy-page">
-        <div class="container">
-            <div class="dmca-policy-layout">
-                <aside class="dmca-policy-summary">
-                    <span class="dmca-policy-kicker">Date</span>
-                    <strong>{{ $dmcaPolicy['date'] }}</strong>
-                </aside>
+    <main class="dmca-document">
+        <div class="dmca-document__inner">
+            <h1>{{ $dmcaPolicy['title'] }}</h1>
+            <p class="dmca-document__date">Date: {{ $dmcaPolicy['date'] }}</p>
 
-                <div class="dmca-policy-content">
-                    <article class="dmca-policy-intro">
-                        <span class="dmca-policy-kicker">Introduction</span>
-                        @foreach ($dmcaPolicy['intro'] as $paragraph)
-                            <p>{{ $paragraph }}</p>
-                        @endforeach
-                    </article>
+            <section class="dmca-document__section">
+                <h2>Introduction</h2>
+                @foreach ($dmcaPolicy['intro'] as $paragraph)
+                    <p>{{ $paragraph }}</p>
+                @endforeach
+            </section>
 
-                    <div class="dmca-policy-grid">
-                        @foreach ($dmcaPolicy['sections'] as $section)
-                            <article class="dmca-policy-card {{ !empty($section['highlight']) ? 'dmca-policy-card--highlight' : '' }}">
-                                <h2>{{ $section['title'] }}</h2>
+            @foreach ($dmcaPolicy['sections'] as $section)
+                <section class="dmca-document__section">
+                    <h2>{{ $section['title'] }}</h2>
 
-                                @foreach (($section['body'] ?? []) as $paragraph)
-                                    <p>{{ $paragraph }}</p>
-                                @endforeach
+                    @foreach (($section['body'] ?? []) as $paragraph)
+                        <p>{{ $paragraph }}</p>
+                    @endforeach
 
-                                @if (!empty($section['items']))
-                                    <ul class="dmca-policy-list">
-                                        @foreach ($section['items'] as $item)
-                                            <li>{{ $item }}</li>
-                                        @endforeach
-                                    </ul>
-                                @endif
+                    @if (!empty($section['items']))
+                        <ul>
+                            @foreach ($section['items'] as $item)
+                                <li>{{ $item }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
 
-                                @if (!empty($section['note']))
-                                    <p class="dmca-policy-note">{{ $section['note'] }}</p>
-                                @endif
+                    @if (!empty($section['note']))
+                        <p>{{ $section['note'] }}</p>
+                    @endif
 
-                                @if (!empty($section['contact']))
-                                    <div class="dmca-policy-contact">
-                                        @foreach ($section['contact'] as $label => $value)
-                                            <div>
-                                                <span>{{ $label }}</span>
-                                                <strong>{{ $value }}</strong>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                @endif
-                            </article>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
+                    @if (!empty($section['contact']))
+                        <div class="dmca-document__contact">
+                            @foreach ($section['contact'] as $label => $value)
+                                <p>
+                                    <strong>{{ $label }}</strong>
+                                    <span>{{ $value }}</span>
+                                </p>
+                            @endforeach
+                        </div>
+                    @endif
+                </section>
+            @endforeach
         </div>
-    </section>
+    </main>
 @endsection

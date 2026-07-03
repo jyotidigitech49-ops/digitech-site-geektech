@@ -42,7 +42,7 @@ class AboutController extends Controller
                 'description' => 'Browse printer collections arranged to help simplify product discovery and comparison.',
                 'button' => 'Browse Range',
                 'url' => url('/products'),
-                'image' => asset('assets/images/banner/banner-card1.png'),
+                'image' => asset('assets/images/banner/banner-about3.png'),
             ],
             [
                 'label' => '',
@@ -50,7 +50,7 @@ class AboutController extends Controller
                 'description' => 'Explore a range of printing options designed for varying environments, workflows, and output preferences.',
                 'button' => 'View Products',
                 'url' => url('/products'),
-                'image' => asset('assets/images/banner/banner-card2.png'),
+                'image' => asset('assets/images/banner/banner-about4.png'),
             ],
         ];
 

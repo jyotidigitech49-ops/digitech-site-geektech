@@ -57,7 +57,7 @@ Route::get('/policy/cookie-policy', [CookiePolicyController::class, 'index']);
 Route::get('/policy/quote-request-policy', [QuoteRequestPolicyController::class, 'index']);
 Route::get('/policy/product-information-disclaimer', [ProductInformationDisclaimerController::class, 'index']);
 Route::get('/policy/dmca-copyright-policy', [DmcaCopyrightPolicyController::class, 'index']);
-Route::get('/policy/warranty-manufacturer-information', [WarrantyManufacturerInformationController::class, 'index']);
+Route::get('/policy/warranty-manufacturer-responsibility', [WarrantyManufacturerInformationController::class, 'index']);
 Route::get('/product-information-disclaimer', fn () => redirect('/policy/product-information-disclaimer'));
 
 

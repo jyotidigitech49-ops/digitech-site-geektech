@@ -18,84 +18,75 @@
         </div>
     </section>
 
-    <section class="cookie-page">
-        <div class="container">
-            <div class="cookie-layout">
-                <aside class="cookie-summary">
-                    <span class="cookie-kicker">Date</span>
-                    <strong>{{ $cookiePolicy['date'] }}</strong>
-                </aside>
+    <main class="cookie-document">
+        <div class="cookie-document__inner">
+            <h1>{{ $cookiePolicy['title'] }}</h1>
+            <p class="cookie-document__date">Date: {{ $cookiePolicy['date'] }}</p>
 
-                <div class="cookie-content">
-                    <article class="cookie-intro-card">
-                        <span class="cookie-kicker">Introduction</span>
-                        @foreach ($cookiePolicy['intro'] as $paragraph)
-                            <p>{{ $paragraph }}</p>
-                        @endforeach
-                    </article>
+            <section class="cookie-document__section">
+                <h2>Introduction</h2>
+                @foreach ($cookiePolicy['intro'] as $paragraph)
+                    <p>{{ $paragraph }}</p>
+                @endforeach
+            </section>
 
-                    @foreach ($cookiePolicy['sections'] as $section)
-                        <article class="cookie-card">
-                            <h2>{{ $section['title'] }}</h2>
+            @foreach ($cookiePolicy['sections'] as $section)
+                <section class="cookie-document__section">
+                    <h2>{{ $section['title'] }}</h2>
 
-                            @foreach (($section['body'] ?? []) as $paragraph)
-                                <p>{{ $paragraph }}</p>
-                            @endforeach
-
-                            @if (!empty($section['groups']))
-                                <div class="cookie-type-grid">
-                                    @foreach ($section['groups'] as $group)
-                                        <div class="cookie-type-card">
-                                            <span class="cookie-type-card__icon"></span>
-                                            <h3>{{ $group['title'] }}</h3>
-                                            <p>{{ $group['description'] }}</p>
-
-                                            @if (!empty($group['items']))
-                                                <ul>
-                                                    @foreach ($group['items'] as $item)
-                                                        <li>{{ $item }}</li>
-                                                    @endforeach
-                                                </ul>
-                                            @endif
-
-                                            @if (!empty($group['note']))
-                                                <p class="cookie-note">{{ $group['note'] }}</p>
-                                            @endif
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @endif
-
-                            @if (!empty($section['items']))
-                                <ul class="cookie-list">
-                                    @foreach ($section['items'] as $item)
-                                        <li>{{ $item }}</li>
-                                    @endforeach
-                                </ul>
-                            @endif
-
-                            @if (!empty($section['note']))
-                                <p class="cookie-note">{{ $section['note'] }}</p>
-                            @endif
-
-                            @foreach (($section['notes'] ?? []) as $note)
-                                <p class="cookie-note">{{ $note }}</p>
-                            @endforeach
-
-                            @if (!empty($section['contact']))
-                                <div class="cookie-contact-box">
-                                    @foreach ($section['contact'] as $label => $value)
-                                        <div>
-                                            <span>{{ $label }}</span>
-                                            <strong>{{ $value }}</strong>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @endif
-                        </article>
+                    @foreach (($section['body'] ?? []) as $paragraph)
+                        <p>{{ $paragraph }}</p>
                     @endforeach
-                </div>
-            </div>
+
+                    @if (!empty($section['groups']))
+                        @foreach ($section['groups'] as $group)
+                            <div class="cookie-document__group">
+                                <h3>{{ $group['title'] }}</h3>
+                                <p>{{ $group['description'] }}</p>
+
+                                @if (!empty($group['items']))
+                                    <ul>
+                                        @foreach ($group['items'] as $item)
+                                            <li>{{ $item }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+
+                                @if (!empty($group['note']))
+                                    <p>{{ $group['note'] }}</p>
+                                @endif
+                            </div>
+                        @endforeach
+                    @endif
+
+                    @if (!empty($section['items']))
+                        <ul>
+                            @foreach ($section['items'] as $item)
+                                <li>{{ $item }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+
+                    @if (!empty($section['note']))
+                        <p>{{ $section['note'] }}</p>
+                    @endif
+
+                    @foreach (($section['notes'] ?? []) as $note)
+                        <p>{{ $note }}</p>
+                    @endforeach
+
+                    @if (!empty($section['contact']))
+                        <div class="cookie-document__contact">
+                            @foreach ($section['contact'] as $label => $value)
+                                <p>
+                                    <strong>{{ $label }}</strong>
+                                    <span>{{ $value }}</span>
+                                </p>
+                            @endforeach
+                        </div>
+                    @endif
+                </section>
+            @endforeach
         </div>
-    </section>
+    </main>
 @endsection

@@ -299,3 +299,108 @@
         font-size: 22px;
     }
 }
+
+/* Simple policy document layout */
+.dmca-document {
+    padding: 48px 20px 80px;
+    background: #ffffff;
+}
+
+.dmca-document__inner {
+    width: 100%;
+    max-width: 830px;
+    margin: 0 auto;
+}
+
+.dmca-document h1 {
+    margin: 0 0 40px;
+    color: #171717;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.dmca-document__date {
+    margin: 0 0 18px;
+}
+
+.dmca-document__section {
+    margin: 0 0 58px;
+}
+
+.dmca-document__section h2 {
+    margin: 0 0 18px;
+    color: #111111;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.dmca-document p,
+.dmca-document li {
+    color: #343434;
+    font-size: 16px;
+    line-height: 1.85;
+}
+
+.dmca-document p {
+    margin: 0 0 20px;
+}
+
+.dmca-document ul {
+    margin: 4px 0 22px;
+    padding-left: 22px;
+}
+
+.dmca-document li {
+    list-style: disc;
+    margin-bottom: 7px;
+    padding-left: 4px;
+}
+
+.dmca-document li::marker {
+    color: #111111;
+}
+
+.dmca-document__contact {
+    margin-top: 22px;
+}
+
+.dmca-document__contact p {
+    margin-bottom: 9px;
+}
+
+.dmca-document__contact strong {
+    display: inline-block;
+    margin-right: 6px;
+    color: #111111;
+}
+
+.dmca-document__contact span {
+    white-space: pre-line;
+}
+
+@media (max-width: 767px) {
+    .dmca-document {
+        padding: 34px 18px 56px;
+    }
+
+    .dmca-document h1 {
+        margin-bottom: 28px;
+        font-size: 30px;
+    }
+
+    .dmca-document__section {
+        margin-bottom: 42px;
+    }
+
+    .dmca-document__section h2 {
+        font-size: 20px;
+    }
+
+    .dmca-document p,
+    .dmca-document li {
+        font-size: 15px;
+        line-height: 1.75;
+    }
+}

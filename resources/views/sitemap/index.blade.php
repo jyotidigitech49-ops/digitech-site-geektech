@@ -64,7 +64,6 @@
                             <span class="sitemap-card__label">Start here</span>
                             <h2>Main Pages</h2>
                         </div>
-                        <span class="sitemap-card__count">{{ count($mainPages) }}</span>
                     </div>
                     <ul class="sitemap-list">
                         @foreach ($mainPages as $page)
@@ -82,7 +81,6 @@
                             <span class="sitemap-card__label">Browse solutions</span>
                             <h2>Product Categories</h2>
                         </div>
-                        <span class="sitemap-card__count">{{ count($productCategories) }}</span>
                     </div>
                     <ul class="sitemap-list sitemap-list--tree">
                         @foreach ($productCategories as $category)
@@ -110,7 +108,6 @@
                             <span class="sitemap-card__label">Stay informed</span>
                             <h2>Important Policies</h2>
                         </div>
-                        <span class="sitemap-card__count">{{ count($policies) }}</span>
                     </div>
                     <ul class="sitemap-list">
                         @foreach ($policies as $policy)

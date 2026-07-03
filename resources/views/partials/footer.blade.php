@@ -1,7 +1,7 @@
 <footer class="footer-area bg-gray-4 site-footer-dark">
     <div class="footer-top border-bottom-4 pt-55 pb-40">
         <div class="container">
-            <div class="row">
+            <div class="row footer-main-grid">
 
                 <!-- Logo & Disclaimer -->
                 <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
@@ -23,12 +23,13 @@
                 </div>
 
                 <!-- Quick Links -->
-                <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                <div class="col-lg-2 col-md-6 col-sm-6 mb-4">
                     <div class="footer-widget">
                         <h3 class="footer-title">Quick Links</h3>
 
                         <div class="footer-info-list">
                             <ul>
+
                                 <li><a href="{{ url('/about-us') }}">About Us</a></li>
                                 <li><a href="{{ url('/contact-us') }}">Contact Us</a></li>
                                 <li><a href="{{ url('/products') }}">Products</a></li>
@@ -41,24 +42,33 @@
                 </div>
 
                 <!-- Important Links -->
-                <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
-                    <div class="footer-widget">
-                        <h3 class="footer-title">Important Links</h3>
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+                    <div class="footer-important-groups">
+                        <div class="footer-widget">
+                            <h3 class="footer-title">Important Links</h3>
+                            <div class="footer-info-list">
+                                <ul>
+                                    <li><a href="{{ url('/privacy-policy') }}">Privacy Policy</a></li>
+                                    <li><a href="{{ url('/policy/terms-conditions') }}">Terms & Conditions</a></li>
+                                    <li><a href="{{ url('/policy/disclaimer') }}">Disclaimer</a></li>
+                                    <li><a href="{{ url('/policy/trademark-disclaimer') }}">Trademark Disclaimer</a></li>
+                                    <li><a href="{{ url('/policy/cookie-policy') }}">Cookie Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
 
-                        <div class="footer-info-list">
-                            <ul>
-                                <li><a href="{{ url('/privacy-policy') }}">Privacy Policy</a></li>
-                                <li><a href="{{ url('/policy/terms-conditions') }}">Terms & Conditions</a></li>
-                                <li><a href="{{ url('/policy/disclaimer') }}">Disclaimer</a></li>
-                                <li><a href="{{ url('/policy/trademark-disclaimer') }}">Trademark Disclaimer</a></li>
-                                <li><a href="{{ url('/policy/cookie-policy') }}">Cookie Policy</a></li>
-                                <li><a href="{{ url('/policy/quote-request-policy') }}">Quote Request Policy</a></li>
-                                <li><a href="{{ url('/policy/product-information-disclaimer') }}">Product Information
-                                        Disclaimer</a></li>
-                                <li><a href="{{ url('/policy/dmca-copyright-policy') }}">DMCA Copyright Policy</a></li>
-                                <li><a href="{{ url('/policy/warranty-manufacturer-information') }}">Warranty and
-                                        Manufacturer Information</a></li>
-                            </ul>
+                        <div class="footer-widget">
+                            <h3 class="footer-title">Policy Links</h3>
+                            <div class="footer-info-list">
+                                <ul>
+                                    <li><a href="{{ url('/policy/quote-request-policy') }}">Quote Request Policy</a></li>
+                                    <li><a href="{{ url('/policy/product-information-disclaimer') }}">Product Information
+                                            Disclaimer</a></li>
+                                    <li><a href="{{ url('/policy/dmca-copyright-policy') }}">DMCA Copyright Policy</a></li>
+                                    <li><a href="{{ url('/policy/warranty-manufacturer-responsibility') }}">Warranty and
+                                            Manufacturer Responsibility</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -70,27 +80,32 @@
 
                         <div class="footer-info-list">
                             <ul class="footer-contact-list">
-                                <li><i class="icon-location-pin"></i>
-                                    <span><br>1137 ALABAMA <br>AVE
-                                        FT LAUDERDALE <br> FL 33312
-                                    </span>
+                                <li>
+                                    <span class="footer-contact-label">Address</span>
+                                    <span>1137 Alabama Ave, Fort Lauderdale, FL 33312</span>
                                 </li>
-                                <li><i class="icon-envelope"></i><a href="mailto:info@eaglesrepair.us">
-                                        info@eaglesrepair.us</a></li>
+                                <li>
+                                    <span class="footer-contact-label">Email</span>
+                                    <a href="mailto:info@eaglesrepair.us">info@eaglesrepair.us</a>
+                                </li>
                             </ul>
 
-                            <div class="footer-trust-badges">
-                                <img src="{{ asset('assets/images/trust-badges/google-safe-browsing.png') }}"
-                                    alt="Google Safe Browsing">
-                                <img src="{{ asset('assets/images/trust-badges/sectigo-secured.png') }}"
-                                    alt="Secured by Sectigo">
-                            </div>
                         </div>
                     </div>
                 </div>
 
             </div>
         </div>
+
+        <div class="container">
+            <div class="footer-trust-badges" aria-label="Website security badges">
+                <img src="{{ asset('assets/images/trust-badges/google-safe-browsing.png') }}"
+                    alt="Google Safe Browsing">
+                <img src="{{ asset('assets/images/trust-badges/sectigo-secured.png') }}"
+                    alt="Secured by Sectigo">
+            </div>
+        </div>
+
         <!-- Additional Disclaimer -->
         <div class="container">
             <div class="row">

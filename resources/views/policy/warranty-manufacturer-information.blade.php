@@ -18,62 +18,54 @@
         </div>
     </section>
 
-    <section class="warranty-policy-page">
-        <div class="container">
-            <div class="warranty-policy-layout">
-                <aside class="warranty-policy-summary">
-                    <span class="warranty-policy-kicker">Date</span>
-                    <strong>{{ $warrantyPolicy['date'] }}</strong>
-                </aside>
+    <main class="warranty-document">
+        <div class="warranty-document__inner">
+            <h1>{{ $warrantyPolicy['title'] }}</h1>
+            <p class="warranty-document__date">Date: {{ $warrantyPolicy['date'] }}</p>
 
-                <div class="warranty-policy-content">
-                    <article class="warranty-policy-intro">
-                        <span class="warranty-policy-kicker">Introduction</span>
-                        @foreach ($warrantyPolicy['intro'] as $paragraph)
-                            <p>{{ $paragraph }}</p>
-                        @endforeach
-                    </article>
+            <section class="warranty-document__section">
+                <h2>Introduction</h2>
+                @foreach ($warrantyPolicy['intro'] as $paragraph)
+                    <p>{{ $paragraph }}</p>
+                @endforeach
+            </section>
 
-                    <div class="warranty-policy-grid">
-                        @foreach ($warrantyPolicy['sections'] as $section)
-                            <article class="warranty-policy-card {{ !empty($section['highlight']) ? 'warranty-policy-card--highlight' : '' }}">
-                                <h2>{{ $section['title'] }}</h2>
+            @foreach ($warrantyPolicy['sections'] as $section)
+                <section class="warranty-document__section">
+                    <h2>{{ $section['title'] }}</h2>
 
-                                @foreach (($section['body'] ?? []) as $paragraph)
-                                    <p>{{ $paragraph }}</p>
-                                @endforeach
+                    @foreach (($section['body'] ?? []) as $paragraph)
+                        <p>{{ $paragraph }}</p>
+                    @endforeach
 
-                                @if (!empty($section['items']))
-                                    <ul class="warranty-policy-list">
-                                        @foreach ($section['items'] as $item)
-                                            <li>{{ $item }}</li>
-                                        @endforeach
-                                    </ul>
-                                @endif
+                    @if (!empty($section['items']))
+                        <ul>
+                            @foreach ($section['items'] as $item)
+                                <li>{{ $item }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
 
-                                @if (!empty($section['note']))
-                                    <p class="warranty-policy-note">{{ $section['note'] }}</p>
-                                @endif
+                    @if (!empty($section['note']))
+                        <p>{{ $section['note'] }}</p>
+                    @endif
 
-                                @foreach (($section['notes'] ?? []) as $note)
-                                    <p class="warranty-policy-note">{{ $note }}</p>
-                                @endforeach
+                    @foreach (($section['notes'] ?? []) as $note)
+                        <p>{{ $note }}</p>
+                    @endforeach
 
-                                @if (!empty($section['contact']))
-                                    <div class="warranty-policy-contact">
-                                        @foreach ($section['contact'] as $label => $value)
-                                            <div>
-                                                <span>{{ $label }}</span>
-                                                <strong>{{ $value }}</strong>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                @endif
-                            </article>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
+                    @if (!empty($section['contact']))
+                        <div class="warranty-document__contact">
+                            @foreach ($section['contact'] as $label => $value)
+                                <p>
+                                    <strong>{{ $label }}</strong>
+                                    <span>{{ $value }}</span>
+                                </p>
+                            @endforeach
+                        </div>
+                    @endif
+                </section>
+            @endforeach
         </div>
-    </section>
+    </main>
 @endsection

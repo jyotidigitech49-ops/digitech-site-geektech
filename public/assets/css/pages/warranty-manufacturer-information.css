@@ -299,3 +299,108 @@
         font-size: 22px;
     }
 }
+
+/* Simple policy document layout */
+.warranty-document {
+    padding: 48px 20px 80px;
+    background: #ffffff;
+}
+
+.warranty-document__inner {
+    width: 100%;
+    max-width: 830px;
+    margin: 0 auto;
+}
+
+.warranty-document h1 {
+    margin: 0 0 40px;
+    color: #171717;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.warranty-document__date {
+    margin: 0 0 18px;
+}
+
+.warranty-document__section {
+    margin: 0 0 58px;
+}
+
+.warranty-document__section h2 {
+    margin: 0 0 18px;
+    color: #111111;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.warranty-document p,
+.warranty-document li {
+    color: #343434;
+    font-size: 16px;
+    line-height: 1.85;
+}
+
+.warranty-document p {
+    margin: 0 0 20px;
+}
+
+.warranty-document ul {
+    margin: 4px 0 22px;
+    padding-left: 22px;
+}
+
+.warranty-document li {
+    list-style: disc;
+    margin-bottom: 7px;
+    padding-left: 4px;
+}
+
+.warranty-document li::marker {
+    color: #111111;
+}
+
+.warranty-document__contact {
+    margin-top: 22px;
+}
+
+.warranty-document__contact p {
+    margin-bottom: 9px;
+}
+
+.warranty-document__contact strong {
+    display: inline-block;
+    margin-right: 6px;
+    color: #111111;
+}
+
+.warranty-document__contact span {
+    white-space: pre-line;
+}
+
+@media (max-width: 767px) {
+    .warranty-document {
+        padding: 34px 18px 56px;
+    }
+
+    .warranty-document h1 {
+        margin-bottom: 28px;
+        font-size: 30px;
+    }
+
+    .warranty-document__section {
+        margin-bottom: 42px;
+    }
+
+    .warranty-document__section h2 {
+        font-size: 20px;
+    }
+
+    .warranty-document p,
+    .warranty-document li {
+        font-size: 15px;
+        line-height: 1.75;
+    }
+}

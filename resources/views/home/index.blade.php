@@ -8,93 +8,23 @@
 @section('content')
 
     {{-- Slider area- --}}
-    <div class="slider-area bg-gray-8 home-hero-area">
-        <div class="container">
-            <div class="hero-slider-active-2 nav-style-1 nav-style-1-modify-2 nav-style-1-blue">
-                {{-- SLIDER-1 --}}
-                <div class="single-hero-slider single-hero-slider-hm9 single-animation-wrap home-hero-slide">
-                    <div class="row slider-animated-1 align-items-center">
-                        <div class="col-lg-5 col-md-5 col-12 col-sm-6">
-                            <div class="hero-slider-content-6 slider-content-hm9">
-                                <h5 class="animated">Featured Solutions</h5>
-                                <h1 class="animated">INNOVATION MADE <br>SIMPLE</h1>
-                                <p class="animated">Discover innovative technology designed to simplify everyday experiences
-                                    at home and work.</p>
-                                <div class="btn-style-1">
-                                    <a class="animated btn-1-padding-4 btn-1-blue btn-1-font-10"
-                                        href="{{ url('/products') }}">Explore Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-7 col-md-7 col-12 col-sm-6">
-                            <div class="hm9-hero-slider-img">
-                                <img class="animated" src="{{ asset('assets/images/slider/home-slider-1.png') }}"
-                                    alt="Featured technology products">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{-- SLIDER-2 --}}
-                <div class="single-hero-slider single-hero-slider-hm9 single-animation-wrap home-hero-slide">
-                    <div class="row slider-animated-1 align-items-center">
-                        <div class="col-lg-5 col-md-5 col-12 col-sm-6">
-                            <div class="hero-slider-content-6 slider-content-hm9">
-                                <h5 class="animated">Technology Spotlight
-                                </h5>
-                                <h1 class="animated">BUILT FOR
-                                    MODERN
-                                    <br>LIVING
-                                </h1>
-                                <p class="animated">Explore solutions created to support convenience, connectivity, and
-                                    everyday efficiency.
-                                </p>
-                                <div class="btn-style-1">
-                                    <a class="animated btn-1-padding-4 btn-1-blue btn-1-font-10"
-                                        href="{{ url('/products/desktops') }}">Explore Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-7 col-md-7 col-12 col-sm-6">
-                            <div class="hm9-hero-slider-img">
-                                <img class="animated" src="{{ asset('assets/images/slider/home-slider-2.png') }}"
-                                    alt="Desktop technology solutions">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{-- SLIDER-3 --}}
-
-                <div class="single-hero-slider single-hero-slider-hm9 single-animation-wrap home-hero-slide">
-                    <div class="row slider-animated-1 align-items-center">
-                        <div class="col-lg-5 col-md-5 col-12 col-sm-6">
-                            <div class="hero-slider-content-6 slider-content-hm9">
-                                <h5 class="animated">Technology Essentials
-                                </h5>
-                                <h1 class="animated">RELIABLE
-                                    SOLUTIONS
-
-                                    <br>AHEAD
-                                </h1>
-                                <p class="animated">Find technology products that combine functionality, reliability, and
-                                    practical everyday use.
-                                </p>
-                                <div class="btn-style-1">
-                                    <a class="animated btn-1-padding-4 btn-1-blue btn-1-font-10"
-                                        href="{{ url('/products/thin-client') }}">Explore Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-7 col-md-7 col-12 col-sm-6">
-                            <div class="hm9-hero-slider-img">
-                                <img class="animated" src="{{ asset('assets/images/slider/home-slider-3.png') }}"
-                                    alt="Reliable workplace technology solutions">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="home-main-slider-area" aria-label="Featured technology">
+        <div class="home-main-slider">
+            <a class="home-main-slide" href="{{ url('/products') }}" aria-label="Explore featured technology solutions">
+                <img src="{{ asset('assets/images/slider/hb1.webp') }}"
+                    alt="Innovation made simple - explore featured technology solutions">
+            </a>
+            <a class="home-main-slide" href="{{ url('/products/printer') }}" aria-label="Explore modern printer solutions">
+                <img src="{{ asset('assets/images/slider/hb2.webp') }}"
+                    alt="Built for modern living - explore modern printer solutions">
+            </a>
+            <a class="home-main-slide" href="{{ url('/products/thin-client') }}"
+                aria-label="Explore reliable technology essentials">
+                <img src="{{ asset('assets/images/slider/hb3.webp') }}"
+                    alt="Reliable solutions ahead - explore technology essentials">
+            </a>
         </div>
-    </div>
+    </section>
     {{-- Service Area --}}
     <div class="service-area">
         <div class="container">
@@ -161,7 +91,7 @@
             <div class="home-section-heading home-category-heading">
                 <div>
                     <span class="home-section-eyebrow">Explore Our Range</span>
-                    <h2>Discover Our <span>Product Categories</span></h2>
+                    <h2>Discover Our Product Categories</h2>
                     <p>Reliable devices and solutions designed for home, office, and everyday productivity.</p>
                 </div>
                 <a class="home-outline-link" href="{{ url('/products') }}">
@@ -202,13 +132,13 @@
                     <article class="banner-wrap home-promo-card">
                         <div class="banner-img banner-img-zoom">
                             <a href="{{ url('/products/printer') }}">
-                                <img src="{{ asset('assets/images/banner/b1-area1.png') }}" alt="Printer solutions">
+                                <img src="{{ asset('assets/images/banner/banner1-area1.webp') }}" alt="Printer solutions">
                             </a>
                         </div>
                         <div class="banner-content-11 banner-content-11-modify">
                             <h2>
-                                <span class="home-promo-title-line"><b>Made</b> For</span>
-                                <span class="home-promo-title-line home-promo-title-accent">Better Printing</span>
+                                <span class="home-promo-title-line">Made For</span>
+                                <span class="home-promo-title-line">Better Printing</span>
                             </h2>
                             <p>Solutions designed for clear output and smooth daily workflows.</p>
                             <div class="btn-style-4">
@@ -222,15 +152,16 @@
                     <article class="banner-wrap home-promo-card">
                         <div class="banner-img banner-img-zoom">
                             <a href="{{ url('/products/desktops') }}">
-                                <img src="{{ asset('assets/images/banner/b2-area1.png') }}" alt="Desktop solutions">
+                                <img src="{{ asset('assets/images/banner/banner2-area1.webp') }}" alt="Desktop solutions">
                             </a>
                         </div>
                         <div class="banner-content-11 banner-content-11-modify">
                             <h2>
-                                <span class="home-promo-title-line"><b>Designed</b></span>
-                                <span class="home-promo-title-line">To Do <strong>More</strong></span>
+                                <span class="home-promo-title-line">Designed To</span>
+                                <span class="home-promo-title-line">Do More</span>
                             </h2>
-                            <p>Dependable desktop solutions built for productivity, multitasking, and modern workplace demands.</p>
+                            <p>Dependable desktop solutions built for productivity, multitasking, and modern workplace
+                                demands.</p>
                             <div class="btn-style-4 ">
                                 <a class="hover-red" href="{{ url('/products/desktops') }}">Explore Products <i
                                         class="icon-arrow-right"></i></a>
@@ -251,11 +182,9 @@
             </div>
             @php
                 $defaultProductTab = collect($productTabs)->search(
-                    fn ($tab) => strtolower(trim($tab['label'])) === 'printer'
+                    fn($tab) => strtolower(trim($tab['label'])) === 'printer',
                 );
-                $defaultProductTab = $defaultProductTab !== false
-                    ? $defaultProductTab
-                    : array_key_first($productTabs);
+                $defaultProductTab = $defaultProductTab !== false ? $defaultProductTab : array_key_first($productTabs);
             @endphp
             <div class="tab-style-9 nav home-product-tabs">
                 {{-- @dd($productTabs) --}}
@@ -268,7 +197,9 @@
                                 ? 'icon-screen-desktop'
                                 : (str_contains($tabLabel, 'desktop')
                                     ? 'icon-screen-desktop'
-                                    : (str_contains($tabLabel, 'scanner') ? 'icon-docs' : 'icon-star')));
+                                    : (str_contains($tabLabel, 'scanner')
+                                        ? 'icon-docs'
+                                        : 'icon-star')));
                     @endphp
                     <a class="{{ $tabKey === $defaultProductTab ? 'active' : '' }}" href="#{{ $tabKey }}"
                         data-bs-toggle="tab">
@@ -279,13 +210,13 @@
             </div>
             <div class="tab-content jump">
                 @foreach ($productTabs as $tabKey => $tab)
-                    <div id="{{ $tabKey }}"
-                        class="tab-pane {{ $tabKey === $defaultProductTab ? 'active' : '' }}">
+                    <div id="{{ $tabKey }}" class="tab-pane {{ $tabKey === $defaultProductTab ? 'active' : '' }}">
                         <div class="home-needs-product-slider">
                             @forelse ($tab['products'] as $product)
                                 @php
                                     $homeProductType = \Illuminate\Support\Str::slug($product->parent_cat ?: 'printer');
-                                    $homeProductType = $homeProductType === 'thin-client' ? 'thin-client' : $homeProductType;
+                                    $homeProductType =
+                                        $homeProductType === 'thin-client' ? 'thin-client' : $homeProductType;
                                     $homeProductUrl = url("products/{$homeProductType}/details", $product->slug);
                                     $homeProductImages = collect($product->imagePaths());
 
@@ -297,10 +228,9 @@
                                             <a href="{{ $homeProductUrl }}">
                                                 @if ($homeProductImage)
                                                     <img class="home-product-gallery-img"
-                                                        src="{{ asset($homeProductImage) }}"
-                                                        alt="{{ $product->name }}"
+                                                        src="{{ asset($homeProductImage) }}" alt="{{ $product->name }}"
                                                         data-default-src="{{ asset($homeProductImage) }}"
-                                                        data-gallery='@json($homeProductImages->map(fn ($image) => asset($image))->values())'>
+                                                        data-gallery='@json($homeProductImages->map(fn($image) => asset($image))->values())'>
                                                 @else
                                                     <span class="home-product-image-missing">{{ $product->name }}</span>
                                                 @endif
@@ -352,13 +282,13 @@
                     <article class="banner-wrap home-promo-card">
                         <div class="banner-img banner-img-zoom">
                             <a href="{{ url('/products/thin-client') }}">
-                                <img src="{{ asset('assets/images/banner/b1-area2.png') }}" alt="Thin client solutions">
+                                <img src="{{ asset('assets/images/banner/banner1-area2.webp') }}" alt="Thin client solutions">
                             </a>
                         </div>
                         <div class="banner-content-11 banner-content-11-modify">
                             <h2>
-                                <span class="home-promo-title-line"><b>Small</b> Footprint,</span>
-                                <span class="home-promo-title-line">Big <strong>Potential</strong></span>
+                                <span class="home-promo-title-line">Small Footprint,</span>
+                                <span class="home-promo-title-line">Big Potential</span>
                             </h2>
                             <p>Designed for streamlined access and workplace efficiency.</p>
                             <div class="btn-style-4">
@@ -372,12 +302,12 @@
                     <article class="banner-wrap home-promo-card">
                         <div class="banner-img banner-img-zoom">
                             <a href="{{ url('/products/scanner') }}">
-                                <img src="{{ asset('assets/images/banner/b2-area2.png') }}" alt="Scanner solutions">
+                                <img src="{{ asset('assets/images/banner/banner2-area2.webp') }}" alt="Scanner solutions">
                             </a>
                         </div>
                         <div class="banner-content-11 banner-content-11-modify">
                             <h2>
-                                <span class="home-promo-title-line"><b>Every</b> <strong>Detail</strong></span>
+                                <span class="home-promo-title-line">Every Detail</strong></span>
                                 <span class="home-promo-title-line">Preserved</span>
                             </h2>
                             <p>Built to simplify document digitization and organization.</p>
@@ -396,7 +326,7 @@
         <div class="container">
             <div class="home-showcase-heading text-center">
                 <span class="home-showcase-icon"><i class="icon-star"></i></span>
-                <h2>Browse <span>Product Range</span></h2>
+                <h2>Browse Product Range</h2>
                 <p>Handpicked products selected around everyday home and workplace needs.</p>
             </div>
 
@@ -416,11 +346,9 @@
                             <div class="product-img product-img-zoom">
                                 <a href="{{ $homeProductUrl }}">
                                     @if ($homeProductImage)
-                                        <img class="home-product-gallery-img"
-                                            src="{{ asset($homeProductImage) }}"
-                                            alt="{{ $product->name }}"
-                                            data-default-src="{{ asset($homeProductImage) }}"
-                                            data-gallery='@json($homeProductImages->map(fn ($image) => asset($image))->values())'>
+                                        <img class="home-product-gallery-img" src="{{ asset($homeProductImage) }}"
+                                            alt="{{ $product->name }}" data-default-src="{{ asset($homeProductImage) }}"
+                                            data-gallery='@json($homeProductImages->map(fn($image) => asset($image))->values())'>
                                     @else
                                         <span class="home-product-image-missing">{{ $product->name }}</span>
                                     @endif
@@ -439,15 +367,15 @@
                                 </h3>
 
                                 <div class="home-price-stock-row">
-                                <div class="product-price-4">
-                                    <span>${{ number_format($product->price, 2) }}</span>
-                                </div>
+                                    <div class="product-price-4">
+                                        <span>${{ number_format($product->price, 2) }}</span>
+                                    </div>
 
-                                <div class="home-card-stock-wrap">
-                                    <span class="home-stock-badge">
-                                        {{ $product->stock_status === 'available' ? 'In Stock' : 'Out of Stock' }}
-                                    </span>
-                                </div>
+                                    <div class="home-card-stock-wrap">
+                                        <span class="home-stock-badge">
+                                            {{ $product->stock_status === 'available' ? 'In Stock' : 'Out of Stock' }}
+                                        </span>
+                                    </div>
                                 </div>
                                 <a class="home-product-details-link" href="{{ $homeProductUrl }}">
                                     <i class="icon-arrow-right-circle"></i>
@@ -548,26 +476,18 @@
     </section> --}}
 
     {{-- Deal Area --}}
-    <div class="deal-area pt-150 pb-130 bg-img" style="background-image:url(assets/images/bg/deal-area-bg.png);">
-        <div class="container">
-            <div class="deal-content-1">
-                <span>FEATURED COLLECTION</span>
-                <h2><span>Ideas Deserve</span> <br>The Right Tools</h2>
-                <p>Explore technology solutions designed to support the way people create, connect, and work.
-                </p>
-
-                <div class="deal-btn">
-                    <a href="{{ url('/contact-us') }}">Contact Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <section class="home-deal-image-banner" aria-label="Featured collection">
+        <a href="{{ url('/contact-us') }}" aria-label="Contact us about our featured collection">
+            <img src="{{ asset('assets/images/bg/deal-area-img.png') }}"
+                alt="Ideas deserve the right tools - explore featured technology solutions">
+        </a>
+    </section>
     {{-- Insights and Blogs Area--dynamic --}}
     <section class="blog-area home-insights-section">
         <div class="container">
             <div class="home-insights-heading text-center">
                 <span class="home-insights-heading__line"></span>
-                <h2>Ideas, Insights & <span>Blogs</span></h2>
+                <h2>Ideas, Insights & Blogs</h2>
                 <p>Explore perspectives, product highlights, and technology discussions shaping modern workplaces.</p>
             </div>
             <div class="home-blog-section">
@@ -586,11 +506,10 @@
                                 <div class="blog-img">
                                     <a href="{{ url('/blogs', $blogPost->slug) }}">
                                         @if ($homeBlogImage)
-                                            <img class="js-blog-gallery-img"
-                                                src="{{ asset($homeBlogImage) }}"
+                                            <img class="js-blog-gallery-img" src="{{ asset($homeBlogImage) }}"
                                                 alt="{{ $blogPost->heading }}"
                                                 data-default-src="{{ asset($homeBlogImage) }}"
-                                                data-gallery='@json($homeBlogImages->map(fn ($image) => asset($image))->values())'>
+                                                data-gallery='@json($homeBlogImages->map(fn($image) => asset($image))->values())'>
                                         @else
                                             <span class="home-blog-image-missing">{{ $blogPost->heading }}</span>
                                         @endif
@@ -647,7 +566,25 @@
 
 @push('scripts')
     <script>
-        (function ($) {
+        document.addEventListener('DOMContentLoaded', function() {
+            $('.home-main-slider').not('.slick-initialized').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: true,
+                autoplay: true,
+                autoplaySpeed: 1600,
+                speed: 500,
+                arrows: false,
+                dots: true,
+                swipe: true,
+                touchMove: true,
+                pauseOnHover: false,
+                pauseOnFocus: false
+            });
+        });
+    </script>
+    <script>
+        (function($) {
             var sliders = $('.home-needs-product-slider');
             var suggestedSlider = $('.home-suggested-product-slider');
             var blogSlider = $('.home-blog-card-slider');
@@ -665,8 +602,7 @@
                 pauseOnHover: true,
                 pauseOnFocus: true,
                 adaptiveHeight: false,
-                responsive: [
-                    {
+                responsive: [{
                         breakpoint: 1199,
                         settings: {
                             slidesToShow: 3
@@ -687,13 +623,13 @@
                 ]
             });
 
-            sliders.each(function () {
+            sliders.each(function() {
                 if (!$(this).closest('.tab-pane').hasClass('active')) {
                     $(this).slick('slickPause');
                 }
             });
 
-            $('.home-product-tabs a[data-bs-toggle="tab"]').on('shown.bs.tab', function (event) {
+            $('.home-product-tabs a[data-bs-toggle="tab"]').on('shown.bs.tab', function(event) {
                 sliders.slick('slickPause');
 
                 var activeSlider = $($(event.target).attr('href')).find('.home-needs-product-slider');
@@ -713,8 +649,7 @@
                 pauseOnHover: true,
                 pauseOnFocus: true,
                 adaptiveHeight: false,
-                responsive: [
-                    {
+                responsive: [{
                         breakpoint: 1200,
                         settings: {
                             slidesToShow: 3
@@ -747,8 +682,7 @@
                 pauseOnHover: true,
                 pauseOnFocus: true,
                 adaptiveHeight: false,
-                responsive: [
-                    {
+                responsive: [{
                         breakpoint: 992,
                         settings: {
                             slidesToShow: 2
@@ -780,7 +714,7 @@
             });
         })(jQuery);
 
-        document.querySelectorAll('.home-product-card').forEach(function (card) {
+        document.querySelectorAll('.home-product-card').forEach(function(card) {
             var image = card.querySelector('.home-product-gallery-img');
 
             if (!image) {
@@ -810,14 +744,14 @@
                 image.src = gallery[index];
             }
 
-            card.addEventListener('mouseenter', function () {
+            card.addEventListener('mouseenter', function() {
                 clearInterval(timer);
                 index = 0;
                 showNextImage();
                 timer = setInterval(showNextImage, 850);
             });
 
-            card.addEventListener('mouseleave', function () {
+            card.addEventListener('mouseleave', function() {
                 clearInterval(timer);
                 timer = null;
                 index = 0;

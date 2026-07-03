@@ -18,66 +18,60 @@
         </div>
     </section>
 
-    <section class="quote-policy-page">
-        <div class="container">
-            <div class="quote-policy-layout">
-                <aside class="quote-policy-summary">
-                    <span class="quote-policy-kicker">Date</span>
-                    <strong>{{ $quotePolicy['date'] }}</strong>
-                </aside>
+    <main class="quote-document">
+        <div class="quote-document__inner">
+            <h1>{{ $quotePolicy['title'] }}</h1>
+            <p class="quote-document__date">Date: {{ $quotePolicy['date'] }}</p>
 
-                <div class="quote-policy-content">
-                    <article class="quote-policy-intro">
-                        <span class="quote-policy-kicker">Introduction</span>
-                        @foreach ($quotePolicy['intro'] as $paragraph)
-                            <p>{{ $paragraph }}</p>
-                        @endforeach
-                    </article>
+            <section class="quote-document__section">
+                <h2>Introduction</h2>
+                @foreach ($quotePolicy['intro'] as $paragraph)
+                    <p>{{ $paragraph }}</p>
+                @endforeach
+            </section>
 
-                    <div class="quote-policy-grid">
-                        @foreach ($quotePolicy['sections'] as $section)
-                            <article class="quote-policy-card {{ !empty($section['highlight']) ? 'quote-policy-card--highlight' : '' }}">
-                                <h2>{{ $section['title'] }}</h2>
+            @foreach ($quotePolicy['sections'] as $section)
+                <section class="quote-document__section">
+                    <h2>{{ $section['title'] }}</h2>
 
-                                @foreach (($section['body'] ?? []) as $paragraph)
-                                    <p>{{ $paragraph }}</p>
-                                @endforeach
+                    @foreach (($section['body'] ?? []) as $paragraph)
+                        <p>{{ $paragraph }}</p>
+                    @endforeach
 
-                                @if (!empty($section['items']))
-                                    <ul class="quote-policy-list">
-                                        @foreach ($section['items'] as $item)
-                                            <li>{{ $item }}</li>
-                                        @endforeach
-                                    </ul>
-                                @endif
+                    @if (!empty($section['items']))
+                        <ul>
+                            @foreach ($section['items'] as $item)
+                                <li>{{ $item }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
 
-                                @if (!empty($section['note']))
-                                    <p class="quote-policy-note">{{ $section['note'] }}</p>
-                                @endif
+                    @if (!empty($section['note']))
+                        <p>{{ $section['note'] }}</p>
+                    @endif
 
-                                @foreach (($section['notes'] ?? []) as $note)
-                                    <p class="quote-policy-note">{{ $note }}</p>
-                                @endforeach
+                    @foreach (($section['notes'] ?? []) as $note)
+                        <p>{{ $note }}</p>
+                    @endforeach
 
-                                @if (!empty($section['link']))
-                                    <a class="quote-policy-inline-link" href="{{ $section['link']['url'] }}">{{ $section['link']['label'] }}</a>
-                                @endif
+                    @if (!empty($section['link']))
+                        <p>
+                            <a href="{{ $section['link']['url'] }}">{{ $section['link']['label'] }}</a>
+                        </p>
+                    @endif
 
-                                @if (!empty($section['contact']))
-                                    <div class="quote-policy-contact">
-                                        @foreach ($section['contact'] as $label => $value)
-                                            <div>
-                                                <span>{{ $label }}</span>
-                                                <strong>{{ $value }}</strong>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                @endif
-                            </article>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
+                    @if (!empty($section['contact']))
+                        <div class="quote-document__contact">
+                            @foreach ($section['contact'] as $label => $value)
+                                <p>
+                                    <strong>{{ $label }}</strong>
+                                    <span>{{ $value }}</span>
+                                </p>
+                            @endforeach
+                        </div>
+                    @endif
+                </section>
+            @endforeach
         </div>
-    </section>
+    </main>
 @endsection

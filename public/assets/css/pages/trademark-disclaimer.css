@@ -243,3 +243,108 @@
         font-size: 23px;
     }
 }
+
+/* Simple policy document layout */
+.trademark-document {
+    padding: 48px 20px 80px;
+    background: #ffffff;
+}
+
+.trademark-document__inner {
+    width: 100%;
+    max-width: 830px;
+    margin: 0 auto;
+}
+
+.trademark-document h1 {
+    margin: 0 0 40px;
+    color: #171717;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.trademark-document__date {
+    margin: 0 0 18px;
+}
+
+.trademark-document__section {
+    margin: 0 0 58px;
+}
+
+.trademark-document__section h2 {
+    margin: 0 0 18px;
+    color: #111111;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.trademark-document p,
+.trademark-document li {
+    color: #343434;
+    font-size: 16px;
+    line-height: 1.85;
+}
+
+.trademark-document p {
+    margin: 0 0 20px;
+}
+
+.trademark-document ul {
+    margin: 4px 0 22px;
+    padding-left: 22px;
+}
+
+.trademark-document li {
+    list-style: disc;
+    margin-bottom: 7px;
+    padding-left: 4px;
+}
+
+.trademark-document li::marker {
+    color: #111111;
+}
+
+.trademark-document__contact {
+    margin-top: 22px;
+}
+
+.trademark-document__contact p {
+    margin-bottom: 9px;
+}
+
+.trademark-document__contact strong {
+    display: inline-block;
+    margin-right: 6px;
+    color: #111111;
+}
+
+.trademark-document__contact span {
+    white-space: pre-line;
+}
+
+@media (max-width: 767px) {
+    .trademark-document {
+        padding: 34px 18px 56px;
+    }
+
+    .trademark-document h1 {
+        margin-bottom: 28px;
+        font-size: 30px;
+    }
+
+    .trademark-document__section {
+        margin-bottom: 42px;
+    }
+
+    .trademark-document__section h2 {
+        font-size: 20px;
+    }
+
+    .trademark-document p,
+    .trademark-document li {
+        font-size: 15px;
+        line-height: 1.75;
+    }
+}

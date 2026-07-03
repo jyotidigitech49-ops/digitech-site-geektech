@@ -18,72 +18,66 @@
         </div>
     </section>
 
-    <section class="disclaimer-page">
-        <div class="container">
-            <div class="disclaimer-header-card">
-                <div>
-                    <span class="disclaimer-kicker">Date</span>
-                    <h2>{{ $disclaimer['date'] }}</h2>
-                </div>
-            </div>
+    <main class="trademark-document">
+        <div class="trademark-document__inner">
+            <h1>{{ $disclaimer['title'] }}</h1>
+            <p class="trademark-document__date">Date: {{ $disclaimer['date'] }}</p>
 
-            <article class="disclaimer-intro">
-                <span class="disclaimer-kicker">Introduction</span>
+            <section class="trademark-document__section">
+                <h2>Introduction</h2>
                 @foreach ($disclaimer['intro'] as $paragraph)
                     <p>{{ $paragraph }}</p>
                 @endforeach
-            </article>
+            </section>
 
-            <div class="disclaimer-grid">
-                @foreach ($disclaimer['sections'] as $section)
-                    <article class="disclaimer-card">
-                        <h2>{{ $section['title'] }}</h2>
+            @foreach ($disclaimer['sections'] as $section)
+                <section class="trademark-document__section">
+                    <h2>{{ $section['title'] }}</h2>
 
-                        @foreach (($section['body'] ?? []) as $paragraph)
-                            <p>{{ $paragraph }}</p>
-                        @endforeach
+                    @foreach (($section['body'] ?? []) as $paragraph)
+                        <p>{{ $paragraph }}</p>
+                    @endforeach
 
-                        @if (!empty($section['items']))
-                            <ul class="disclaimer-list">
-                                @foreach ($section['items'] as $item)
-                                    <li>{{ $item }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
+                    @if (!empty($section['items']))
+                        <ul>
+                            @foreach ($section['items'] as $item)
+                                <li>{{ $item }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
 
-                        @if (!empty($section['secondary_description']))
-                            <p>{{ $section['secondary_description'] }}</p>
-                        @endif
+                    @if (!empty($section['secondary_description']))
+                        <p>{{ $section['secondary_description'] }}</p>
+                    @endif
 
-                        @if (!empty($section['secondary_items']))
-                            <ul class="disclaimer-list">
-                                @foreach ($section['secondary_items'] as $item)
-                                    <li>{{ $item }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
+                    @if (!empty($section['secondary_items']))
+                        <ul>
+                            @foreach ($section['secondary_items'] as $item)
+                                <li>{{ $item }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
 
-                        @if (!empty($section['note']))
-                            <p class="disclaimer-note">{{ $section['note'] }}</p>
-                        @endif
+                    @if (!empty($section['note']))
+                        <p>{{ $section['note'] }}</p>
+                    @endif
 
-                        @foreach (($section['notes'] ?? []) as $note)
-                            <p class="disclaimer-note">{{ $note }}</p>
-                        @endforeach
+                    @foreach (($section['notes'] ?? []) as $note)
+                        <p>{{ $note }}</p>
+                    @endforeach
 
-                        @if (!empty($section['contact']))
-                            <div class="disclaimer-contact-box">
-                                @foreach ($section['contact'] as $label => $value)
-                                    <div>
-                                        <span>{{ $label }}</span>
-                                        <strong>{{ $value }}</strong>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endif
-                    </article>
-                @endforeach
-            </div>
+                    @if (!empty($section['contact']))
+                        <div class="trademark-document__contact">
+                            @foreach ($section['contact'] as $label => $value)
+                                <p>
+                                    <strong>{{ $label }}</strong>
+                                    <span>{{ $value }}</span>
+                                </p>
+                            @endforeach
+                        </div>
+                    @endif
+                </section>
+            @endforeach
         </div>
-    </section>
+    </main>
 @endsection

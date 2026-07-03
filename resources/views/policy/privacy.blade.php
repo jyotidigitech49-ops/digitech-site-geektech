@@ -18,79 +18,74 @@
         </div>
     </section>
 
-    <section class="privacy-page">
-        <div class="container">
-            <div class="privacy-layout">
-                <aside class="privacy-summary">
-                    <span class="privacy-summary__label">Policy Date</span>
-                    <strong>{{ $policy['date'] }}</strong>
-                </aside>
+    <main class="privacy-document">
+        <div class="privacy-document__inner">
+            <h1>{{ $policy['title'] }}</h1>
+            <p class="privacy-document__date">Date: {{ $policy['date'] }}</p>
 
-                <div class="privacy-content">
-                    <article class="privacy-card privacy-card--intro">
-                        <span class="privacy-kicker">Introduction</span>
-                        @foreach ($policy['intro'] as $paragraph)
-                            <p>{{ $paragraph }}</p>
-                        @endforeach
-                    </article>
+            <section class="privacy-document__section">
+                <h2>Introduction</h2>
+                @foreach ($policy['intro'] as $paragraph)
+                    <p>{{ $paragraph }}</p>
+                @endforeach
+            </section>
 
-                    @foreach ($policy['sections'] as $section)
-                        <article class="privacy-card">
-                            <h2>{{ $section['title'] }}</h2>
+            @foreach ($policy['sections'] as $section)
+                <section class="privacy-document__section">
+                    <h2>{{ $section['title'] }}</h2>
 
-                            @foreach (($section['body'] ?? []) as $paragraph)
-                                <p>{{ $paragraph }}</p>
-                            @endforeach
-
-                            @if (!empty($section['groups']))
-                                <div class="privacy-group-grid">
-                                    @foreach ($section['groups'] as $group)
-                                        <div class="privacy-mini-card">
-                                            <h3>{{ $group['title'] }}</h3>
-                                            @if (!empty($group['description']))
-                                                <p>{{ $group['description'] }}</p>
-                                            @endif
-                                            @if (!empty($group['items']))
-                                                <ul>
-                                                    @foreach ($group['items'] as $item)
-                                                        <li>{{ $item }}</li>
-                                                    @endforeach
-                                                </ul>
-                                            @endif
-                                            @if (!empty($group['note']))
-                                                <p class="privacy-note">{{ $group['note'] }}</p>
-                                            @endif
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @endif
-
-                            @if (!empty($section['items']))
-                                <ul class="privacy-list">
-                                    @foreach ($section['items'] as $item)
-                                        <li>{{ $item }}</li>
-                                    @endforeach
-                                </ul>
-                            @endif
-
-                            @if (!empty($section['note']))
-                                <p class="privacy-note">{{ $section['note'] }}</p>
-                            @endif
-
-                            @if (!empty($section['contact']))
-                                <div class="privacy-contact-box">
-                                    @foreach ($section['contact'] as $label => $value)
-                                        <div>
-                                            <span>{{ $label }}</span>
-                                            <strong>{{ $value }}</strong>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @endif
-                        </article>
+                    @foreach (($section['body'] ?? []) as $paragraph)
+                        <p>{{ $paragraph }}</p>
                     @endforeach
-                </div>
-            </div>
+
+                    @if (!empty($section['groups']))
+                        @foreach ($section['groups'] as $group)
+                            <div class="privacy-document__group">
+                                <h3>{{ $group['title'] }}</h3>
+
+                                @if (!empty($group['description']))
+                                    <p>{{ $group['description'] }}</p>
+                                @endif
+
+                                @if (!empty($group['items']))
+                                    <ul>
+                                        @foreach ($group['items'] as $item)
+                                            <li>{{ $item }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+
+                                @if (!empty($group['note']))
+                                    <p>{{ $group['note'] }}</p>
+                                @endif
+                            </div>
+                        @endforeach
+                    @endif
+
+                    @if (!empty($section['items']))
+                        <ul>
+                            @foreach ($section['items'] as $item)
+                                <li>{{ $item }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+
+                    @if (!empty($section['note']))
+                        <p>{{ $section['note'] }}</p>
+                    @endif
+
+                    @if (!empty($section['contact']))
+                        <div class="privacy-document__contact">
+                            @foreach ($section['contact'] as $label => $value)
+                                <p>
+                                    <strong>{{ $label }}</strong>
+                                    <span>{{ $value }}</span>
+                                </p>
+                            @endforeach
+                        </div>
+                    @endif
+                </section>
+            @endforeach
         </div>
-    </section>
+    </main>
 @endsection

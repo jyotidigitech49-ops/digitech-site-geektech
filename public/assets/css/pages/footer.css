@@ -124,9 +124,7 @@
 }
 
 .site-footer-dark .footer-contact-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 11px;
+    display: block;
     margin-bottom: 15px;
     padding-left: 0;
     color: #b9c4d8;
@@ -138,25 +136,49 @@
     display: none;
 }
 
-.site-footer-dark .footer-contact-list i {
-    flex: 0 0 auto;
-    width: 34px;
-    height: 34px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 9px;
-    background: rgba(11, 98, 255, 0.13);
-    color: #6da0ff;
-    font-size: 16px;
+.site-footer-dark .footer-contact-label {
+    display: block;
+    margin-bottom: 3px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.45px;
+}
+
+.site-footer-dark .footer-important-groups {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 40px;
+}
+
+@media (min-width: 1200px) {
+    .site-footer-dark .footer-main-grid {
+        display: grid;
+        grid-template-columns:
+            minmax(225px, 1.3fr)
+            minmax(145px, .8fr)
+            minmax(390px, 2fr)
+            minmax(220px, 1.15fr);
+        column-gap: 40px;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .site-footer-dark .footer-main-grid > [class*="col-"] {
+        width: auto;
+        max-width: none;
+        padding-right: 0;
+        padding-left: 0;
+    }
 }
 
 .site-footer-dark .footer-trust-badges {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 2px 0 20px;
 }
 
 .site-footer-dark .footer-trust-badges img {
@@ -214,6 +236,15 @@
 }
 
 @media (max-width: 767px) {
+    .site-footer-dark .footer-trust-badges {
+        flex-direction: column;
+    }
+
+    .site-footer-dark .footer-important-groups {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
     .site-footer-dark .footer-widget h3.footer-title {
         margin-bottom: 18px;
     }

@@ -293,3 +293,113 @@
         font-size: 23px;
     }
 }
+
+/* Simple policy document layout */
+.quote-document {
+    padding: 48px 20px 80px;
+    background: #ffffff;
+}
+
+.quote-document__inner {
+    width: 100%;
+    max-width: 830px;
+    margin: 0 auto;
+}
+
+.quote-document h1 {
+    margin: 0 0 40px;
+    color: #171717;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.quote-document__date {
+    margin: 0 0 18px;
+}
+
+.quote-document__section {
+    margin: 0 0 58px;
+}
+
+.quote-document__section h2 {
+    margin: 0 0 18px;
+    color: #111111;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.quote-document p,
+.quote-document li {
+    color: #343434;
+    font-size: 16px;
+    line-height: 1.85;
+}
+
+.quote-document p {
+    margin: 0 0 20px;
+}
+
+.quote-document ul {
+    margin: 4px 0 22px;
+    padding-left: 22px;
+}
+
+.quote-document li {
+    list-style: disc;
+    margin-bottom: 7px;
+    padding-left: 4px;
+}
+
+.quote-document li::marker {
+    color: #111111;
+}
+
+.quote-document a {
+    color: #0064e0;
+    text-decoration: underline;
+}
+
+.quote-document__contact {
+    margin-top: 22px;
+}
+
+.quote-document__contact p {
+    margin-bottom: 9px;
+}
+
+.quote-document__contact strong {
+    display: inline-block;
+    margin-right: 6px;
+    color: #111111;
+}
+
+.quote-document__contact span {
+    white-space: pre-line;
+}
+
+@media (max-width: 767px) {
+    .quote-document {
+        padding: 34px 18px 56px;
+    }
+
+    .quote-document h1 {
+        margin-bottom: 28px;
+        font-size: 30px;
+    }
+
+    .quote-document__section {
+        margin-bottom: 42px;
+    }
+
+    .quote-document__section h2 {
+        font-size: 20px;
+    }
+
+    .quote-document p,
+    .quote-document li {
+        font-size: 15px;
+        line-height: 1.75;
+    }
+}

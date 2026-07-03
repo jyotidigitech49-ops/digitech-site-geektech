@@ -18,64 +18,60 @@
         </div>
     </section>
 
-    <section class="terms-page">
-        <div class="container">
-            <div class="terms-layout">
-                <aside class="terms-summary">
-                    <span class="terms-summary__label">Date</span>
-                    <strong>{{ $terms['date'] }}</strong>
-                </aside>
+    <main class="terms-document">
+        <div class="terms-document__inner">
+            <h1>{{ $terms['title'] }}</h1>
+            <p class="terms-document__date">Date: {{ $terms['date'] }}</p>
 
-                <div class="terms-content">
-                    <article class="terms-card terms-card--intro">
-                        <span class="terms-kicker">Introduction</span>
-                        @foreach ($terms['intro'] as $paragraph)
-                            <p>{{ $paragraph }}</p>
-                        @endforeach
-                    </article>
+            <section class="terms-document__section">
+                <h2>Introduction</h2>
+                @foreach ($terms['intro'] as $paragraph)
+                    <p>{{ $paragraph }}</p>
+                @endforeach
+            </section>
 
-                    @foreach ($terms['sections'] as $section)
-                        <article class="terms-card">
-                            <h2>{{ $section['title'] }}</h2>
+            @foreach ($terms['sections'] as $section)
+                <section class="terms-document__section">
+                    <h2>{{ $section['title'] }}</h2>
 
-                            @foreach (($section['body'] ?? []) as $paragraph)
-                                <p>{{ $paragraph }}</p>
-                            @endforeach
-
-                            @if (!empty($section['items']))
-                                <ul class="terms-list">
-                                    @foreach ($section['items'] as $item)
-                                        <li>{{ $item }}</li>
-                                    @endforeach
-                                </ul>
-                            @endif
-
-                            @if (!empty($section['note']))
-                                <p class="terms-note">{{ $section['note'] }}</p>
-                            @endif
-
-                            @foreach (($section['notes'] ?? []) as $note)
-                                <p class="terms-note">{{ $note }}</p>
-                            @endforeach
-
-                            @if (!empty($section['link']))
-                                <a class="terms-inline-link" href="{{ $section['link']['url'] }}">{{ $section['link']['label'] }}</a>
-                            @endif
-
-                            @if (!empty($section['contact']))
-                                <div class="terms-contact-box">
-                                    @foreach ($section['contact'] as $label => $value)
-                                        <div>
-                                            <span>{{ $label }}</span>
-                                            <strong>{{ $value }}</strong>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @endif
-                        </article>
+                    @foreach (($section['body'] ?? []) as $paragraph)
+                        <p>{{ $paragraph }}</p>
                     @endforeach
-                </div>
-            </div>
+
+                    @if (!empty($section['items']))
+                        <ul>
+                            @foreach ($section['items'] as $item)
+                                <li>{{ $item }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+
+                    @if (!empty($section['note']))
+                        <p>{{ $section['note'] }}</p>
+                    @endif
+
+                    @foreach (($section['notes'] ?? []) as $note)
+                        <p>{{ $note }}</p>
+                    @endforeach
+
+                    @if (!empty($section['link']))
+                        <p>
+                            <a href="{{ $section['link']['url'] }}">{{ $section['link']['label'] }}</a>
+                        </p>
+                    @endif
+
+                    @if (!empty($section['contact']))
+                        <div class="terms-document__contact">
+                            @foreach ($section['contact'] as $label => $value)
+                                <p>
+                                    <strong>{{ $label }}</strong>
+                                    <span>{{ $value }}</span>
+                                </p>
+                            @endforeach
+                        </div>
+                    @endif
+                </section>
+            @endforeach
         </div>
-    </section>
+    </main>
 @endsection
