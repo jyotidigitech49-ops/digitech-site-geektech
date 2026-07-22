@@ -39,7 +39,6 @@
                                 </div>
                             </div>
                             <div class="col-xl-3 col-lg-3">
-
                             </div>
                         </div>
                     </div>
@@ -166,7 +165,6 @@
                 </div>
             </div>
         </div>
-
 
 @push('scripts')
     <script>

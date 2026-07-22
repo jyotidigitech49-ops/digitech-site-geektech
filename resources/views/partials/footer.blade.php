@@ -51,7 +51,8 @@
                                     <li><a href="{{ url('/privacy-policy') }}">Privacy Policy</a></li>
                                     <li><a href="{{ url('/policy/terms-conditions') }}">Terms & Conditions</a></li>
                                     <li><a href="{{ url('/policy/disclaimer') }}">Disclaimer</a></li>
-                                    <li><a href="{{ url('/policy/trademark-disclaimer') }}">Trademark Disclaimer</a></li>
+                                    <li><a href="{{ url('/policy/trademark-disclaimer') }}">Trademark Disclaimer</a>
+                                    </li>
                                     <li><a href="{{ url('/policy/cookie-policy') }}">Cookie Policy</a></li>
                                 </ul>
                             </div>
@@ -61,11 +62,15 @@
                             <h3 class="footer-title">Policy Links</h3>
                             <div class="footer-info-list">
                                 <ul>
-                                    <li><a href="{{ url('/policy/quote-request-policy') }}">Quote Request Policy</a></li>
-                                    <li><a href="{{ url('/policy/product-information-disclaimer') }}">Product Information
+                                    <li><a href="{{ url('/policy/quote-request-policy') }}">Quote Request Policy</a>
+                                    </li>
+                                    <li><a href="{{ url('/policy/product-information-disclaimer') }}">Product
+                                            Information
                                             Disclaimer</a></li>
-                                    <li><a href="{{ url('/policy/dmca-copyright-policy') }}">DMCA Copyright Policy</a></li>
-                                    <li><a href="{{ url('/policy/warranty-manufacturer-responsibility') }}">Warranty and
+                                    <li><a href="{{ url('/policy/dmca-copyright-policy') }}">DMCA Copyright Policy</a>
+                                    </li>
+                                    <li><a href="{{ url('/policy/warranty-manufacturer-responsibility') }}">Warranty
+                                            and
                                             Manufacturer Responsibility</a></li>
                                 </ul>
                             </div>
@@ -98,11 +103,23 @@
         </div>
 
         <div class="container">
-            <div class="footer-trust-badges" aria-label="Website security badges">
+            {{-- <div class="footer-trust-badges" aria-label="Website security badges">
                 <img src="{{ asset('assets/images/trust-badges/google-safe-browsing.png') }}"
                     alt="Google Safe Browsing">
                 <img src="{{ asset('assets/images/trust-badges/sectigo-secured.png') }}"
                     alt="Secured by Sectigo">
+            </div> --}}
+
+            <div class="footer-trust-badges" aria-label="Website security badges">
+
+                <!-- Google Safe Browsing -->
+                <img src="{{ asset('assets/images/trust-badges/google-safe-browsing.png') }}"
+                    alt="Google Safe Browsing" onclick="openCenteredPopup()" style="cursor:pointer;">
+
+                <!-- Sectigo SSL -->
+                <img src="{{ asset('assets/images/trust-badges/sectigo-secured.png') }}" alt="Secured by Sectigo"
+                    onclick="redirectToCertificate()" style="cursor:pointer;">
+
             </div>
         </div>
 
@@ -149,3 +166,37 @@
         </div>
     </div>
 </footer>
+
+@push('scripts')
+    <script>
+        // Sectigo SSL Certificate
+        function redirectToCertificate() {
+            window.open(
+                "https://decoder.link/sslchecker/eaglesrepair.us/443",
+                "_blank",
+                "noopener,noreferrer"
+            );
+        }
+
+        // Google Safe Browsing
+        function openCenteredPopup() {
+            const url =
+                "https://transparencyreport.google.com/safe-browsing/search?url=https%3A%2F%2Feaglesrepair.us%2F&hl=en";
+
+            const popupWidth = 800;
+            const popupHeight = 600;
+
+            const left = (window.screen.width - popupWidth) / 2;
+            const top = (window.screen.height - popupHeight) / 2;
+
+            const features =
+                `width=${popupWidth},height=${popupHeight},left=${left},top=${top},resizable=yes,scrollbars=yes`;
+
+            const win = window.open(url, "_blank", features);
+
+            if (win) {
+                win.focus();
+            }
+        }
+    </script>
+@endpush
