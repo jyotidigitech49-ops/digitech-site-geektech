@@ -143,16 +143,8 @@
     <!-- Footer Bottom -->
     <div class="footer-bottom pt-30 pb-30">
         <div class="container">
-            <div class="row flex-row-reverse align-items-center">
-
-                <div class="col-lg-6 col-md-6 text-lg-end text-center mb-3 mb-md-0">
-                    <div class="payment-img footer-payment-img">
-                        <img src="{{ asset('assets/images/icon-img/payment-img.png') }}"
-                            alt="Accepted payment methods">
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-6 text-lg-start text-center">
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
                     <div class="copyright">
                         <p>
                             © 2026
